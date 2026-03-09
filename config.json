@@ -1,0 +1,55 @@
+{
+  "hell": {
+    "version": "0.1.0",
+    "os": "windows",
+    "log_level": "info"
+  },
+
+  "startup": {
+    "minimize_on_boot": [
+      "Discord",
+      "Spotify",
+      "Steam",
+      "Instagram"
+    ]
+  },
+
+  "dev_mode": {
+    "default_tabs": [
+      "https://github.com/error-debug-run/HELL"
+    ],
+    "projects": {
+      "HELL": {
+        "browser_tabs": [
+          "https://github.com/error-debug-run/HELL",
+          "https://docs.python.org/3.10/",
+          "https://pypi.org"
+        ],
+        "trigger_apps": [
+          "Code.exe",
+          "pycharm64.exe",
+          "GitHubDesktop.exe",
+          "firefox.exe",
+          "brave.exe",
+          "msedge.exe"
+        ]
+      }
+    }
+  },
+
+  "game_mode": {
+    "servers": ["riot.com"],
+    "ping_threshold_warn": 100,
+    "ping_threshold_bad": 200,
+    "packet_loss_warn": 2,
+    "trigger_apps": [
+      "steam.exe",
+      "EpicGamesLauncher.exe"
+    ],
+    "minimize_on_game": [
+      "Discord",
+      "Spotify",
+      "Brave"
+    ]
+  }
+}
