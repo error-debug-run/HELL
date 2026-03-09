@@ -224,10 +224,3 @@ def close(exe_name):
     return closed > 0
 
 
-if __name__ == "__main__":
-    import psutil
-    for proc in psutil.process_iter(["name", "pid", "status"]):
-        if "discord" in proc.info["name"].lower():
-            print(proc.info)
-
-    print(close("Discord.exe"))
