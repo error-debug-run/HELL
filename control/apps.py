@@ -178,15 +178,56 @@ def launch_and_minimize(app, wait=3):
 
 
 def kill(exe_name):
-    """Kill all processes matching exe name."""
-    killed = 0
-    for proc in psutil.process_iter(["name"]):
-        if proc.info["name"] and \
-           proc.info["name"].lower() == exe_name.lower():
-            try:
-                proc.kill()
-                killed += 1
-            except (psutil.NoSuchProcess, psutil.AccessDenied):
-                pass
-    return killed > 0
+    """
+    Kill all processes matching exe name.
+    Uses taskkill which handles multi-process apps
+    like Discord, Steam, Spotify cleanly.
+    """
+    result = subprocess.run(
+        ["taskkill", "/F", "/IM", exe_name],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL
+    )
+    return result.returncode == 0
 
+def close(exe_name):
+    """
+    Close an app gracefully — same as clicking the X button.
+    Sends WM_CLOSE to all windows of the process.
+    App handles its own cleanup and shutdown.
+    """
+    import ctypes
+    import ctypes.wintypes
+
+    WM_CLOSE = 0x0010
+    user32    = ctypes.windll.user32
+    closed    = 0
+
+    def callback(hwnd, _):
+        nonlocal closed
+        pid = ctypes.wintypes.DWORD()
+        user32.GetWindowThreadProcessId(hwnd, ctypes.byref(pid))
+        try:
+            proc = psutil.Process(pid.value)
+            if proc.name().lower() == exe_name.lower():
+                if user32.IsWindowVisible(hwnd):
+                    user32.PostMessageW(hwnd, WM_CLOSE, 0, 0)
+                    closed += 1
+        except (psutil.NoSuchProcess, psutil.AccessDenied):
+            pass
+        return True
+
+    WNDENUMPROC = ctypes.WINFUNCTYPE(ctypes.c_bool,
+                                      ctypes.wintypes.HWND,
+                                      ctypes.wintypes.LPARAM)
+    user32.EnumWindows(WNDENUMPROC(callback), 0)
+    return closed > 0
+
+
+if __name__ == "__main__":
+    import psutil
+    for proc in psutil.process_iter(["name", "pid", "status"]):
+        if "discord" in proc.info["name"].lower():
+            print(proc.info)
+
+    print(close("Discord.exe"))
