@@ -7,10 +7,10 @@
 
   "startup": {
     "minimize_on_boot": [
-      "Discord",
-      "Spotify",
-      "Steam",
-      "Instagram"
+      {"name": "Discord", "exe": "Discord.exe","window_title": "Discord"},
+      {"name": "Spotify", "exe": "Spotify.exe","window_title": "Spotify"},
+      {"name": "Steam",   "exe": "Steam.exe", "window_title": "Steam"},
+      {"name": "Instagram", "exe": "pwahelper.exe", "window_title": "Instagram"}
     ]
   },
 
