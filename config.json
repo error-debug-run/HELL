@@ -7,10 +7,39 @@
 
   "startup": {
     "minimize_on_boot": [
-      {"name": "Discord", "exe": "Discord.exe","window_title": "Discord"},
-      {"name": "Spotify", "exe": "Spotify.exe","window_title": "Spotify"},
-      {"name": "Steam",   "exe": "Steam.exe", "window_title": "Steam"},
-      {"name": "Instagram", "exe": "pwahelper.exe", "window_title": "Instagram"}
+        {
+            "name": "Discord",
+            "exe": "Discord.exe",
+            "path": "C:\\Users\\Admin\\AppData\\Local\\Discord\\Update.exe",
+            "args": [],
+            "type": "exe",
+            "action": "minimize"
+        },
+        {
+            "name": "Spotify",
+            "exe": "Spotify.exe",
+            "path": "C:\\Program Files\\WindowsApps\\SpotifyAB.SpotifyMusic_1.284.476.0_x64__zpdnekdrzrea0\\Spotify.exe",
+            "args": [],
+            "type": "exe",
+            "action": "minimize"
+        },
+        {
+            "name": "Steam",
+            "exe": "Steam.exe",
+            "path": "C:\\Program Files (x86)\\Steam\\steam.exe",
+            "args": [],
+            "type": "exe",
+            "action": "minimize"
+        },
+        {
+            "name": "Instagram",
+            "exe": "pwahelper.exe",
+            "path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\pwahelper.exe",
+            "window_title": "Instagram",
+            "args": [],
+            "type": "pwa",
+            "action": "minimize"
+        }
     ]
   },
 
