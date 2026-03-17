@@ -223,11 +223,12 @@ async def launch_and_close(app, wait=5):
     """
 
 
-    name         = app["name"]
-    exe          = app["exe"]
-    app_type     = app.get("type", "exe")
-    window_title = app.get("window_title", name)
-    action       = app.get("action", "close")
+    name             = app["name"]
+    exe              = app["exe"]
+    app_type         = app.get("type", "exe")
+    window_title     = app.get("window_title", name)
+    action           = app.get("action", "close")
+    action_wait_time = app.get("action_wait_time", 15)
 
     # check if already running
     if app_type == "pwa":
@@ -244,6 +245,8 @@ async def launch_and_close(app, wait=5):
     else:
         print(f"  {name} already running")
 
+    await asyncio.sleep(action_wait_time)
+
     # apply action
     if action == "hide":
         hide_by = app.get("hide_by", "exe")
@@ -255,8 +258,8 @@ async def launch_and_close(app, wait=5):
             print(f"  {name} → hidden to tray ✓")
             return True
         else:
-            print(f"  {name} → could not hide")
-            return False
+            print(f"  {name} → could not hide, may already be hidden")
+            return True
 
     elif action == "minimize":
         if app_type == "pwa":
@@ -534,4 +537,51 @@ def hide_by_title(app):
                                      ctypes.wintypes.LPARAM)
     user32.EnumWindows(WNDENUMPROC(callback), 0)
     return hidden > 0
+
+if __name__ == "__main__":
+    import psutil
+
+    for proc in psutil.process_iter(["name", "pid", "status"]):
+        if "steam" in proc.info["name"].lower():
+            print(proc.info)
+
+    app = {
+        "name": "Discord",
+        "exe": "Discord.exe",
+        "path": "C:\\Users\\Admin\\AppData\\Local\\Discord\\Update.exe",
+        "args": [
+          "--processStart Discord.exe"
+        ],
+        "type": "exe",
+        "action": "close",
+        "launch_timeout": 15,
+        "launch_interval": 2
+      }
+
+    print(is_window_responsive("steamwebhelper.exe") or is_window_visible("steamwebhelper.exe"))
+    # close(app)
+    close(app)
+
+
+
+
+    # import psutil
+    # import time
+    #
+    # # run for 20 seconds, print everything discord related
+    # start = time.time()
+    # while time.time() - start < 20:
+    #     for proc in psutil.process_iter(["name", "pid", "status"]):
+    #         if any(x in proc.info["name"].lower()
+    #                for x in ["discord", "update"]):
+    #             print(f"{time.time() - start:.1f}s  {proc.info}")
+    #     time.sleep(1)
+    #     print("---")
+
+
+
+
+    # for proc in psutil.process_iter(["name", "pid", "status"]):
+    #     if "pwahelper" in proc.info["name"].lower():
+    #         print(proc.info)
 

@@ -15,6 +15,7 @@
         ],
         "type": "exe",
         "action": "close",
+        "action_wait_time": 15,
         "launch_timeout": 15,
         "launch_interval": 2
       },
