@@ -394,7 +394,7 @@ def close_by_window(app):
 # but only the one whose window title matches "Instagram"
 # terminate that specific pid
 
-def close_pwa_by_pid(window_title):
+def close_pwa_by_pid(app):
     import ctypes
     import ctypes.wintypes
 
@@ -537,51 +537,4 @@ def hide_by_title(app):
                                      ctypes.wintypes.LPARAM)
     user32.EnumWindows(WNDENUMPROC(callback), 0)
     return hidden > 0
-
-if __name__ == "__main__":
-    import psutil
-
-    for proc in psutil.process_iter(["name", "pid", "status"]):
-        if "steam" in proc.info["name"].lower():
-            print(proc.info)
-
-    app = {
-        "name": "Discord",
-        "exe": "Discord.exe",
-        "path": "C:\\Users\\Admin\\AppData\\Local\\Discord\\Update.exe",
-        "args": [
-          "--processStart Discord.exe"
-        ],
-        "type": "exe",
-        "action": "close",
-        "launch_timeout": 15,
-        "launch_interval": 2
-      }
-
-    print(is_window_responsive("steamwebhelper.exe") or is_window_visible("steamwebhelper.exe"))
-    # close(app)
-    close(app)
-
-
-
-
-    # import psutil
-    # import time
-    #
-    # # run for 20 seconds, print everything discord related
-    # start = time.time()
-    # while time.time() - start < 20:
-    #     for proc in psutil.process_iter(["name", "pid", "status"]):
-    #         if any(x in proc.info["name"].lower()
-    #                for x in ["discord", "update"]):
-    #             print(f"{time.time() - start:.1f}s  {proc.info}")
-    #     time.sleep(1)
-    #     print("---")
-
-
-
-
-    # for proc in psutil.process_iter(["name", "pid", "status"]):
-    #     if "pwahelper" in proc.info["name"].lower():
-    #         print(proc.info)
 
