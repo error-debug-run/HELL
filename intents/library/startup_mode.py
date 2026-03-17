@@ -4,7 +4,7 @@ import asyncio
 from config import config
 from control.apps import launch_and_close
 
-async def run():
+async def tun():
     """
     Startup mode — runs on boot.
     Launches all configured apps and minimizes them to tray.
@@ -22,7 +22,7 @@ async def run():
         # instead of one by one
         tasks.append(launch_and_close(app))
 
-    results = await asyncio.gather(*tasks, return_exceptions=True)
+    results = await asyncio.gather(*tasks)
 
     # summary
     print("─" * 30)
@@ -32,4 +32,4 @@ async def run():
     print("─" * 30)
 
 if __name__ == "__main__":
-    asyncio.run(run())
+    asyncio.run(tun())

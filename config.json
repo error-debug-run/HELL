@@ -4,45 +4,51 @@
     "os": "windows",
     "log_level": "info"
   },
-
   "startup": {
     "minimize_on_boot": [
-        {
-            "name": "Discord",
-            "exe": "Discord.exe",
-            "path": "C:\\Users\\Admin\\AppData\\Local\\Discord\\Update.exe",
-            "args": [],
-            "type": "exe",
-            "action": "minimize"
-        },
-        {
-            "name": "Spotify",
-            "exe": "Spotify.exe",
-            "path": "C:\\Program Files\\WindowsApps\\SpotifyAB.SpotifyMusic_1.284.476.0_x64__zpdnekdrzrea0\\Spotify.exe",
-            "args": [],
-            "type": "exe",
-            "action": "minimize"
-        },
-        {
-            "name": "Steam",
-            "exe": "Steam.exe",
-            "path": "C:\\Program Files (x86)\\Steam\\steam.exe",
-            "args": [],
-            "type": "exe",
-            "action": "minimize"
-        },
-        {
-            "name": "Instagram",
-            "exe": "pwahelper.exe",
-            "path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\pwahelper.exe",
-            "window_title": "Instagram",
-            "args": [],
-            "type": "pwa",
-            "action": "minimize"
-        }
+      {
+        "name": "Discord",
+        "exe": "Discord.exe",
+        "path": "C:\\Users\\Admin\\AppData\\Local\\Discord\\Update.exe",
+        "args": [
+          "--processStart Discord.exe"
+        ],
+        "type": "exe",
+        "action": "close",
+        "launch_timeout": 15,
+        "launch_interval": 2
+      },
+      {
+        "name": "Spotify",
+        "exe": "Spotify.exe",
+        "path": "C:\\Program Files\\WindowsApps\\SpotifyAB.SpotifyMusic_1.284.476.0_x64__zpdnekdrzrea0\\Spotify.exe",
+        "args": [],
+        "type": "exe",
+        "action": "close"
+      },
+      {
+        "name": "Steam",
+        "exe": "steamwebhelper.exe",
+        "path": "C:\\Program Files (x86)\\Steam\\steam.exe",
+        "args": [],
+        "type": "exe",
+        "action": "hide"
+      },
+      {
+        "name": "Instagram",
+        "exe": "pwahelper.exe",
+        "path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\pwahelper.exe",
+        "window_title": "Instagram",
+        "args": [
+          "--profile-directory=Default --app-id=akpamiohjfcnimfljfndmaldlcfphjmp --app-url=https://www.instagram.com/?utm_source=pwa_homescreen&__pwa=1 --app-run-on-os-login-mode=windowed --app-launch-source=19"
+        ],
+        "type": "pwa",
+        "action": "close",
+        "launch_timeout": 15,
+        "launch_interval": 2
+      }
     ]
   },
-
   "dev_mode": {
     "default_tabs": [
       "https://github.com/error-debug-run"
@@ -65,9 +71,10 @@
       }
     }
   },
-
   "game_mode": {
-    "servers": ["riot.com"],
+    "servers": [
+      "riot.com"
+    ],
     "ping_threshold_warn": 100,
     "ping_threshold_bad": 200,
     "packet_loss_warn": 2,
