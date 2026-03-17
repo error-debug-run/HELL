@@ -4,6 +4,22 @@
     "os": "windows",
     "log_level": "info"
   },
+
+  "stt": {
+    "wake_word":        "bring it on",
+    "model_size":       "small",
+    "model_path":       "models/whisper-small",
+    "device":           "cuda",
+    "sample_rate":      16000,
+    "window_size":      5,
+    "slide_every":      2.5,
+    "energy_threshold":    0.005,
+    "transcribe_threshold": 0.002,
+    "command_timeout":  5,
+    "language":         "en",
+    "mic_device":       5
+},
+
   "startup": {
     "minimize_on_boot": [
       {
@@ -50,6 +66,7 @@
       }
     ]
   },
+
   "dev_mode": {
     "default_tabs": [
       "https://github.com/error-debug-run"
@@ -72,6 +89,7 @@
       }
     }
   },
+
   "game_mode": {
     "servers": [
       "riot.com"

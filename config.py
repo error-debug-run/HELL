@@ -81,6 +81,10 @@ class Config:
     def packet_loss_warn(self):
         return self._data["game_mode"]["packet_loss_warn"]
 
+    @property
+    def stt(self):
+        return self._data["stt"]
+
     # ── raw access for anything not covered ───────
     def get(self, *keys, default=None):
         data = self._data
