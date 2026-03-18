@@ -90,6 +90,7 @@ async def launch(app, timeout=30, interval=2):
     import time
 
     name = app["name"]
+    type = app["type"]
     exe  = app["exe"]
     path = app.get("path")
     args = app.get("args", [])
@@ -121,6 +122,16 @@ async def launch(app, timeout=30, interval=2):
         "timeout": timeout,     # ← same here
         "interval": interval,   # ← same here
     })
+    attempts.append({
+        "method": "path_for_pwa",
+        "executable": " ".join([path] + args),
+        "args": args,
+        "shell": False,
+        "timeout": app.get("launch_timeout", timeout),
+        "interval": app.get("launch_interval", interval),
+    })
+
+    for attempt in attempts: print([attempt["executable"]] + attempt["args"])
 
     for attempt in attempts:
         if method == "shell":
@@ -134,6 +145,13 @@ async def launch(app, timeout=30, interval=2):
             subprocess.Popen(
                 attempt["executable"],  # exe name, shell resolves it
                 shell=True,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            )
+        elif method == "path_for_pwa":
+            subprocess.Popen(
+                attempt["executable"],  # exe name, shell resolves it
+                shell=False,
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
             )
@@ -552,4 +570,48 @@ def hide_by_title(app):
                                      ctypes.wintypes.LPARAM)
     user32.EnumWindows(WNDENUMPROC(callback), 0)
     return hidden > 0
+
+if __name__ == "__main__":
+    import psutil
+
+    for proc in psutil.process_iter(["name", "pid", "status"]):
+        if "steam" in proc.info["name"].lower():
+            print(proc.info)
+
+    app = {
+        "name": "Spotify",
+        "exe": "Spotify.exe",
+        "path": "explorer.exe",
+        "args": ["shell:appsFolder\\SpotifyAB.SpotifyMusic_zpdnekdrzrea0!Spotify"],
+        "type": "exe",
+        "action": "close"
+      }
+
+    print(is_window_responsive("steamwebhelper.exe") or is_window_visible("steamwebhelper.exe"))
+    # close(app)
+    # close(app)
+    asyncio.run(launch(app))
+
+
+
+
+    # import psutil
+    # import time
+    #
+    # # run for 20 seconds, print everything discord related
+    # start = time.time()
+    # while time.time() - start < 20:
+    #     for proc in psutil.process_iter(["name", "pid", "status"]):
+    #         if any(x in proc.info["name"].lower()
+    #                for x in ["discord", "update"]):
+    #             print(f"{time.time() - start:.1f}s  {proc.info}")
+    #     time.sleep(1)
+    #     print("---")
+
+
+
+
+    # for proc in psutil.process_iter(["name", "pid", "status"]):
+    #     if "pwahelper" in proc.info["name"].lower():
+    #         print(proc.info)
 

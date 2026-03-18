@@ -40,8 +40,8 @@
       {
         "name": "Spotify",
         "exe": "Spotify.exe",
-        "path": "C:\\Program Files\\WindowsApps\\SpotifyAB.SpotifyMusic_1.284.476.0_x64__zpdnekdrzrea0\\Spotify.exe",
-        "args": [],
+        "path": "explorer.exe",
+        "args": ["shell:appsFolder\\SpotifyAB.SpotifyMusic_zpdnekdrzrea0!Spotify"],
         "type": "exe",
         "action": "close"
       },
@@ -54,17 +54,16 @@
         "action": "hide"
       },
       {
-        "name": "Instagram",
-        "exe": "pwahelper.exe",
-        "path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\pwahelper.exe",
-        "window_title": "Instagram",
-        "args": [
-          "--profile-directory=Default --app-id=akpamiohjfcnimfljfndmaldlcfphjmp --app-url=https://www.instagram.com/?utm_source=pwa_homescreen&__pwa=1 --app-run-on-os-login-mode=windowed --app-launch-source=19"
-        ],
-        "type": "pwa",
-        "action": "close",
-        "launch_timeout": 15,
-        "launch_interval": 2
+        "name":            "Instagram",
+        "exe":             "Instagram.exe",
+        "window_title":    "Instagram",
+        "path":            "explorer.exe",
+        "args":            ["shell:appsFolder\\Facebook.InstagramBeta_8xx8rvfyw5nnt!App"],
+        "type":            "pwa",
+        "action":          "close",
+        "launch_timeout":  5,
+        "launch_interval": 2,
+        "method": "path_for_pwa"
       }
     ]
   },
