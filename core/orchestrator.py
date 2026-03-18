@@ -33,7 +33,7 @@ class Orchestrator:
             "open_app":      app_run,
             "close_app":     app_run,
             "hide_app":      app_run,
-            "stop_hell":     self._stop,
+            # "stop_hell":     self._stop,
             "system_status": self._system_status,
         }
 
@@ -74,11 +74,11 @@ class Orchestrator:
                 "reason":  str(e),
                 "intent":  intent,
             }
-
-    async def _stop(self, entities: dict):
-        """Stop HELL gracefully."""
-        print("  HELL shutting down...")
-        raise SystemExit(0)
+    #
+    # async def _stop(self, entities: dict):
+    #     """Stop HELL gracefully."""
+    #     print("  HELL shutting down...")
+    #     raise SystemExit(0)
 
     async def _system_status(self, entities: dict):
         """Quick system status check."""
