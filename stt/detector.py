@@ -48,6 +48,7 @@ class WakeWordDetector:
 
     def __init__(self):
         self.wake_word            = config.stt["wake_word"].lower()
+        self.sleep_word           = config.stt["sleep_word"].lower()
         self.slide_every          = config.stt["slide_every"]
         self.command_timeout      = config.stt["command_timeout"]
         self.transcribe_threshold = config.stt["transcribe_threshold"]
