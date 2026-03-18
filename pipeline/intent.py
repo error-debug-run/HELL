@@ -35,25 +35,3 @@ def detect(text: str) -> dict:
     }
 
 
-if __name__ == "__main__":
-    tests = [
-        "game mode",
-        "dev mode for hell",
-        "open spotify",
-        "close discord",
-        "check my ping",
-        "startup",
-        "hide steam",
-        "what is my cpu usage",
-        "turn off hell",
-        "abcdefg random nonsense",
-    ]
-
-    print("HELL Intent Classifier")
-    print("─" * 50)
-    for t in tests:
-        result = detect(t)
-        status = "✓" if result["understood"] else "✗"
-        print(f"{status} '{t}'")
-        print(f"  → {result['intent']}  ({result['confidence']}%)")
-    print("─" * 50)
