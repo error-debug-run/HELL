@@ -6,18 +6,19 @@
   },
 
   "stt": {
-    "wake_word":        "bring it on",
-    "model_size":       "small",
-    "model_path":       "models/whisper-small",
-    "device":           "cuda",
-    "sample_rate":      16000,
-    "window_size":      5,
-    "slide_every":      2.5,
-    "energy_threshold":    0.005,
+    "wake_word"           : "bring it on",
+    "sleep_word"          : "go to sleep",
+    "model_size"          : "small",
+    "model_path"          : "models/whisper-small",
+    "device"              : "cuda",
+    "sample_rate"         : 16000,
+    "window_size"         : 5,
+    "slide_every"         : 2.5,
+    "energy_threshold"    : 0.005,
     "transcribe_threshold": 0.002,
-    "command_timeout":  5,
-    "language":         "en",
-    "mic_device":       5
+    "command_timeout"     : 5,
+    "language"            : "en",
+    "mic_device"          : 5
 },
 
   "startup": {
@@ -33,7 +34,8 @@
         "action": "close",
         "action_wait_time": 15,
         "launch_timeout": 15,
-        "launch_interval": 2
+        "launch_interval": 2,
+        "method": "shell"
       },
       {
         "name": "Spotify",

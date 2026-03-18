@@ -107,10 +107,12 @@ class WakeWordDetector:
             print(f"  wake word detected → listening for command")
             self.mode = self.COMMAND
             # clear buffer so command doesn't include wake word audio
-            self.listener.buffer = np.zeros(
-                len(self.listener.buffer),
-                dtype=np.float32
-            )
+            # self.listener.buffer = np.zeros(
+            #     len(self.listener.buffer),
+            #     dtype=np.float32
+            # )
+
+
 
     async def _capture_command(self):
         print(f"  capturing command for {self.command_timeout}s...")
@@ -119,14 +121,16 @@ class WakeWordDetector:
         audio   = self.listener.get_window(seconds=self.command_timeout)
         command = self.transcriber.transcribe(audio)
 
-        self.mode = self.IDLE
-
         if command and not is_hallucination(command):
             print(f"  command: '{command}'")
             if self.on_command:
                 await self.on_command(command)
+        elif command == self.sleep_word:
+            print(f"  going to sleep until '{self.wake_word}'")
+            self.mode = self.IDLE
+
         else:
-            print("  no command heard — back to idle")
+            print("  no command heard")
 
 
 if __name__ == "__main__":
