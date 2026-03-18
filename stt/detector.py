@@ -130,9 +130,7 @@ class WakeWordDetector:
 
 if __name__ == "__main__":
 
-    async def handle_command(command):
-        print(f"\n  HELL received: '{command}'")
-        print(f"  → NLP pipeline goes here\n")
+    from pipeline.pipeline import handle_command
 
     async def main():
         detector            = WakeWordDetector()

@@ -215,7 +215,7 @@ def minimize(exe_name):
     return minimized > 0
 
 
-async def launch_and_close(app, wait=5):
+async def launch_and_intent(app, wait=5):
     """
        Launch an app then close it.
        Async — all apps launch concurrently.
@@ -560,7 +560,8 @@ if __name__ == "__main__":
 
     print(is_window_responsive("steamwebhelper.exe") or is_window_visible("steamwebhelper.exe"))
     # close(app)
-    close(app)
+    # close(app)
+    asyncio.run(launch(app))
 
 
 
