@@ -38,7 +38,7 @@ to match you — instead of you constantly adapting to your machine.
 - Python 3.10+
 - asyncio — concurrent job execution
 - psutil — process management
-- Custom NLP intent engine — no pretrained models
+- Custom NLP intent engine — no pretrained models(for intent)
 - pywin32 — Windows system APIs
 
 ## Status
