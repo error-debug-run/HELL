@@ -123,6 +123,20 @@ async def launch(app, timeout=30, interval=2):
     })
 
     for attempt in attempts:
+        if method == "shell":
+            subprocess.Popen(
+                attempt["executable"],  # exe name, shell resolves it
+                shell=True,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            )
+        elif method == "path":
+            subprocess.Popen(
+                attempt["executable"],  # exe name, shell resolves it
+                shell=True,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            )
         try:
             if attempt["shell"]:
                 subprocess.Popen(
