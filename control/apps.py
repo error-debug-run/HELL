@@ -95,6 +95,7 @@ async def launch(app, timeout=30, interval=2):
     args = app.get("args", [])
     timeout = app.get("launch_timeout", timeout)
     interval = app.get("launch_interval", interval)
+    method = app.get("method")
     print(timeout, interval)
 
     DETACHED  = 0x00000008
