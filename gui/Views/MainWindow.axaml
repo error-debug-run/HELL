@@ -2,24 +2,331 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:gui.ViewModels"
         x:Class="gui.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
         Title="HELL"
-        Width="900"
-        Height="600"
+        Width="1000"
+        Height="650"
+        MinWidth="800"
+        MinHeight="500"
         WindowStartupLocation="CenterScreen"
-        ShowInTaskbar="False"
-        WindowState="Minimized"
-        Background="#0D0D0D">
+        Background="#0A0A0F">
 
     <Design.DataContext>
-        <vm:MainWindowViewModel/>
+        <vm:MainWindowViewModel />
     </Design.DataContext>
 
-    <Grid>
-        <TextBlock Text="HELL Dashboard"
-                   Foreground="White"
-                   FontSize="32"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"/>
-    </Grid>
+    <Grid RowDefinitions="Auto,*,Auto">
 
+        <!-- ── TITLE BAR ─────────────────────────────── -->
+        <Border Grid.Row="0"
+                Background="#12101A"
+                BorderBrush="#2A1F3D"
+                BorderThickness="0,0,0,1"
+                Padding="20,12">
+            <Grid ColumnDefinitions="*,Auto">
+
+                <StackPanel Orientation="Horizontal" Spacing="12">
+                    <Ellipse Width="10" Height="10"
+                             Fill="#7C3AED" />
+                    <TextBlock Text="HELL"
+                               Foreground="#FDFBD4"
+                               FontSize="16"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center" />
+                    <TextBlock Text="v0.1"
+                               Foreground="#6B6080"
+                               FontSize="12"
+                               VerticalAlignment="Center" />
+                </StackPanel>
+
+                <!-- mic status indicator in title bar -->
+                <StackPanel Grid.Column="1"
+                            Orientation="Horizontal"
+                            Spacing="8"
+                            VerticalAlignment="Center">
+                    <Ellipse Width="8" Height="8"
+                             Fill="{Binding MicColor}"
+                             Name="MicDot" />
+                    <TextBlock Text="{Binding MicStatus}"
+                               Foreground="#6B6080"
+                               FontSize="11"
+                               VerticalAlignment="Center" />
+                </StackPanel>
+
+            </Grid>
+        </Border>
+
+        <!-- ── CONTENT PANEL ─────────────────────────── -->
+        <Border Grid.Row="1"
+                Padding="24">
+            <Panel>
+
+                <!-- STATUS PANEL -->
+                <Grid IsVisible="{Binding IsStatusTab}">
+                    <StackPanel Spacing="16">
+
+                        <TextBlock Text="SYSTEM STATUS"
+                                   Foreground="#7C3AED"
+                                   FontSize="11"
+                                   FontWeight="Bold"
+                                   LetterSpacing="3" />
+
+                        <!-- current mode -->
+                        <Border Background="#12101A"
+                                BorderBrush="#2A1F3D"
+                                BorderThickness="1"
+                                CornerRadius="8"
+                                Padding="20,16">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <StackPanel>
+                                    <TextBlock Text="CURRENT MODE"
+                                               Foreground="#6B6080"
+                                               FontSize="10"
+                                               FontWeight="Bold"
+                                               LetterSpacing="2" />
+                                    <TextBlock Text="{Binding CurrentMode}"
+                                               Foreground="#FDFBD4"
+                                               FontSize="24"
+                                               FontWeight="Bold"
+                                               Margin="0,4,0,0" />
+                                </StackPanel>
+                                <Ellipse Grid.Column="1"
+                                         Width="12" Height="12"
+                                         Fill="#7C3AED"
+                                         VerticalAlignment="Center" />
+                            </Grid>
+                        </Border>
+
+                        <!-- metrics row -->
+                        <Grid ColumnDefinitions="*,12,*,12,*">
+
+                            <!-- CPU -->
+                            <Border Background="#12101A"
+                                    BorderBrush="#2A1F3D"
+                                    BorderThickness="1"
+                                    CornerRadius="8"
+                                    Padding="16">
+                                <StackPanel>
+                                    <TextBlock Text="CPU"
+                                               Foreground="#6B6080"
+                                               FontSize="10"
+                                               FontWeight="Bold"
+                                               LetterSpacing="2" />
+                                    <TextBlock Text="{Binding CpuUsage}"
+                                               Foreground="#A855F7"
+                                               FontSize="28"
+                                               FontWeight="Bold"
+                                               Margin="0,4,0,0" />
+                                </StackPanel>
+                            </Border>
+
+                            <!-- RAM -->
+                            <Border Grid.Column="2"
+                                    Background="#12101A"
+                                    BorderBrush="#2A1F3D"
+                                    BorderThickness="1"
+                                    CornerRadius="8"
+                                    Padding="16">
+                                <StackPanel>
+                                    <TextBlock Text="RAM"
+                                               Foreground="#6B6080"
+                                               FontSize="10"
+                                               FontWeight="Bold"
+                                               LetterSpacing="2" />
+                                    <TextBlock Text="{Binding RamUsage}"
+                                               Foreground="#A855F7"
+                                               FontSize="28"
+                                               FontWeight="Bold"
+                                               Margin="0,4,0,0" />
+                                </StackPanel>
+                            </Border>
+
+                            <!-- GPU -->
+                            <Border Grid.Column="4"
+                                    Background="#12101A"
+                                    BorderBrush="#2A1F3D"
+                                    BorderThickness="1"
+                                    CornerRadius="8"
+                                    Padding="16">
+                                <StackPanel>
+                                    <TextBlock Text="GPU"
+                                               Foreground="#6B6080"
+                                               FontSize="10"
+                                               FontWeight="Bold"
+                                               LetterSpacing="2" />
+                                    <TextBlock Text="{Binding GpuUsage}"
+                                               Foreground="#A855F7"
+                                               FontSize="28"
+                                               FontWeight="Bold"
+                                               Margin="0,4,0,0" />
+                                </StackPanel>
+                            </Border>
+
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+
+                <!-- APPS PANEL -->
+                <Grid IsVisible="{Binding IsAppsTab}">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="STARTUP APPS"
+                                   Foreground="#7C3AED"
+                                   FontSize="11"
+                                   FontWeight="Bold"
+                                   LetterSpacing="3" />
+                        <TextBlock Text="App finder coming soon..."
+                                   Foreground="#6B6080" />
+                    </StackPanel>
+                </Grid>
+
+                <!-- JOBS PANEL -->
+                <Grid IsVisible="{Binding IsJobsTab}">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="RECENT JOBS"
+                                   Foreground="#7C3AED"
+                                   FontSize="11"
+                                   FontWeight="Bold"
+                                   LetterSpacing="3" />
+                        <TextBlock Text="Job history coming soon..."
+                                   Foreground="#6B6080" />
+                    </StackPanel>
+                </Grid>
+
+                <!-- CONFIG PANEL -->
+                <Grid IsVisible="{Binding IsConfigTab}">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="CONFIGURATION"
+                                   Foreground="#7C3AED"
+                                   FontSize="11"
+                                   FontWeight="Bold"
+                                   LetterSpacing="3" />
+                        <TextBlock Text="Config editor coming soon..."
+                                   Foreground="#6B6080" />
+                    </StackPanel>
+                </Grid>
+
+            </Panel>
+
+        </Border>
+
+        <!-- ── BOTTOM TAB BAR ────────────────────────── -->
+        <Border Grid.Row="2"
+                Background="#12101A"
+                BorderBrush="#2A1F3D"
+                BorderThickness="0,1,0,0">
+            <Grid ColumnDefinitions="*,*,*,*,Auto">
+
+                <!-- STATUS tab -->
+                <Button Grid.Column="0"
+                        Command="{Binding SelectTabCommand}"
+                        CommandParameter="status"
+                        Background="Transparent"
+                        Padding="0,14"
+                        HorizontalContentAlignment="Center">
+                    <StackPanel Spacing="4" HorizontalAlignment="Center">
+                        <TextBlock Text="⬡"
+                                   FontSize="16"
+                                   Foreground="{Binding StatusTabColor}"
+                                   HorizontalAlignment="Center" />
+                        <TextBlock Text="STATUS"
+                                   FontSize="9"
+                                   FontWeight="Bold"
+                                   LetterSpacing="1"
+                                   Foreground="{Binding StatusTabColor}"
+                                   HorizontalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+
+                <!-- APPS tab -->
+                <Button Grid.Column="1"
+                        Command="{Binding SelectTabCommand}"
+                        CommandParameter="apps"
+                        Background="Transparent"
+                        Padding="0,14"
+                        HorizontalContentAlignment="Center">
+                    <StackPanel Spacing="4" HorizontalAlignment="Center">
+                        <TextBlock Text="⬡"
+                                   FontSize="16"
+                                   Foreground="{Binding AppsTabColor}"
+                                   HorizontalAlignment="Center" />
+                        <TextBlock Text="APPS"
+                                   FontSize="9"
+                                   FontWeight="Bold"
+                                   LetterSpacing="1"
+                                   Foreground="{Binding AppsTabColor}"
+                                   HorizontalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+
+                <!-- JOBS tab -->
+                <Button Grid.Column="2"
+                        Command="{Binding SelectTabCommand}"
+                        CommandParameter="jobs"
+                        Background="Transparent"
+                        Padding="0,14"
+                        HorizontalContentAlignment="Center">
+                    <StackPanel Spacing="4" HorizontalAlignment="Center">
+                        <TextBlock Text="⬡"
+                                   FontSize="16"
+                                   Foreground="{Binding JobsTabColor}"
+                                   HorizontalAlignment="Center" />
+                        <TextBlock Text="JOBS"
+                                   FontSize="9"
+                                   FontWeight="Bold"
+                                   LetterSpacing="1"
+                                   Foreground="{Binding JobsTabColor}"
+                                   HorizontalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+
+                <!-- CONFIG tab -->
+                <Button Grid.Column="3"
+                        Command="{Binding SelectTabCommand}"
+                        CommandParameter="config"
+                        Background="Transparent"
+                        Padding="0,14"
+                        HorizontalContentAlignment="Center">
+                    <StackPanel Spacing="4" HorizontalAlignment="Center">
+                        <TextBlock Text="⬡"
+                                   FontSize="16"
+                                   Foreground="{Binding ConfigTabColor}"
+                                   HorizontalAlignment="Center" />
+                        <TextBlock Text="CONFIG"
+                                   FontSize="9"
+                                   FontWeight="Bold"
+                                   LetterSpacing="1"
+                                   Foreground="{Binding ConfigTabColor}"
+                                   HorizontalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+
+                <!-- MIC VISUALIZER -->
+                <Border Grid.Column="4"
+                        Padding="20,0"
+                        VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal"
+                                Spacing="3"
+                                VerticalAlignment="Center">
+                        <Ellipse Width="{Binding Bar1Size}"
+                                 Height="{Binding Bar1Size}"
+                                 Fill="{Binding MicColor}" />
+                        <Ellipse Width="{Binding Bar2Size}"
+                                 Height="{Binding Bar2Size}"
+                                 Fill="{Binding MicColor}" />
+                        <Ellipse Width="{Binding Bar3Size}"
+                                 Height="{Binding Bar3Size}"
+                                 Fill="{Binding MicColor}" />
+                        <Ellipse Width="{Binding Bar4Size}"
+                                 Height="{Binding Bar4Size}"
+                                 Fill="{Binding MicColor}" />
+                        <Ellipse Width="{Binding Bar5Size}"
+                                 Height="{Binding Bar5Size}"
+                                 Fill="{Binding MicColor}" />
+                    </StackPanel>
+                </Border>
+
+            </Grid>
+        </Border>
+
+    </Grid>
 </Window>
