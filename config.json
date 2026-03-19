@@ -33,9 +33,10 @@
         "type": "exe",
         "action": "close",
         "action_wait_time": 15,
-        "launch_timeout": 15,
+        "launch_timeout": 5,
         "launch_interval": 2,
-        "method": "shell"
+        "method": "shell",
+        "reopen": "no"
       },
       {
         "name": "Spotify",
