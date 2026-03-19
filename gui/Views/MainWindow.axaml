@@ -163,7 +163,30 @@
                             </Border>
 
                         </Grid>
+                        
+                        
+                        <Border Background="#12101A"
+                                BorderBrush="#2A1F3D"
+                                BorderThickness="1"
+                                CornerRadius="8"
+                                Padding="16">
+                            <StackPanel>
+                                <TextBlock Text="PROCESSOR"
+                                           Foreground="#6B6080"
+                                           FontSize="10"
+                                           FontWeight="Bold"
+                                           LetterSpacing="2"/>
+                                <TextBlock Text="{Binding CpuName}"
+                                           Foreground="#E8E0FF"
+                                           FontSize="13"
+                                           Margin="0,4,0,0"/>
+                            </StackPanel>
+                        </Border>
+                        
+                        
                     </StackPanel>
+                    
+                    
                 </Grid>
 
                 <!-- APPS PANEL -->
@@ -327,6 +350,7 @@
 
             </Grid>
         </Border>
+        
 
     </Grid>
 </Window>

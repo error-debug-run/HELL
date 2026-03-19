@@ -31,3 +31,5 @@ async def run():
     print(f" {success} apps ready  |  {failed} failed")
     print("─" * 30)
 
+if __name__ == "__main__":
+    asyncio.run(run())

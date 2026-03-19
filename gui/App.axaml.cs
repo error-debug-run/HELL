@@ -13,7 +13,7 @@ namespace gui;
 public partial class App : Application
 {
     private MainWindowViewModel? _viewModel;
-    private TrayIcon?             _trayIcon;
+    private TrayIcon? _trayIcon;
 
     public override void Initialize()
     {
@@ -33,7 +33,7 @@ public partial class App : Application
             };
 
             desktop.MainWindow.Hide();
-            
+
             desktop.MainWindow.Loaded += (_, _) =>
             {
                 desktop.MainWindow.Hide();
@@ -44,7 +44,7 @@ public partial class App : Application
             _trayIcon = new TrayIcon
             {
                 ToolTipText = "HELL",
-                Icon        = new WindowIcon(
+                Icon = new WindowIcon(
                     AssetLoader.Open(
                         new Uri("avares://gui/Assets/avalonia-logo.ico")
                     )
@@ -69,17 +69,17 @@ public partial class App : Application
 
         menu.Add(new NativeMenuItem
         {
-            Header  = "⚡ Startup Mode",
+            Header = "⚡ Startup Mode",
             Command = _viewModel!.StartupModeCommand
         });
         menu.Add(new NativeMenuItem
         {
-            Header  = "💻 Dev Mode",
+            Header = "💻 Dev Mode",
             Command = _viewModel!.DevModeCommand
         });
         menu.Add(new NativeMenuItem
         {
-            Header  = "🎮 Game Mode",
+            Header = "🎮 Game Mode",
             Command = _viewModel!.GameModeCommand
         });
 
@@ -87,7 +87,7 @@ public partial class App : Application
 
         menu.Add(new NativeMenuItem
         {
-            Header  = "📊 Open Dashboard",
+            Header = "📊 Open Dashboard",
             Command = _viewModel!.OpenDashboardCommand
         });
 
@@ -95,7 +95,7 @@ public partial class App : Application
 
         menu.Add(new NativeMenuItem
         {
-            Header  = "✕ Exit",
+            Header = "✕ Exit",
             Command = _viewModel!.ExitCommand
         });
 

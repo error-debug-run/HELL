@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Net.Http;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using gui.Views;
+using Microsoft.Win32;
 
 namespace gui.ViewModels;
 
@@ -15,21 +18,26 @@ public partial class MainWindowViewModel : ViewModelBase
     private readonly HttpClient _http   = new();
     private const    string     ApiBase = "http://127.0.0.1:8000";
 
+    private PerformanceCounter? _cpuCounter;
+    private PerformanceCounter? _ramCounter;
+
     // ── tab state ─────────────────────────────────────────
-    [ObservableProperty] private string _activeTab    = "status";
-    [ObservableProperty] private string _currentMode  = "IDLE";
-    [ObservableProperty] private string _cpuUsage     = "0%";
-    [ObservableProperty] private string _ramUsage     = "0%";
-    [ObservableProperty] private string _gpuUsage     = "0%";
+    [ObservableProperty] private string _activeTab   = "status";
+    [ObservableProperty] private string _currentMode = "IDLE";
+    [ObservableProperty] private string _cpuUsage    = "--";
+    [ObservableProperty] private string _ramUsage    = "--";
+    [ObservableProperty] private string _gpuUsage    = "--";
+    [ObservableProperty] private string _cpuName     = "Detecting...";
+    [ObservableProperty] private string _ramTotal    = "";
 
     // ── mic visualizer ────────────────────────────────────
-    [ObservableProperty] private string _micStatus    = "idle";
-    [ObservableProperty] private string _micColor     = "#3B2F5A";
-    [ObservableProperty] private double _bar1Size     = 6;
-    [ObservableProperty] private double _bar2Size     = 8;
-    [ObservableProperty] private double _bar3Size     = 10;
-    [ObservableProperty] private double _bar4Size     = 8;
-    [ObservableProperty] private double _bar5Size     = 6;
+    [ObservableProperty] private string _micStatus = "idle";
+    [ObservableProperty] private string _micColor  = "#3B2F5A";
+    [ObservableProperty] private double _bar1Size  = 4;
+    [ObservableProperty] private double _bar2Size  = 6;
+    [ObservableProperty] private double _bar3Size  = 8;
+    [ObservableProperty] private double _bar4Size  = 6;
+    [ObservableProperty] private double _bar5Size  = 4;
 
     // ── tab visibility ────────────────────────────────────
     public bool IsStatusTab => ActiveTab == "status";
@@ -45,10 +53,8 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public MainWindowViewModel()
     {
-        // start mic visualizer animation
-        StartMicAnimation();
-        // start polling system stats
-        StartStatsPoll();
+        _ = StartMicAnimation();
+        InitHardware();
     }
 
     // ── tab switching ─────────────────────────────────────
@@ -67,43 +73,170 @@ public partial class MainWindowViewModel : ViewModelBase
     }
 
     // ── mic animation ─────────────────────────────────────
-    private void StartMicAnimation()
+    private async Task StartMicAnimation()
     {
-        var rng = new Random();
-        var timer = new Timer(_ =>
+        var rng   = new Random();
+        using var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(100));
+
+        while (await timer.WaitForNextTickAsync(_cts.Token)
+                   .ConfigureAwait(false))
         {
-            // simulate audio levels — replace with real mic data later
             var active = MicStatus == "listening";
-            Bar1Size = active ? rng.Next(4, 16) : 4;
-            Bar2Size = active ? rng.Next(6, 20) : 6;
-            Bar3Size = active ? rng.Next(8, 24) : 8;
-            Bar4Size = active ? rng.Next(6, 20) : 6;
-            Bar5Size = active ? rng.Next(4, 16) : 4;
-        }, null, 0, 100);
+            Bar1Size   = active ? rng.Next(4,  16) : 4;
+            Bar2Size   = active ? rng.Next(6,  20) : 6;
+            Bar3Size   = active ? rng.Next(8,  24) : 8;
+            Bar4Size   = active ? rng.Next(6,  20) : 6;
+            Bar5Size   = active ? rng.Next(4,  16) : 4;
+        }
     }
 
-    // ── stats polling ─────────────────────────────────────
-    private void StartStatsPoll()
+    // ── hardware init ─────────────────────────────────────
+    private void InitHardware()
     {
-        var timer = new Timer(async _ =>
+        Task.Run(() =>
         {
             try
             {
-                var response = await _http.GetStringAsync($"{ApiBase}/status");
-                // parse response later when API is built
-                CpuUsage = "12%";
-                RamUsage = "34%";
-                GpuUsage = "8%";
+                // CPU counter — most accurate way on Windows
+                _cpuCounter = new PerformanceCounter(
+                    "Processor Information", "% Processor Utility",
+                    "_Total", true
+                );
+                // first read is always 0 — discard it
+                _cpuCounter.NextValue();
+
+                // available RAM in MB
+                _ramCounter = new PerformanceCounter(
+                    "Memory", "Available MBytes", true
+                );
+
+                // get CPU name from registry — instant, no WMI
+                var key = Registry.LocalMachine
+                    .OpenSubKey(
+                        @"HARDWARE\DESCRIPTION\System\CentralProcessor\0"
+                    );
+                CpuName = key?.GetValue("ProcessorNameString")
+                    ?.ToString()
+                    ?.Trim()
+                    ?? "Unknown CPU";
+
+                // get total RAM
+                GetRamTotal();
+
+                // get GPU name from registry
+                GetGpuName();
+
+                // start polling loop
+                _ = StartStatsPoll();
             }
-            catch
+            catch (Exception ex)
             {
-                // API not running — show placeholder
+                Console.WriteLine($"Hardware init error: {ex.Message}");
+                CpuName  = "Could not detect";
                 CpuUsage = "--";
                 RamUsage = "--";
                 GpuUsage = "--";
             }
-        }, null, 0, 3000);
+        });
     }
+
+    private void GetRamTotal()
+    {
+        try
+        {
+            // GlobalMemoryStatusEx via P/Invoke
+            var status = new MEMORYSTATUSEX();
+            status.dwLength = (uint)Marshal.SizeOf(status);
+            GlobalMemoryStatusEx(ref status);
+            var totalGb = status.ullTotalPhys / 1024 / 1024 / 1024;
+            RamTotal = $"{totalGb}GB";
+        }
+        catch
+        {
+            RamTotal = "";
+        }
+    }
+
+    private void GetGpuName()
+    {
+        try
+        {
+            var key = Registry.LocalMachine
+                .OpenSubKey(
+                    @"SYSTEM\CurrentControlSet\Control\Class\" +
+                    @"{4d36e968-e325-11ce-bfc1-08002be10318}\0000"
+                );
+            GpuUsage = key?.GetValue("DriverDesc")
+                ?.ToString()
+                ?? "GPU";
+        }
+        catch
+        {
+            GpuUsage = "GPU";
+        }
+    }
+    
+    private readonly CancellationTokenSource _cts = new();
+
+    private async Task StartStatsPoll()
+    {
+        using var timer = new PeriodicTimer(TimeSpan.FromSeconds(2));
+
+        while (await timer.WaitForNextTickAsync())
+        {
+            await Task.Run(() =>
+            {
+                try
+                {
+                    var cpu = _cpuCounter?.NextValue() ?? 0;
+                    CpuUsage = $"{(int)Math.Min(cpu, 100)}%";
+
+                    var availMb = _ramCounter?.NextValue() ?? 0;
+                    var status  = new MEMORYSTATUSEX();
+                    status.dwLength = (uint)Marshal.SizeOf(status);
+                    GlobalMemoryStatusEx(ref status);
+                    var totalMb = status.ullTotalPhys / 1024 / 1024;
+                    var usedPct = totalMb > 0
+                        ? (1.0 - availMb / totalMb) * 100
+                        : 0;
+                    RamUsage = $"{(int)usedPct}%";
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Stats poll error: {ex.Message}");
+                }
+            });
+        }
+    }
+    
+    [RelayCommand]
+    private void Exit()
+    {
+        _cts.Cancel();
+        if (Application.Current?.ApplicationLifetime
+            is IClassicDesktopStyleApplicationLifetime desktop)
+        {
+            desktop.Shutdown();
+        }
+    }
+
+    // ── P/Invoke for memory info ───────────────────────────
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+    private struct MEMORYSTATUSEX
+    {
+        public uint  dwLength;
+        public uint  dwMemoryLoad;
+        public ulong ullTotalPhys;
+        public ulong ullAvailPhys;
+        public ulong ullTotalPageFile;
+        public ulong ullAvailPageFile;
+        public ulong ullTotalVirtual;
+        public ulong ullAvailVirtual;
+        public ulong ullAvailExtendedVirtual;
+    }
+
+    [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+    private static extern bool GlobalMemoryStatusEx(ref MEMORYSTATUSEX lpBuffer);
 
     // ── tray commands ─────────────────────────────────────
     [RelayCommand]
@@ -133,25 +266,18 @@ public partial class MainWindowViewModel : ViewModelBase
         if (Application.Current?.ApplicationLifetime
             is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            desktop.MainWindow?.Show();
-            desktop.MainWindow?.Activate();
-            desktop.MainWindow!.ShowInTaskbar = true;
-            desktop.MainWindow!.WindowState   =
-                Avalonia.Controls.WindowState.Normal;
+            if (desktop.MainWindow is { IsVisible: true })
+            {
+                desktop.MainWindow.Activate();
+                return;
+            }
+            var window = new MainWindow { DataContext = this };
+            desktop.MainWindow = window;
+            window.Show();
+            window.Activate();
         }
     }
 
-    [RelayCommand]
-    private void Exit()
-    {
-        if (Application.Current?.ApplicationLifetime
-            is IClassicDesktopStyleApplicationLifetime desktop)
-        {
-            desktop.Shutdown();
-        }
-    }
-
-    // ── api ───────────────────────────────────────────────
     private async Task SendIntent(string intent)
     {
         try
@@ -171,8 +297,7 @@ public partial class MainWindowViewModel : ViewModelBase
         }
     }
 
-    // ── public mic control (called by STT later) ──────────
-    public void SetMicActive(bool active, double energy = 0)
+    public void SetMicActive(bool active)
     {
         MicStatus = active ? "listening" : "idle";
         MicColor  = active ? "#A855F7"   : "#3B2F5A";

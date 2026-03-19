@@ -73,3 +73,10 @@ D:\HELL\gui\obj\Debug\net10.0\refint\gui.dll
 D:\HELL\gui\obj\Debug\net10.0\gui.pdb
 D:\HELL\gui\obj\Debug\net10.0\gui.genruntimeconfig.cache
 D:\HELL\gui\obj\Debug\net10.0\ref\gui.dll
+D:\HELL\gui\bin\Debug\net10.0\System.Configuration.ConfigurationManager.dll
+D:\HELL\gui\bin\Debug\net10.0\System.Diagnostics.EventLog.dll
+D:\HELL\gui\bin\Debug\net10.0\System.Diagnostics.PerformanceCounter.dll
+D:\HELL\gui\bin\Debug\net10.0\System.Security.Cryptography.ProtectedData.dll
+D:\HELL\gui\bin\Debug\net10.0\runtimes\win\lib\net10.0\System.Diagnostics.EventLog.Messages.dll
+D:\HELL\gui\bin\Debug\net10.0\runtimes\win\lib\net10.0\System.Diagnostics.EventLog.dll
+D:\HELL\gui\bin\Debug\net10.0\runtimes\win\lib\net10.0\System.Diagnostics.PerformanceCounter.dll
