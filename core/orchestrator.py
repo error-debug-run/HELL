@@ -31,6 +31,7 @@ class Orchestrator:
             # "dev_mode":      dev_run,
             # "game_mode":     game_run,
             "open_app":      app_run,
+            "kill_app":      app_run,
             "close_app":     app_run,
             "hide_app":      app_run,
             # "stop_hell":     self._stop,

@@ -28,6 +28,24 @@ class AudioListener:
         self.buffer = np.roll(self.buffer, -chunk_size)
         self.buffer[-chunk_size:] = chunk
 
+        # calculate db level and write to shared state
+        rms = float(np.sqrt(np.mean(chunk ** 2)))
+        if rms > 0:
+            db = 20 * np.log10(rms)
+        else:
+            db = -60.0
+
+        # import here to avoid circular import
+        try:
+            from api.server import audio_state
+            audio_state["db_level"] = max(-60.0, min(0.0, db))
+            audio_state["recording"] = True
+            audio_state["db_level"] = db
+        except ImportError:
+            pass
+
+
+
     def get_window(self, seconds=None):
         seconds = seconds or self.window_size
         samples = self.sample_rate * seconds

@@ -1,7 +1,7 @@
 # hell/pipeline/intent.py
 
 from pipeline.classifier import TFIDFEngine
-from pipeline.dataset    import HELL_DATASET
+from pipeline.dataset import HELL_DATASET
 
 # train once on import
 _model = TFIDFEngine()

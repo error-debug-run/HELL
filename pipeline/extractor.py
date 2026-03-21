@@ -75,6 +75,12 @@ def extract_app(text: str) -> dict | None:
 # GENERAL ENTITY EXTRACTOR
 # ─────────────────────────────────────────────
 
+APP_INTENTS = {
+    "open_app", "close_app", "hide_app",
+    "kill_app", "minimize_app", "restart_app",
+    "show_app"
+}
+
 def extract_entities(intent: str, text: str) -> dict:
     """
     Extract relevant entities based on intent.
@@ -82,7 +88,7 @@ def extract_entities(intent: str, text: str) -> dict:
     """
     entities = {}
 
-    if intent in ("open_app", "close_app", "hide_app"):
+    if intent in APP_INTENTS:
         app = extract_app(text)
         if app:
             entities["app"] = app

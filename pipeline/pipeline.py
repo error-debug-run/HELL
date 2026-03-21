@@ -1,6 +1,6 @@
 # hell/pipeline/pipeline.py
 
-from pipeline.intent      import detect
+from pipeline.intent import detect
 from core.orchestrator    import Orchestrator
 
 orchestrator = Orchestrator()

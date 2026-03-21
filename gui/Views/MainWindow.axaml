@@ -29,7 +29,7 @@
                     <Ellipse Width="10" Height="10"
                              Fill="#7C3AED" />
                     <TextBlock Text="HELL"
-                               Foreground="#FDFBD4"
+                               Foreground="#B33A3A"
                                FontSize="16"
                                FontWeight="Bold"
                                VerticalAlignment="Center" />
@@ -37,20 +37,72 @@
                                Foreground="#6B6080"
                                FontSize="12"
                                VerticalAlignment="Center" />
+                    <!-- <TextBlock Text="{Binding ApiStatus}" -->
+                    <!--            Foreground="{Binding ApiStatusColor}" -->
+                    <!--            FontSize="11" -->
+                    <!--            VerticalAlignment="Center" -->
+                    <!--            Margin="12,0,0,0"/> -->
                 </StackPanel>
 
                 <!-- mic status indicator in title bar -->
+                <!-- <StackPanel Grid.Column="1" -->
+                <!--             Orientation="Horizontal" -->
+                <!--             Spacing="8" -->
+                <!--             VerticalAlignment="Center"> -->
+                <!--     <Ellipse Width="8" Height="8" -->
+                <!--              Fill="{Binding MicColor}" -->
+                <!--              Name="MicDot" /> -->
+                <!--     <TextBlock Text="{Binding MicStatus}" -->
+                <!--                Foreground="#6B6080" -->
+                <!--                FontSize="11" -->
+                <!--                VerticalAlignment="Center" /> -->
+                <!-- </StackPanel> -->
+                
                 <StackPanel Grid.Column="1"
                             Orientation="Horizontal"
-                            Spacing="8"
+                            Spacing="12"
                             VerticalAlignment="Center">
-                    <Ellipse Width="8" Height="8"
-                             Fill="{Binding MicColor}"
-                             Name="MicDot" />
-                    <TextBlock Text="{Binding MicStatus}"
-                               Foreground="#6B6080"
+
+                    <!-- db slider -->
+                    <StackPanel IsVisible="{Binding IsRunning}"
+                                Orientation="Horizontal"
+                                Spacing="8"
+                                VerticalAlignment="Center">
+                        <TextBlock Text="{Binding RecordingStatus}"
+                                   Foreground="{Binding RecordingColor}"
+                                   FontSize="10"
+                                   FontWeight="Bold"
+                                   LetterSpacing="1"
+                                   VerticalAlignment="Center"/>
+                        <Slider Value="{Binding DbSliderValue}"
+                                Minimum="0"
+                                Maximum="100"
+                                Width="120"
+                                IsEnabled="False"
+                                Foreground="{Binding RecordingColor}"/>
+                        <TextBlock Text="{Binding DbLevel, StringFormat='{}{0:F0}db'}"
+                                   Foreground="#6B6080"
+                                   FontSize="10"
+                                   VerticalAlignment="Center"
+                                   Width="40"/>
+                    </StackPanel>
+
+                    <!-- start/stop button -->
+                    <Button Content="{Binding StartStopLabel}"
+                            Command="{Binding ToggleHellCommand}"
+                            Background="{Binding StartStopColor}"
+                            Foreground="White"
+                            Padding="14,7"
+                            CornerRadius="6"
+                            FontSize="11"
+                            FontWeight="Bold"/>
+
+                    <!-- api status -->
+                    <TextBlock Text="{Binding ApiStatus}"
+                               Foreground="{Binding ApiStatusColor}"
                                FontSize="11"
-                               VerticalAlignment="Center" />
+                               VerticalAlignment="Center"/>
+
                 </StackPanel>
 
             </Grid>
@@ -85,7 +137,7 @@
                                                FontWeight="Bold"
                                                LetterSpacing="2" />
                                     <TextBlock Text="{Binding CurrentMode}"
-                                               Foreground="#FDFBD4"
+                                               Foreground="#A9C9FF"
                                                FontSize="24"
                                                FontWeight="Bold"
                                                Margin="0,4,0,0" />

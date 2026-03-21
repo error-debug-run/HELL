@@ -6,6 +6,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import psutil
 import time
+import numpy as np
+
+
 
 app = FastAPI(title="HELL API", version="0.1.0")
 
@@ -56,6 +59,7 @@ def status():
 
 @app.post("/intent")
 async def intent(req: IntentRequest):
+
     from pipeline.intent import detect
 
     result = detect(req.input)
@@ -89,6 +93,38 @@ async def intent(req: IntentRequest):
         "understood": result["understood"],
         "job_id":     job["id"],
     }
+
+
+from fastapi import Request
+
+# @app.post("/intent")
+# async def intent(request: Request):
+#     raw_body = await request.body()
+#
+#     print("🔥 RAW BODY:", raw_body)              # bytes
+#     print("🔥 RAW TEXT:", raw_body.decode())     # string
+#
+#     return {"ok": True}
+
+
+
+
+# shared audio state — STT writes here, API reads here
+audio_state = {
+    "db_level":  -60.0,    # current db level
+    "recording": False,    # is STT active
+    "mode":      "idle",   # idle / listening / command
+}
+
+@app.get("/audio/level")
+def audio_level():
+    return {
+        "db":        audio_state["db_level"],
+        "recording": audio_state["recording"],
+        "mode":      audio_state["mode"],
+    }
+
+
 
 @app.get("/jobs")
 def jobs():

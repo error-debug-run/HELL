@@ -667,7 +667,7 @@ async def launch(app, timeout=30, interval=2):
 
             if running:
                 print(f"  {name} → confirmed running ✓")
-                _show(app, app_type, exe, window_title)
+
                 return True
 
             print(f"  {name} → not running yet, "
@@ -745,7 +745,7 @@ async def relaunch(app):
     print(f"  {name} → relaunching...")
 
     # kill existing instance
-    kill(exe)
+    kill(app)
 
     # small wait for process to fully die
     await asyncio.sleep(1)
@@ -807,8 +807,10 @@ async def launch_and_intent(app, wait=5):
     # check if already running
     if app_type == "pwa":
         already_running = is_pwa_running(window_title)
+        _show(app, app_type, exe, window_title)
     else:
         already_running = is_running(exe)
+        _show(app, app_type, exe, window_title)
 
     # launch if not running
     if not already_running:
@@ -857,7 +859,7 @@ async def launch_and_intent(app, wait=5):
             return False
 
     elif action == "kill":
-        result = kill(exe)
+        result = kill(app)
         if result:
             print(f"  {name} → killed ✓")
             return True
@@ -868,12 +870,15 @@ async def launch_and_intent(app, wait=5):
     return True
 
 
-def kill(exe_name):
+def kill(app):
     """
     Kill all processes matching exe name.
     Uses taskkill which handles multi-process apps
     like Discord, Steam, Spotify cleanly.
     """
+
+    exe_name = app["exe"]
+
     result = subprocess.run(
         ["taskkill", "/F", "/IM", exe_name],
         stdout=subprocess.DEVNULL,
@@ -1123,19 +1128,12 @@ if __name__ == "__main__":
             print(proc.info)
 
     app = {
-        "name": "Discord",
-        "exe": "Discord.exe",
-        "path": "C:\\Users\\Admin\\AppData\\Local\\Discord\\Update.exe",
-        "args": [
-          "--processStart Discord.exe"
-        ],
+        "name": "Steam",
+        "exe": "steamwebhelper.exe",
+        "path": "C:\\Program Files (x86)\\Steam\\steam.exe",
+        "args": [],
         "type": "exe",
-        "action": "close",
-        "action_wait_time": 15,
-        "launch_timeout": 5,
-        "launch_interval": 2,
-        "method": "shell",
-        "reopen": "no"
+        "action": "hide"
       }
 
     print(is_window_responsive("steamwebhelper.exe") or is_window_visible("steamwebhelper.exe"))

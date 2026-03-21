@@ -39,7 +39,7 @@ class Transcriber:
                     f"Place in: {full_path}"
                 )
 
-            print(f"  loading Whisper from local path: {full_path}")
+            print(f"  loading Whisper from local path: {full_path}", flush=True)
             self.model = WhisperModel(
                 str(full_path),
                 device=self.device,
@@ -54,7 +54,7 @@ class Transcriber:
                 compute_type="float32"
             )
 
-        print(f"  Whisper ready ✓")
+        print(f"  Whisper ready ✓", flush=True)
 
     def transcribe(self, audio: np.ndarray) -> str:
         """

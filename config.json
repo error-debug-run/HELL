@@ -2,7 +2,9 @@
   "hell": {
     "version": "0.1.0",
     "os": "windows",
-    "log_level": "info"
+    "log_level": "info",
+    "python_path": "D:\\HELL\\.venv\\Scripts\\python.exe",
+    "hell_root": "D:\\HELL"
   },
 
   "stt": {
@@ -18,7 +20,7 @@
     "transcribe_threshold": 0.002,
     "command_timeout"     : 5,
     "language"            : "en",
-    "mic_device"          : 5
+    "mic_device"          : 4
 },
 
   "startup": {
@@ -52,7 +54,7 @@
         "path": "C:\\Program Files (x86)\\Steam\\steam.exe",
         "args": [],
         "type": "exe",
-        "action": "hide"
+        "action": "close"
       },
       {
         "name":            "Instagram",

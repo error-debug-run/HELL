@@ -8,6 +8,7 @@ from control.apps import (
     close,
     hide_by_title,
     is_running,
+    kill,
 )
 
 async def run(entities: dict) -> dict:
@@ -44,6 +45,13 @@ async def run(entities: dict) -> dict:
         return {
             "success":  result,
             "response": f"Closing {name}" if result else f"Could not close {name}",
+        }
+
+    elif intent == "kill_app":
+        result = kill(app)
+        return {
+            "success":  result,
+            "response": f"Closing {name}" if result else f"Could not kill {name}",
         }
 
     elif intent == "hide_app":
