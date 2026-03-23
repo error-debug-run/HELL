@@ -11,6 +11,10 @@ using CommunityToolkit.Mvvm.Input;
 using gui.Views;
 using Microsoft.Win32;
 using System.Diagnostics;
+using System.Collections.ObjectModel;
+using System.Linq;
+using gui.Models;
+
 
 namespace gui.ViewModels;
 
@@ -41,6 +45,14 @@ public partial class MainWindowViewModel : ViewModelBase
     [ObservableProperty] private double _bar5Size = 4;
     [ObservableProperty] private string _apiStatus = "● OFFLINE";
     [ObservableProperty] private string _apiStatusColor = "#EF4444";
+    [ObservableProperty] private ObservableCollection<MicDevice> _micDevices = new();
+    [ObservableProperty] private MicDevice? _selectedMicDevice;
+    [ObservableProperty] private string _micSaveStatus = "";
+    
+    // ──── app visualizer ─────────────────────────────────`
+    [ObservableProperty] private ObservableCollection<AppEntry> _foundApps = new();
+    [ObservableProperty] private bool _isScanning = false;
+    [ObservableProperty] private string _scanStatus = "Click SCAN to find installed apps";
 
     // ── tab visibility ────────────────────────────────────
     public bool IsStatusTab => ActiveTab == "status";
@@ -62,7 +74,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
     // ── tab switching ─────────────────────────────────────
     [RelayCommand]
-    private void SelectTab(string tab)
+    private async Task SelectTab(string tab)
     {
         ActiveTab = tab;
         OnPropertyChanged(nameof(IsStatusTab));
@@ -73,6 +85,10 @@ public partial class MainWindowViewModel : ViewModelBase
         OnPropertyChanged(nameof(AppsTabColor));
         OnPropertyChanged(nameof(JobsTabColor));
         OnPropertyChanged(nameof(ConfigTabColor));
+
+
+        if (tab == "config" && IsRunning)
+            await LoadMicDevices();
     }
 
     // ── mic animation ─────────────────────────────────────
@@ -519,5 +535,182 @@ public partial class MainWindowViewModel : ViewModelBase
         }
 
         return null;
+    }
+    
+    
+    [RelayCommand]
+    private async Task LoadMicDevices()
+    {
+        try
+        {
+            var json = await _http.GetStringAsync($"{ApiBase}/audio/devices");
+            using var doc  = System.Text.Json.JsonDocument.Parse(json);
+            var devices    = doc.RootElement.GetProperty("devices");
+
+            MicDevices.Clear();
+            foreach (var device in devices.EnumerateArray())
+            {
+                MicDevices.Add(new MicDevice
+                {
+                    Index = device.GetProperty("index").GetInt32(),
+                    Name  = device.GetProperty("name").GetString() ?? "",
+                });
+            }
+
+            // select current device from config
+            var statusJson   = await _http.GetStringAsync($"{ApiBase}/status");
+            // current device selection handled by config
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Load mic devices error: {ex.Message}");
+            MicSaveStatus = "API offline — start HELL first";
+        }
+    }
+
+    [RelayCommand]
+    private async Task SaveMicDevice()
+    {
+        if (SelectedMicDevice == null)
+            return;
+
+        try
+        {
+            var body = System.Text.Json.JsonSerializer.Serialize(new
+            {
+                index = SelectedMicDevice.Index
+            });
+
+            await _http.PostAsync(
+                $"{ApiBase}/audio/device",
+                new StringContent(body,
+                    System.Text.Encoding.UTF8,
+                    "application/json")
+            );
+
+            MicSaveStatus = $"Saved: {SelectedMicDevice.Name}";
+            Console.WriteLine($"Mic device saved: {SelectedMicDevice.Name}");
+        }
+        catch (Exception ex)
+        {
+            MicSaveStatus = "Save failed — API offline";
+            Console.WriteLine($"Save mic error: {ex.Message}");
+        }
+    }
+    
+    
+    [RelayCommand]
+    private async Task ScanApps()
+    {
+        IsScanning = true;
+        ScanStatus = "Scanning...";
+        FoundApps.Clear();
+
+        // scan via Rust DLL
+        var apps = await Task.Run(() => AppFinderService.ScanAll());
+
+        foreach (var app in apps)
+            FoundApps.Add(app);
+
+        ScanStatus = $"Found {FoundApps.Count} apps — saving...";
+
+        // write to config via API if running
+        if (IsRunning)
+        {
+            try
+            {
+                var appList = apps.Select(a => new
+                {
+                    name      = a.Name,
+                    exe       = a.ExeName,
+                    full_path = a.FullPath,
+                    type_     = a.Type,
+                    publisher = a.Publisher,
+                });
+
+                var body = System.Text.Json.JsonSerializer.Serialize(
+                    new { apps = appList }
+                );
+
+                await _http.PostAsync(
+                    $"{ApiBase}/apps/write",
+                    new StringContent(body,
+                        System.Text.Encoding.UTF8,
+                        "application/json")
+                );
+
+                ScanStatus = $"{FoundApps.Count} apps saved to config";
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Write apps error: {ex.Message}");
+                ScanStatus = $"Found {FoundApps.Count} apps (save failed)";
+            }
+        }
+        else
+        {
+            ScanStatus = $"Found {FoundApps.Count} apps (start HELL to save)";
+        }
+
+        IsScanning = false;
+    }
+    
+    [RelayCommand]
+    private async Task AssignMode(AppEntry app)
+    {
+        // show mode picker dialog
+        var dialog = new ModePickerDialog(app);
+    
+        if (Application.Current?.ApplicationLifetime
+                is IClassicDesktopStyleApplicationLifetime desktop
+            && desktop.MainWindow != null)
+        {
+            var result = await dialog.ShowDialog<string?>(
+                desktop.MainWindow
+            );
+
+            if (result != null)
+            {
+                await SaveAppToMode(app, result);
+                Console.WriteLine($"  {app.Name} → {result}");
+            }
+        }
+    }
+
+    private async Task SaveAppToMode(AppEntry app, string mode)
+    {
+        try
+        {
+            var body = System.Text.Json.JsonSerializer.Serialize(new
+            {
+                app  = new
+                {
+                    name      = app.Name,
+                    exe       = app.ExeName,
+                    full_path = app.FullPath,
+                    type_     = app.Type,
+                },
+                mode = mode
+            });
+
+            await _http.PostAsync(
+                $"{ApiBase}/apps/assign_mode",
+                new StringContent(body,
+                    System.Text.Encoding.UTF8,
+                    "application/json")
+            );
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Assign mode error: {ex.Message}");
+        }
+    }
+    
+    
+    [RelayCommand]
+    private void AddAppToConfig(AppEntry app)
+    {
+        Console.WriteLine($"Adding {app.Name} ({app.ExeName}) to config");
+        // full implementation after we wire config writing
     }
 }

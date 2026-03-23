@@ -24,7 +24,7 @@ logs/
 storage/hell.db
 models/
 *.bin
-
+*.user
 # ── Avalonia / .NET GUI ───────────────────────────────
 gui/bin/
 gui/obj/
@@ -41,3 +41,8 @@ gui/packages/
 # ── Build artifacts ───────────────────────────────────
 gui/publish/
 gui/TestResults/
+
+
+# Rust
+hell-rm/target/
+

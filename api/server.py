@@ -35,6 +35,37 @@ state = {
 
 # ── routes ────────────────────────────────────────────────
 
+import sounddevice as sd
+
+@app.get("/audio/devices")
+def audio_devices():
+    devices = sd.query_devices()
+    inputs  = []
+    for i, device in enumerate(devices):
+        if device["max_input_channels"] > 0:
+            inputs.append({
+                "index": i,
+                "name":  device["name"],
+            })
+    return {"devices": inputs}
+
+@app.post("/audio/device")
+def set_audio_device(body: dict):
+    """Save selected mic device to config."""
+    import json
+    from pathlib import Path
+
+    config_path = Path(__file__).parent.parent / "config.json"
+    with open(config_path) as f:
+        config = json.load(f)
+
+    config["stt"]["mic_device"] = body.get("index")
+
+    with open(config_path, "w") as f:
+        json.dump(config, f, indent=2)
+
+    return {"success": True, "device": body.get("index")}
+
 @app.get("/health")
 def health():
     return {
@@ -132,6 +163,79 @@ def jobs():
         "jobs":  state["jobs"][:20],
         "total": len(state["jobs"]),
     }
+
+@app.post("/apps/write")
+def write_apps(body: dict):
+    """Write scanned app list to config.json."""
+    import json
+    from pathlib import Path
+
+    config_path = Path(__file__).parent.parent / "config.json"
+
+    with open(config_path) as f:
+        config = json.load(f)
+
+    # write all found apps to config
+    config["installed_apps"] = body.get("apps", [])
+
+    with open(config_path, "w") as f:
+        json.dump(config, f, indent=2)
+
+    return {"success": True, "count": len(body.get("apps", []))}
+
+
+@app.post("/apps/assign_mode")
+def assign_mode(body: dict):
+    """Assign an app to a specific mode in config.json."""
+    import json
+    from pathlib import Path
+
+    config_path = Path(__file__).parent.parent / "config.json"
+
+    with open(config_path) as f:
+        config = json.load(f)
+
+    app  = body.get("app", {})
+    mode = body.get("mode", "")
+
+    # build the app entry
+    entry = {
+        "name":   app.get("name", ""),
+        "exe":    app.get("exe", ""),
+        "path":   app.get("full_path", ""),
+        "type":   app.get("type_", "exe"),
+        "action": "hide",
+    }
+
+    # add to the right mode
+    if mode == "startup":
+        config.setdefault("startup", {})
+        config["startup"].setdefault("minimize_on_boot", [])
+        # avoid duplicates
+        existing = [a["name"] for a in
+                    config["startup"]["minimize_on_boot"]]
+        if entry["name"] not in existing:
+            config["startup"]["minimize_on_boot"].append(entry)
+
+    elif mode == "game":
+        config.setdefault("game_mode", {})
+        config["game_mode"].setdefault("minimize_on_game", [])
+        existing = [a["name"] for a in
+                    config["game_mode"]["minimize_on_game"]]
+        if entry["name"] not in existing:
+            config["game_mode"]["minimize_on_game"].append(entry)
+
+    elif mode == "dev":
+        config.setdefault("dev_mode", {})
+        config["dev_mode"].setdefault("trigger_apps", [])
+        if entry["exe"] not in config["dev_mode"]["trigger_apps"]:
+            config["dev_mode"]["trigger_apps"].append(entry["exe"])
+
+    with open(config_path, "w") as f:
+        json.dump(config, f, indent=2)
+
+    return {"success": True, "app": entry["name"], "mode": mode}
+
 
 # ── intent router ─────────────────────────────────────────
 

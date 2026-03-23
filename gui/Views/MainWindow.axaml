@@ -1,6 +1,7 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:gui.ViewModels"
+        xmlns:models="clr-namespace:gui.Models"
         x:Class="gui.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Title="HELL"
@@ -57,7 +58,7 @@
                 <!--                FontSize="11" -->
                 <!--                VerticalAlignment="Center" /> -->
                 <!-- </StackPanel> -->
-                
+
                 <StackPanel Grid.Column="1"
                             Orientation="Horizontal"
                             Spacing="12"
@@ -73,18 +74,18 @@
                                    FontSize="10"
                                    FontWeight="Bold"
                                    LetterSpacing="1"
-                                   VerticalAlignment="Center"/>
+                                   VerticalAlignment="Center" />
                         <Slider Value="{Binding DbSliderValue}"
                                 Minimum="0"
                                 Maximum="100"
                                 Width="120"
                                 IsEnabled="False"
-                                Foreground="{Binding RecordingColor}"/>
+                                Foreground="{Binding RecordingColor}" />
                         <TextBlock Text="{Binding DbLevel, StringFormat='{}{0:F0}db'}"
                                    Foreground="#6B6080"
                                    FontSize="10"
                                    VerticalAlignment="Center"
-                                   Width="40"/>
+                                   Width="40" />
                     </StackPanel>
 
                     <!-- start/stop button -->
@@ -95,13 +96,13 @@
                             Padding="14,7"
                             CornerRadius="6"
                             FontSize="11"
-                            FontWeight="Bold"/>
+                            FontWeight="Bold" />
 
                     <!-- api status -->
                     <TextBlock Text="{Binding ApiStatus}"
                                Foreground="{Binding ApiStatusColor}"
                                FontSize="11"
-                               VerticalAlignment="Center"/>
+                               VerticalAlignment="Center" />
 
                 </StackPanel>
 
@@ -215,8 +216,8 @@
                             </Border>
 
                         </Grid>
-                        
-                        
+
+
                         <Border Background="#12101A"
                                 BorderBrush="#2A1F3D"
                                 BorderThickness="1"
@@ -227,18 +228,18 @@
                                            Foreground="#6B6080"
                                            FontSize="10"
                                            FontWeight="Bold"
-                                           LetterSpacing="2"/>
+                                           LetterSpacing="2" />
                                 <TextBlock Text="{Binding CpuName}"
                                            Foreground="#E8E0FF"
                                            FontSize="13"
-                                           Margin="0,4,0,0"/>
+                                           Margin="0,4,0,0" />
                             </StackPanel>
                         </Border>
-                        
-                        
+
+
                     </StackPanel>
-                    
-                    
+
+
                 </Grid>
 
                 <!-- APPS PANEL -->
@@ -249,8 +250,100 @@
                                    FontSize="11"
                                    FontWeight="Bold"
                                    LetterSpacing="3" />
-                        <TextBlock Text="App finder coming soon..."
-                                   Foreground="#6B6080" />
+                        <Grid ColumnDefinitions="*,Auto">
+                            <StackPanel>
+                                <TextBlock Text="APP FINDER"
+                                           Foreground="#7C3AED"
+                                           FontSize="11"
+                                           FontWeight="Bold"
+                                           LetterSpacing="3" />
+                                <TextBlock Text="{Binding ScanStatus}"
+                                           Foreground="#6B6080"
+                                           FontSize="11"
+                                           Margin="0,4,0,0" />
+                            </StackPanel>
+
+                            <Button Grid.Column="1"
+                                    Content="SCAN"
+                                    Command="{Binding ScanAppsCommand}"
+                                    IsEnabled="{Binding !IsScanning}"
+                                    Background="#7C3AED"
+                                    Foreground="White"
+                                    Padding="16,8"
+                                    CornerRadius="6"
+                                    FontSize="11"
+                                    FontWeight="Bold"
+                                    VerticalAlignment="Top" />
+                        </Grid>
+
+                        <!-- scanning indicator -->
+                        <ProgressBar IsVisible="{Binding IsScanning}"
+                                     IsIndeterminate="True"
+                                     Foreground="#7C3AED"
+                                     Background="#12101A"
+                                     Height="2" />
+
+                        <!-- app list -->
+                        <ScrollViewer MaxHeight="420">
+                            <ItemsControl ItemsSource="{Binding FoundApps}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="models:AppEntry">
+                                        <Border Background="#12101A"
+                                                BorderBrush="#2A1F3D"
+                                                BorderThickness="1"
+                                                CornerRadius="6"
+                                                Padding="14,10"
+                                                Margin="0,0,0,4">
+                                            <Grid ColumnDefinitions="Auto,*,Auto">
+
+                                                <!-- type badge -->
+                                                <Border Grid.Column="0"
+                                                        Background="#1E1030"
+                                                        CornerRadius="4"
+                                                        Padding="6,3"
+                                                        Margin="0,0,10,0"
+                                                        VerticalAlignment="Center">
+                                                    <TextBlock Text="{Binding Type}"
+                                                               Foreground="#7C3AED"
+                                                               FontSize="9"
+                                                               FontWeight="Bold"
+                                                               LetterSpacing="1" />
+                                                </Border>
+
+                                                <!-- app info -->
+                                                <StackPanel Grid.Column="1"
+                                                            VerticalAlignment="Center">
+                                                    <TextBlock Text="{Binding Name}"
+                                                               Foreground="#E8E0FF"
+                                                               FontSize="13"
+                                                               FontWeight="SemiBold" />
+                                                    <TextBlock Text="{Binding ExeName}"
+                                                               Foreground="#6B6080"
+                                                               FontSize="10"
+                                                               Margin="0,2,0,0" />
+                                                </StackPanel>
+
+                                                <!-- add button -->
+                                                <Button Grid.Column="2"
+                                                        Content="+ MODE"
+                                                        Command="{Binding $parent[ItemsControl].((vm:MainWindowViewModel)DataContext).AssignModeCommand}"
+                                                        CommandParameter="{Binding}"
+                                                        Background="Transparent"
+                                                        BorderBrush="#7C3AED"
+                                                        BorderThickness="1"
+                                                        Foreground="#A855F7"
+                                                        Padding="10,6"
+                                                        CornerRadius="4"
+                                                        FontSize="10"
+                                                        FontWeight="Bold"
+                                                        VerticalAlignment="Center"/>
+
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
                     </StackPanel>
                 </Grid>
 
@@ -278,6 +371,80 @@
                         <TextBlock Text="Config editor coming soon..."
                                    Foreground="#6B6080" />
                     </StackPanel>
+
+                    <StackPanel IsVisible="{Binding IsConfigTab}" Spacing="20">
+
+                        <TextBlock Text="CONFIGURATION"
+                                   Foreground="#7C3AED"
+                                   FontSize="11"
+                                   FontWeight="Bold"
+                                   LetterSpacing="3" />
+
+                        <!-- MIC DEVICE SECTION -->
+                        <Border Background="#12101A"
+                                BorderBrush="#2A1F3D"
+                                BorderThickness="1"
+                                CornerRadius="8"
+                                Padding="20">
+                            <StackPanel Spacing="12">
+
+                                <TextBlock Text="MICROPHONE"
+                                           Foreground="#6B6080"
+                                           FontSize="10"
+                                           FontWeight="Bold"
+                                           LetterSpacing="2" />
+
+                                <Grid ColumnDefinitions="*,Auto,Auto">
+
+                                    <!-- dropdown -->
+                                    <ComboBox Grid.Column="0"
+                                              ItemsSource="{Binding MicDevices}"
+                                              SelectedItem="{Binding SelectedMicDevice}"
+                                              Background="#0A0A0F"
+                                              Foreground="#E8E0FF"
+                                              BorderBrush="#2A1F3D"
+                                              Padding="12,8"
+                                              HorizontalAlignment="Stretch"
+                                              PlaceholderText="Select microphone..." />
+
+                                    <!-- refresh button -->
+                                    <Button Grid.Column="1"
+                                            Content="↺"
+                                            Command="{Binding LoadMicDevicesCommand}"
+                                            Background="Transparent"
+                                            Foreground="#6B6080"
+                                            Padding="10,8"
+                                            Margin="8,0,0,0"
+                                            FontSize="16"
+                                            ToolTip.Tip="Refresh devices" />
+
+                                    <!-- save button -->
+                                    <Button Grid.Column="2"
+                                            Content="SAVE"
+                                            Command="{Binding SaveMicDeviceCommand}"
+                                            Background="#7C3AED"
+                                            Foreground="White"
+                                            Padding="14,8"
+                                            Margin="8,0,0,0"
+                                            CornerRadius="6"
+                                            FontSize="11"
+                                            FontWeight="Bold" />
+
+                                </Grid>
+
+                                <!-- save status -->
+                                <TextBlock Text="{Binding MicSaveStatus}"
+                                           Foreground="#6B6080"
+                                           FontSize="11"
+                                           IsVisible="{Binding MicSaveStatus,
+                           Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+
+                            </StackPanel>
+
+                        </Border>
+
+                    </StackPanel>
+
                 </Grid>
 
             </Panel>
@@ -402,7 +569,7 @@
 
             </Grid>
         </Border>
-        
+
 
     </Grid>
 </Window>
