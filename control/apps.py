@@ -755,8 +755,9 @@ async def relaunch(app):
     return await launch(app)
 
 
-def minimize(exe_name):
+def minimize(app):
     """Minimize all windows belonging to a process."""
+    exe_name = app["name"]
     import ctypes
     import ctypes.wintypes
 

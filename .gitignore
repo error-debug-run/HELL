@@ -25,6 +25,7 @@ storage/hell.db
 models/
 *.bin
 *.user
+
 # ── Avalonia / .NET GUI ───────────────────────────────
 gui/bin/
 gui/obj/
@@ -46,3 +47,6 @@ gui/TestResults/
 # Rust
 hell-rm/target/
 
+#private keys
+hell-cert.pfx
+*.pfx

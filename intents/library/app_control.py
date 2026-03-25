@@ -5,6 +5,7 @@ import asyncio
 from control.apps import (
     launch,
     launch_and_intent,
+    minimize,
     close,
     hide_by_title,
     is_running,
@@ -54,9 +55,16 @@ async def run(entities: dict) -> dict:
             "response": f"Closing {name}" if result else f"Could not kill {name}",
         }
 
+    elif intent == "minimize_app":
+        result = minimize(app)
+        return {
+            "success":  result,
+            "response": f"Minimizing {name}" if result else f"Could not minimize {name}",
+        }
+
     elif intent == "hide_app":
         # if hide_by == "title" or app_type == "pwa":
-        result = hide_by_title(title)
+        result = hide_by_title(app)
         # else:
         #     result = hide(exe)
         return {

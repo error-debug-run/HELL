@@ -98,3 +98,29 @@ def extract_entities(intent: str, text: str) -> dict:
     return entities
 
 
+if __name__ == "__main__":
+    tests = [
+        ("open_app",  "open spotify"),
+        ("open_app",  "launch discord"),
+        ("close_app", "close steam"),
+        ("hide_app",  "hide discord"),
+        ("open_app",  "open spotfy"),     # typo — fuzzy match
+        ("open_app",  "run the music app"), # indirect
+        ("open_app",  "open something"),   # unknown
+        ("kill_app",  "kill discord"),
+        ("minimize_app", "minimize discord"),
+    ]
+
+    print("Entity Extractor Test")
+    print("─" * 40)
+    for intent, text in tests:
+        entities = extract_entities(intent, text)
+        app      = entities.get("app")
+        result   = app["name"] if app else "not found"
+        print(f"'{text}'")
+        print(f"  → {result}")
+    print("─" * 40)
+
+    result = extract_entities('kill_app', 'kill discord')
+    print('entities:', result)
+    print('app:', result.get('app'))
