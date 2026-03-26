@@ -22,7 +22,12 @@ def get_known_apps():
     """
     apps = {}
 
-    # startup apps
+    # installed_apps has everything — primary source
+    for app in config.get("installed_apps", default=[]):
+        apps[app["name"].lower()] = app
+
+    # startup apps override — they have richer entries
+    # (action, args, launch_timeout etc.)
     for app in config.startup_apps:
         apps[app["name"].lower()] = app
 

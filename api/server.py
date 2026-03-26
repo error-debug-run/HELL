@@ -126,20 +126,6 @@ async def intent(req: IntentRequest):
     }
 
 
-from fastapi import Request
-
-# @app.post("/intent")
-# async def intent(request: Request):
-#     raw_body = await request.body()
-#
-#     print("🔥 RAW BODY:", raw_body)              # bytes
-#     print("🔥 RAW TEXT:", raw_body.decode())     # string
-#
-#     return {"ok": True}
-
-
-
-
 # shared audio state — STT writes here, API reads here
 audio_state = {
     "db_level":  -60.0,    # current db level

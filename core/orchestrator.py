@@ -22,13 +22,13 @@ class Orchestrator:
         Adding a new intent = one new line here.
         """
         from intents.library.startup_mode  import run as startup_run
-        # from intents.library.dev_mode      import run as dev_run
+        from intents.library.dev_mode      import run as dev_run
         # from intents.library.game_mode     import run as game_run
         from intents.library.app_control   import run as app_run
 
         self.handlers = {
             "startup_mode":  startup_run,
-            # "dev_mode":      dev_run,
+            "dev_mode":      dev_run,
             # "game_mode":     game_run,
             "open_app":      app_run,
             "kill_app":      app_run,

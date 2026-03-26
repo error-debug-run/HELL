@@ -1,3 +1,5 @@
+# hell/stt/detector.py
+
 import asyncio
 import numpy as np
 from config import config

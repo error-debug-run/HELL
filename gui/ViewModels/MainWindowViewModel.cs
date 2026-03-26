@@ -297,7 +297,7 @@ public partial class MainWindowViewModel : ViewModelBase
     private async Task DevMode()
     {
         CurrentMode = "DEV";
-        await SendIntent("dev_mode");
+        await SendIntent("dev mode");
     }
 
     [RelayCommand]

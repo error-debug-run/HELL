@@ -20,6 +20,11 @@ class Config:
         with open(CONFIG_PATH, "r") as f:
             return json.load(f)
 
+    # Read all apps available
+    @property
+    def installed_apps(self):
+        return self._data.get("installed_apps", [])
+
     # ── top level ────────────────────────────────
     @property
     def os(self):
@@ -48,13 +53,14 @@ class Config:
 
     def dev_project_tabs(self, name):
         project = self.dev_project(name)
-        return project["tabs"] if project else self.dev_default_tabs
+        if project:
+            return project.get("browser_tabs", self.dev_default_tabs)
+        return self.dev_default_tabs
 
     def dev_trigger_apps(self):
-        apps = []
-        for project in self._data["dev_mode"]["projects"].values():
-            apps.extend(project.get("trigger_apps", []))
-        return list(set(apps))  # deduplicate
+
+        return self._data["dev_mode"]["trigger_apps"]
+
 
     # ── game mode ─────────────────────────────────
     @property
