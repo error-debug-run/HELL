@@ -7,8 +7,10 @@ from control.apps import (
     is_running,
     is_pwa_running,
     minimize,
+    is_running_smart,
     minimize_by_title,
     launch,
+    launch_and_intent,
     kill,
     close,
     hide_by_title
@@ -16,18 +18,12 @@ from control.apps import (
 
 app = {
         "name": "Discord",
-        "exe": "Discord.exe",
-        "path": "C:\\Users\\Admin\\AppData\\Local\\Discord\\Update.exe",
-        "args": [
-          "--processStart Discord.exe"
-        ],
-        "type": "exe",
-        "action": "close",
-        "action_wait_time": 15,
-        "launch_timeout": 5,
-        "launch_interval": 2,
-        "method": "shell",
-        "reopen": "no"
+        "exe_name": "Discord.exe",
+        "full_path": "C:\\Users\\Admin\\AppData\\Local\\Discord\\app-1.0.9188\\Discord.exe",
+        "resolved_path": "C:\\Users\\Admin\\AppData\\Local\\Discord\\app-1.0.9188\\Discord.exe",
+        "args": [],
+        "app_type": "exe",
+        "publisher": "Discord Inc."
       }
 
 

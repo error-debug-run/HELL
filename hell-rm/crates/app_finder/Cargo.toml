@@ -1,0 +1,18 @@
+[package]
+name = "app_finder"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+name       = "app_finder"
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+serde      = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+windows = { version = "0.54", features = ["Win32_UI_Shell", "Win32_System_Com", "Win32_UI_Shell_Common", "Win32_Storage_FileSystem"] }
+pyo3 = "0.28.2"
+
+
+[target.'cfg(windows)'.dependencies]
+winreg = "0.52"

@@ -4,7 +4,7 @@ import asyncio
 from config import config
 from control.apps import launch_and_intent
 
-async def run():
+async def run(entities: dict = None):
     """
     Startup mode — runs on boot.
     Launches all configured apps and minimizes them to tray.
@@ -15,12 +15,10 @@ async def run():
     print("\n HELL — Startup Mode")
     print("─" * 30)
 
-    tasks = []
-    for app in apps:
-        # run each app launch concurrently
-        # all apps launch at the same time
-        # instead of one by one
-        tasks.append(launch_and_intent(app))
+    tasks = [
+        asyncio.to_thread(lambda a=app: asyncio.run(launch_and_intent(a)))
+        for app in apps
+    ]
 
     results = await asyncio.gather(*tasks)
 
