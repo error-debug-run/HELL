@@ -1,0 +1,1656 @@
+D:\HELL/
+├── api/
+│   ├── __init__.py
+│   └── server.py
+├── control/
+│   ├── _experimaental_apps.py
+│   ├── _test_apps.py
+│   ├── almost_apps.py
+│   └── apps.py
+├── core/
+│   ├── log.py
+│   ├── logger.py
+│   ├── orchestrator.py
+│   └── postLog_orchestrator.py
+├── finderr/
+│   └── finder.py
+├── gui/
+│   ├── Assets/
+│   │   └── avalonia-logo.ico
+│   ├── ViewModels/
+│   │   ├── MainWindowViewModel.cs
+│   │   └── ViewModelBase.cs
+│   ├── Views/
+│   │   ├── MainWindow.axaml
+│   │   ├── MainWindow.axaml.cs
+│   │   ├── ModePickerDialog.axaml
+│   │   └── ModePickerDialog.axaml.cs
+│   ├── bin/
+│   │   ├── Debug/
+│   │   │   └── net10.0/
+│   │   │       ├── runtimes/
+│   │   │       │   ├── linux-arm/
+│   │   │       │   │   └── native/
+│   │   │       │   │       ├── libHarfBuzzSharp.so
+│   │   │       │   │       └── libSkiaSharp.so
+│   │   │       │   ├── linux-arm64/
+│   │   │       │   │   └── native/
+│   │   │       │   │       ├── libHarfBuzzSharp.so
+│   │   │       │   │       └── libSkiaSharp.so
+│   │   │       │   ├── linux-loongarch64/
+│   │   │       │   │   └── native/
+│   │   │       │   │       └── libHarfBuzzSharp.so
+│   │   │       │   ├── linux-musl-arm/
+│   │   │       │   │   └── native/
+│   │   │       │   │       └── libHarfBuzzSharp.so
+│   │   │       │   ├── linux-musl-arm64/
+│   │   │       │   │   └── native/
+│   │   │       │   │       └── libHarfBuzzSharp.so
+│   │   │       │   ├── linux-musl-loongarch64/
+│   │   │       │   │   └── native/
+│   │   │       │   │       └── libHarfBuzzSharp.so
+│   │   │       │   ├── linux-musl-riscv64/
+│   │   │       │   │   └── native/
+│   │   │       │   │       └── libHarfBuzzSharp.so
+│   │   │       │   ├── linux-musl-x64/
+│   │   │       │   │   └── native/
+│   │   │       │   │       ├── libHarfBuzzSharp.so
+│   │   │       │   │       └── libSkiaSharp.so
+│   │   │       │   ├── linux-riscv64/
+│   │   │       │   │   └── native/
+│   │   │       │   │       └── libHarfBuzzSharp.so
+│   │   │       │   ├── linux-x64/
+│   │   │       │   │   └── native/
+│   │   │       │   │       ├── libHarfBuzzSharp.so
+│   │   │       │   │       └── libSkiaSharp.so
+│   │   │       │   ├── linux-x86/
+│   │   │       │   │   └── native/
+│   │   │       │   │       └── libHarfBuzzSharp.so
+│   │   │       │   ├── osx/
+│   │   │       │   │   └── native/
+│   │   │       │   │       ├── libAvaloniaNative.dylib
+│   │   │       │   │       ├── libHarfBuzzSharp.dylib
+│   │   │       │   │       └── libSkiaSharp.dylib
+│   │   │       │   ├── win/
+│   │   │       │   │   └── lib/
+│   │   │       │   │       ├── net10.0/
+│   │   │       │   │       │   ├── System.Diagnostics.EventLog.Messages.dll
+│   │   │       │   │       │   ├── System.Diagnostics.EventLog.dll
+│   │   │       │   │       │   └── System.Diagnostics.PerformanceCounter.dll
+│   │   │       │   │       └── net8.0/
+│   │   │       │   ├── win-arm64/
+│   │   │       │   │   └── native/
+│   │   │       │   │       ├── av_libglesv2.dll
+│   │   │       │   │       ├── libHarfBuzzSharp.dll
+│   │   │       │   │       └── libSkiaSharp.dll
+│   │   │       │   ├── win-x64/
+│   │   │       │   │   └── native/
+│   │   │       │   │       ├── av_libglesv2.dll
+│   │   │       │   │       ├── libHarfBuzzSharp.dll
+│   │   │       │   │       └── libSkiaSharp.dll
+│   │   │       │   └── win-x86/
+│   │   │       │       └── native/
+│   │   │       │           ├── av_libglesv2.dll
+│   │   │       │           ├── libHarfBuzzSharp.dll
+│   │   │       │           └── libSkiaSharp.dll
+│   │   │       ├── Avalonia.Base.dll
+│   │   │       ├── Avalonia.Controls.ColorPicker.dll
+│   │   │       ├── Avalonia.Controls.dll
+│   │   │       ├── Avalonia.DesignerSupport.dll
+│   │   │       ├── Avalonia.Desktop.dll
+│   │   │       ├── Avalonia.Diagnostics.dll
+│   │   │       ├── Avalonia.Dialogs.dll
+│   │   │       ├── Avalonia.Fonts.Inter.dll
+│   │   │       ├── Avalonia.FreeDesktop.dll
+│   │   │       ├── Avalonia.Markup.Xaml.dll
+│   │   │       ├── Avalonia.Markup.dll
+│   │   │       ├── Avalonia.Metal.dll
+│   │   │       ├── Avalonia.MicroCom.dll
+│   │   │       ├── Avalonia.Native.dll
+│   │   │       ├── Avalonia.OpenGL.dll
+│   │   │       ├── Avalonia.Remote.Protocol.dll
+│   │   │       ├── Avalonia.Skia.dll
+│   │   │       ├── Avalonia.Themes.Fluent.dll
+│   │   │       ├── Avalonia.Themes.Simple.dll
+│   │   │       ├── Avalonia.Vulkan.dll
+│   │   │       ├── Avalonia.Win32.Automation.dll
+│   │   │       ├── Avalonia.Win32.dll
+│   │   │       ├── Avalonia.X11.dll
+│   │   │       ├── Avalonia.dll
+│   │   │       ├── CommunityToolkit.Mvvm.dll
+│   │   │       ├── HarfBuzzSharp.dll
+│   │   │       ├── MicroCom.Runtime.dll
+│   │   │       ├── SkiaSharp.dll
+│   │   │       ├── System.Configuration.ConfigurationManager.dll
+│   │   │       ├── System.Diagnostics.EventLog.dll
+│   │   │       ├── System.Diagnostics.PerformanceCounter.dll
+│   │   │       ├── System.Security.Cryptography.ProtectedData.dll
+│   │   │       ├── Tmds.DBus.Protocol.dll
+│   │   │       ├── gui.deps.json
+│   │   │       ├── gui.dll
+│   │   │       ├── gui.exe
+│   │   │       ├── gui.pdb
+│   │   │       └── gui.runtimeconfig.json
+│   │   └── Release/
+│   │       └── net10.0/
+│   │           ├── runtimes/
+│   │           │   ├── linux-arm/
+│   │           │   │   └── native/
+│   │           │   │       ├── libHarfBuzzSharp.so
+│   │           │   │       └── libSkiaSharp.so
+│   │           │   ├── linux-arm64/
+│   │           │   │   └── native/
+│   │           │   │       ├── libHarfBuzzSharp.so
+│   │           │   │       └── libSkiaSharp.so
+│   │           │   ├── linux-loongarch64/
+│   │           │   │   └── native/
+│   │           │   │       └── libHarfBuzzSharp.so
+│   │           │   ├── linux-musl-arm/
+│   │           │   │   └── native/
+│   │           │   │       └── libHarfBuzzSharp.so
+│   │           │   ├── linux-musl-arm64/
+│   │           │   │   └── native/
+│   │           │   │       └── libHarfBuzzSharp.so
+│   │           │   ├── linux-musl-loongarch64/
+│   │           │   │   └── native/
+│   │           │   │       └── libHarfBuzzSharp.so
+│   │           │   ├── linux-musl-riscv64/
+│   │           │   │   └── native/
+│   │           │   │       └── libHarfBuzzSharp.so
+│   │           │   ├── linux-musl-x64/
+│   │           │   │   └── native/
+│   │           │   │       ├── libHarfBuzzSharp.so
+│   │           │   │       └── libSkiaSharp.so
+│   │           │   ├── linux-riscv64/
+│   │           │   │   └── native/
+│   │           │   │       └── libHarfBuzzSharp.so
+│   │           │   ├── linux-x64/
+│   │           │   │   └── native/
+│   │           │   │       ├── libHarfBuzzSharp.so
+│   │           │   │       └── libSkiaSharp.so
+│   │           │   ├── linux-x86/
+│   │           │   │   └── native/
+│   │           │   │       └── libHarfBuzzSharp.so
+│   │           │   ├── osx/
+│   │           │   │   └── native/
+│   │           │   │       ├── libAvaloniaNative.dylib
+│   │           │   │       ├── libHarfBuzzSharp.dylib
+│   │           │   │       └── libSkiaSharp.dylib
+│   │           │   ├── win/
+│   │           │   │   └── lib/
+│   │           │   │       └── net10.0/
+│   │           │   │           ├── System.Diagnostics.EventLog.Messages.dll
+│   │           │   │           ├── System.Diagnostics.EventLog.dll
+│   │           │   │           └── System.Diagnostics.PerformanceCounter.dll
+│   │           │   ├── win-arm64/
+│   │           │   │   └── native/
+│   │           │   │       ├── av_libglesv2.dll
+│   │           │   │       ├── libHarfBuzzSharp.dll
+│   │           │   │       └── libSkiaSharp.dll
+│   │           │   ├── win-x64/
+│   │           │   │   └── native/
+│   │           │   │       ├── av_libglesv2.dll
+│   │           │   │       ├── libHarfBuzzSharp.dll
+│   │           │   │       └── libSkiaSharp.dll
+│   │           │   └── win-x86/
+│   │           │       └── native/
+│   │           │           ├── av_libglesv2.dll
+│   │           │           ├── libHarfBuzzSharp.dll
+│   │           │           └── libSkiaSharp.dll
+│   │           ├── Avalonia.Base.dll
+│   │           ├── Avalonia.Controls.ColorPicker.dll
+│   │           ├── Avalonia.Controls.dll
+│   │           ├── Avalonia.DesignerSupport.dll
+│   │           ├── Avalonia.Desktop.dll
+│   │           ├── Avalonia.Dialogs.dll
+│   │           ├── Avalonia.Fonts.Inter.dll
+│   │           ├── Avalonia.FreeDesktop.dll
+│   │           ├── Avalonia.Markup.Xaml.dll
+│   │           ├── Avalonia.Markup.dll
+│   │           ├── Avalonia.Metal.dll
+│   │           ├── Avalonia.MicroCom.dll
+│   │           ├── Avalonia.Native.dll
+│   │           ├── Avalonia.OpenGL.dll
+│   │           ├── Avalonia.Remote.Protocol.dll
+│   │           ├── Avalonia.Skia.dll
+│   │           ├── Avalonia.Themes.Fluent.dll
+│   │           ├── Avalonia.Vulkan.dll
+│   │           ├── Avalonia.Win32.Automation.dll
+│   │           ├── Avalonia.Win32.dll
+│   │           ├── Avalonia.X11.dll
+│   │           ├── Avalonia.dll
+│   │           ├── CommunityToolkit.Mvvm.dll
+│   │           ├── HarfBuzzSharp.dll
+│   │           ├── MicroCom.Runtime.dll
+│   │           ├── SkiaSharp.dll
+│   │           ├── System.Configuration.ConfigurationManager.dll
+│   │           ├── System.Diagnostics.EventLog.dll
+│   │           ├── System.Diagnostics.PerformanceCounter.dll
+│   │           ├── System.Security.Cryptography.ProtectedData.dll
+│   │           ├── Tmds.DBus.Protocol.dll
+│   │           ├── gui.deps.json
+│   │           ├── gui.dll
+│   │           ├── gui.exe
+│   │           ├── gui.pdb
+│   │           └── gui.runtimeconfig.json
+│   ├── obj/
+│   │   ├── Debug/
+│   │   │   └── net10.0/
+│   │   │       ├── Avalonia/
+│   │   │       │   ├── Resources.Inputs.cache
+│   │   │       │   ├── references
+│   │   │       │   └── resources
+│   │   │       ├── ref/
+│   │   │       │   └── gui.dll
+│   │   │       ├── refint/
+│   │   │       │   └── gui.dll
+│   │   │       ├── .NETCoreApp,Version=v10.0.AssemblyAttributes.cs
+│   │   │       ├── apphost.exe
+│   │   │       ├── gui.AssemblyInfo.cs
+│   │   │       ├── gui.AssemblyInfoInputs.cache
+│   │   │       ├── gui.GeneratedMSBuildEditorConfig.editorconfig
+│   │   │       ├── gui.assets.cache
+│   │   │       ├── gui.csproj.AssemblyReference.cache
+│   │   │       ├── gui.csproj.CoreCompileInputs.cache
+│   │   │       ├── gui.csproj.FileListAbsolute.txt
+│   │   │       ├── gui.csproj.Up2Date
+│   │   │       ├── gui.dll
+│   │   │       ├── gui.genruntimeconfig.cache
+│   │   │       ├── gui.pdb
+│   │   │       └── gui.sourcelink.json
+│   │   ├── Release/
+│   │   │   └── net10.0/
+│   │   │       ├── Avalonia/
+│   │   │       │   ├── Resources.Inputs.cache
+│   │   │       │   ├── references
+│   │   │       │   └── resources
+│   │   │       ├── ref/
+│   │   │       │   └── gui.dll
+│   │   │       ├── refint/
+│   │   │       │   └── gui.dll
+│   │   │       ├── .NETCoreApp,Version=v10.0.AssemblyAttributes.cs
+│   │   │       ├── apphost.exe
+│   │   │       ├── gui.AssemblyInfo.cs
+│   │   │       ├── gui.AssemblyInfoInputs.cache
+│   │   │       ├── gui.GeneratedMSBuildEditorConfig.editorconfig
+│   │   │       ├── gui.assets.cache
+│   │   │       ├── gui.csproj.AssemblyReference.cache
+│   │   │       ├── gui.csproj.CoreCompileInputs.cache
+│   │   │       ├── gui.csproj.FileListAbsolute.txt
+│   │   │       ├── gui.csproj.Up2Date
+│   │   │       ├── gui.dll
+│   │   │       ├── gui.genruntimeconfig.cache
+│   │   │       ├── gui.pdb
+│   │   │       └── gui.sourcelink.json
+│   │   ├── gui.csproj.nuget.dgspec.json
+│   │   ├── gui.csproj.nuget.g.props
+│   │   ├── gui.csproj.nuget.g.targets
+│   │   ├── project.assets.json
+│   │   ├── project.nuget.cache
+│   │   ├── project.packagespec.json
+│   │   ├── rider.project.model.nuget.info
+│   │   └── rider.project.restore.info
+│   ├── App.axaml
+│   ├── App.axaml.cs
+│   ├── Program.cs
+│   ├── ViewLocator.cs
+│   ├── app.manifest
+│   └── gui.csproj
+├── hell-rm/
+│   ├── crates/
+│   │   ├── app_finder/
+│   │   │   ├── src/
+│   │   │   │   ├── lib.rs
+│   │   │   │   └── windowsapps.rs
+│   │   │   └── Cargo.toml
+│   │   ├── automation/
+│   │   │   ├── src/
+│   │   │   │   └── lib.rs
+│   │   │   └── Cargo.toml
+│   │   └── platform/
+│   │       └── windows/
+│   │           ├── src/
+│   │           │   └── lib.rs
+│   │           ├── .gitignore
+│   │           └── Cargo.toml
+│   ├── target/
+│   │   ├── debug/
+│   │   │   ├── .fingerprint/
+│   │   │   │   ├── app_finder-0a4e555ba7f8141b/
+│   │   │   │   │   ├── dep-lib-app_finder
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-app_finder
+│   │   │   │   │   ├── lib-app_finder.json
+│   │   │   │   │   └── output-lib-app_finder
+│   │   │   │   ├── app_finder-19de4415c947446e/
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── output-test-lib-app_finder
+│   │   │   │   │   ├── test-lib-app_finder
+│   │   │   │   │   └── test-lib-app_finder.json
+│   │   │   │   ├── app_finder-55893aabab797a78/
+│   │   │   │   │   ├── dep-test-lib-app_finder
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── output-test-lib-app_finder
+│   │   │   │   │   ├── test-lib-app_finder
+│   │   │   │   │   └── test-lib-app_finder.json
+│   │   │   │   ├── app_finder-ec94726b764df709/
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-app_finder
+│   │   │   │   │   ├── lib-app_finder.json
+│   │   │   │   │   └── output-lib-app_finder
+│   │   │   │   ├── app_finder-faf28bffa249b5e8/
+│   │   │   │   │   ├── dep-lib-app_finder
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-app_finder
+│   │   │   │   │   ├── lib-app_finder.json
+│   │   │   │   │   └── output-lib-app_finder
+│   │   │   │   ├── automation-043e5628b7e3ee1c/
+│   │   │   │   │   ├── dep-lib-automation
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-automation
+│   │   │   │   │   └── lib-automation.json
+│   │   │   │   ├── automation-c7ada4df385bd904/
+│   │   │   │   │   ├── dep-test-lib-automation
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── test-lib-automation
+│   │   │   │   │   └── test-lib-automation.json
+│   │   │   │   ├── automation-e6116ff59d9cceb1/
+│   │   │   │   │   ├── dep-lib-automation
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-automation
+│   │   │   │   │   └── lib-automation.json
+│   │   │   │   ├── cfg-if-3dcb42ca3a02dcb5/
+│   │   │   │   │   ├── dep-lib-cfg_if
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-cfg_if
+│   │   │   │   │   └── lib-cfg_if.json
+│   │   │   │   ├── cfg-if-958b7eb6cae6936d/
+│   │   │   │   │   ├── dep-lib-cfg_if
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-cfg_if
+│   │   │   │   │   └── lib-cfg_if.json
+│   │   │   │   ├── heck-b54738d5e0d607f0/
+│   │   │   │   │   ├── dep-lib-heck
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-heck
+│   │   │   │   │   └── lib-heck.json
+│   │   │   │   ├── itoa-41a8b9ef9e35d87c/
+│   │   │   │   │   ├── dep-lib-itoa
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-itoa
+│   │   │   │   │   └── lib-itoa.json
+│   │   │   │   ├── itoa-55c947be76da670e/
+│   │   │   │   │   ├── dep-lib-itoa
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-itoa
+│   │   │   │   │   └── lib-itoa.json
+│   │   │   │   ├── libc-1e6ed7e026653072/
+│   │   │   │   │   ├── run-build-script-build-script-build
+│   │   │   │   │   └── run-build-script-build-script-build.json
+│   │   │   │   ├── libc-560f76a09dc7ff36/
+│   │   │   │   │   ├── build-script-build-script-build
+│   │   │   │   │   ├── build-script-build-script-build.json
+│   │   │   │   │   ├── dep-build-script-build-script-build
+│   │   │   │   │   └── invoked.timestamp
+│   │   │   │   ├── libc-77d1df6177943106/
+│   │   │   │   │   ├── dep-lib-libc
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-libc
+│   │   │   │   │   └── lib-libc.json
+│   │   │   │   ├── libc-8e28898ce301e38e/
+│   │   │   │   │   ├── dep-lib-libc
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-libc
+│   │   │   │   │   └── lib-libc.json
+│   │   │   │   ├── memchr-0618b7abc2c0c1b1/
+│   │   │   │   │   ├── dep-lib-memchr
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-memchr
+│   │   │   │   │   └── lib-memchr.json
+│   │   │   │   ├── memchr-6fa30735eda4ed40/
+│   │   │   │   │   ├── dep-lib-memchr
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-memchr
+│   │   │   │   │   └── lib-memchr.json
+│   │   │   │   ├── once_cell-3e70f2f2a6eadd01/
+│   │   │   │   │   ├── dep-lib-once_cell
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-once_cell
+│   │   │   │   │   └── lib-once_cell.json
+│   │   │   │   ├── once_cell-827c16bf5aa2c056/
+│   │   │   │   │   ├── dep-lib-once_cell
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-once_cell
+│   │   │   │   │   └── lib-once_cell.json
+│   │   │   │   ├── proc-macro2-73751bdb2dd8007a/
+│   │   │   │   │   ├── build-script-build-script-build
+│   │   │   │   │   ├── build-script-build-script-build.json
+│   │   │   │   │   ├── dep-build-script-build-script-build
+│   │   │   │   │   └── invoked.timestamp
+│   │   │   │   ├── proc-macro2-a7f07268e053596c/
+│   │   │   │   │   ├── dep-lib-proc_macro2
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-proc_macro2
+│   │   │   │   │   └── lib-proc_macro2.json
+│   │   │   │   ├── proc-macro2-a87cea8af1e59ce8/
+│   │   │   │   │   ├── run-build-script-build-script-build
+│   │   │   │   │   └── run-build-script-build-script-build.json
+│   │   │   │   ├── pyo3-aeeb45e4e93f4bec/
+│   │   │   │   │   ├── dep-lib-pyo3
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-pyo3
+│   │   │   │   │   └── lib-pyo3.json
+│   │   │   │   ├── pyo3-b5172168c3d0d034/
+│   │   │   │   │   ├── build-script-build-script-build
+│   │   │   │   │   ├── build-script-build-script-build.json
+│   │   │   │   │   ├── dep-build-script-build-script-build
+│   │   │   │   │   └── invoked.timestamp
+│   │   │   │   ├── pyo3-build-config-39e79492f8dcafbd/
+│   │   │   │   │   ├── run-build-script-build-script-build
+│   │   │   │   │   └── run-build-script-build-script-build.json
+│   │   │   │   ├── pyo3-build-config-4ba32d94079cc3f6/
+│   │   │   │   │   ├── build-script-build-script-build
+│   │   │   │   │   ├── build-script-build-script-build.json
+│   │   │   │   │   ├── dep-build-script-build-script-build
+│   │   │   │   │   └── invoked.timestamp
+│   │   │   │   ├── pyo3-build-config-f7cf8cf8d86548fd/
+│   │   │   │   │   ├── dep-lib-pyo3_build_config
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-pyo3_build_config
+│   │   │   │   │   └── lib-pyo3_build_config.json
+│   │   │   │   ├── pyo3-c40b96f104ee354e/
+│   │   │   │   │   ├── dep-lib-pyo3
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-pyo3
+│   │   │   │   │   └── lib-pyo3.json
+│   │   │   │   ├── pyo3-fb09b4f6a800ccb4/
+│   │   │   │   │   ├── run-build-script-build-script-build
+│   │   │   │   │   └── run-build-script-build-script-build.json
+│   │   │   │   ├── pyo3-ffi-00c274aca194557c/
+│   │   │   │   │   ├── dep-lib-pyo3_ffi
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-pyo3_ffi
+│   │   │   │   │   └── lib-pyo3_ffi.json
+│   │   │   │   ├── pyo3-ffi-11e1e01618ae7584/
+│   │   │   │   │   ├── build-script-build-script-build
+│   │   │   │   │   ├── build-script-build-script-build.json
+│   │   │   │   │   ├── dep-build-script-build-script-build
+│   │   │   │   │   └── invoked.timestamp
+│   │   │   │   ├── pyo3-ffi-a25f96f421c2e8df/
+│   │   │   │   │   ├── run-build-script-build-script-build
+│   │   │   │   │   └── run-build-script-build-script-build.json
+│   │   │   │   ├── pyo3-ffi-b6a049334957eb59/
+│   │   │   │   │   ├── dep-lib-pyo3_ffi
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-pyo3_ffi
+│   │   │   │   │   └── lib-pyo3_ffi.json
+│   │   │   │   ├── pyo3-macros-56cbe736856ba4f4/
+│   │   │   │   │   ├── dep-lib-pyo3_macros
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-pyo3_macros
+│   │   │   │   │   └── lib-pyo3_macros.json
+│   │   │   │   ├── pyo3-macros-backend-084eb41e1aeb5b84/
+│   │   │   │   │   ├── run-build-script-build-script-build
+│   │   │   │   │   └── run-build-script-build-script-build.json
+│   │   │   │   ├── pyo3-macros-backend-7033d519b7246e07/
+│   │   │   │   │   ├── build-script-build-script-build
+│   │   │   │   │   ├── build-script-build-script-build.json
+│   │   │   │   │   ├── dep-build-script-build-script-build
+│   │   │   │   │   └── invoked.timestamp
+│   │   │   │   ├── pyo3-macros-backend-e083af0e78036171/
+│   │   │   │   │   ├── dep-lib-pyo3_macros_backend
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-pyo3_macros_backend
+│   │   │   │   │   └── lib-pyo3_macros_backend.json
+│   │   │   │   ├── quote-13bc1ff4de59624a/
+│   │   │   │   │   ├── run-build-script-build-script-build
+│   │   │   │   │   └── run-build-script-build-script-build.json
+│   │   │   │   ├── quote-435fa7b2c1d63305/
+│   │   │   │   │   ├── build-script-build-script-build
+│   │   │   │   │   ├── build-script-build-script-build.json
+│   │   │   │   │   ├── dep-build-script-build-script-build
+│   │   │   │   │   └── invoked.timestamp
+│   │   │   │   ├── quote-466a063a98314a58/
+│   │   │   │   │   ├── dep-lib-quote
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-quote
+│   │   │   │   │   └── lib-quote.json
+│   │   │   │   ├── serde-27f081ffe1cec17c/
+│   │   │   │   │   ├── dep-lib-serde
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-serde
+│   │   │   │   │   └── lib-serde.json
+│   │   │   │   ├── serde-5c8f9baa5cb62b21/
+│   │   │   │   │   ├── build-script-build-script-build
+│   │   │   │   │   ├── build-script-build-script-build.json
+│   │   │   │   │   ├── dep-build-script-build-script-build
+│   │   │   │   │   └── invoked.timestamp
+│   │   │   │   ├── serde-aaad423f7b013b1d/
+│   │   │   │   │   ├── dep-lib-serde
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-serde
+│   │   │   │   │   └── lib-serde.json
+│   │   │   │   ├── serde-e509b2a8907d6139/
+│   │   │   │   │   ├── run-build-script-build-script-build
+│   │   │   │   │   └── run-build-script-build-script-build.json
+│   │   │   │   ├── serde_core-41c4da796a7ac8f6/
+│   │   │   │   │   ├── dep-lib-serde_core
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-serde_core
+│   │   │   │   │   └── lib-serde_core.json
+│   │   │   │   ├── serde_core-4d6f366bb7ddf744/
+│   │   │   │   │   ├── run-build-script-build-script-build
+│   │   │   │   │   └── run-build-script-build-script-build.json
+│   │   │   │   ├── serde_core-a174d9b7f022b44e/
+│   │   │   │   │   ├── build-script-build-script-build
+│   │   │   │   │   ├── build-script-build-script-build.json
+│   │   │   │   │   ├── dep-build-script-build-script-build
+│   │   │   │   │   └── invoked.timestamp
+│   │   │   │   ├── serde_core-d86809d9b0b73174/
+│   │   │   │   │   ├── dep-lib-serde_core
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-serde_core
+│   │   │   │   │   └── lib-serde_core.json
+│   │   │   │   ├── serde_derive-d0a27682e8201b25/
+│   │   │   │   │   ├── dep-lib-serde_derive
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-serde_derive
+│   │   │   │   │   └── lib-serde_derive.json
+│   │   │   │   ├── serde_json-46946b4730089366/
+│   │   │   │   │   ├── dep-lib-serde_json
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-serde_json
+│   │   │   │   │   └── lib-serde_json.json
+│   │   │   │   ├── serde_json-65b83564ff8dd961/
+│   │   │   │   │   ├── run-build-script-build-script-build
+│   │   │   │   │   └── run-build-script-build-script-build.json
+│   │   │   │   ├── serde_json-c6589a58b341b4b0/
+│   │   │   │   │   ├── build-script-build-script-build
+│   │   │   │   │   ├── build-script-build-script-build.json
+│   │   │   │   │   ├── dep-build-script-build-script-build
+│   │   │   │   │   └── invoked.timestamp
+│   │   │   │   ├── serde_json-fef3ee848844e8bb/
+│   │   │   │   │   ├── dep-lib-serde_json
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-serde_json
+│   │   │   │   │   └── lib-serde_json.json
+│   │   │   │   ├── syn-36c2bc6e639711b1/
+│   │   │   │   │   ├── dep-lib-syn
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-syn
+│   │   │   │   │   └── lib-syn.json
+│   │   │   │   ├── target-lexicon-01d02ecfa89dc8ff/
+│   │   │   │   │   ├── dep-lib-target_lexicon
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-target_lexicon
+│   │   │   │   │   └── lib-target_lexicon.json
+│   │   │   │   ├── target-lexicon-143a6c724a12d574/
+│   │   │   │   │   ├── build-script-build-script-build
+│   │   │   │   │   ├── build-script-build-script-build.json
+│   │   │   │   │   ├── dep-build-script-build-script-build
+│   │   │   │   │   └── invoked.timestamp
+│   │   │   │   ├── target-lexicon-f19cedc26c7de385/
+│   │   │   │   │   ├── run-build-script-build-script-build
+│   │   │   │   │   └── run-build-script-build-script-build.json
+│   │   │   │   ├── unicode-ident-aee44922ab25625e/
+│   │   │   │   │   ├── dep-lib-unicode_ident
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-unicode_ident
+│   │   │   │   │   └── lib-unicode_ident.json
+│   │   │   │   ├── windows-13c00067d89a3c50/
+│   │   │   │   │   ├── dep-lib-windows
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-windows
+│   │   │   │   │   └── lib-windows.json
+│   │   │   │   ├── windows-47782ed29142bf69/
+│   │   │   │   │   ├── dep-lib-windows
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-windows
+│   │   │   │   │   └── lib-windows.json
+│   │   │   │   ├── windows-9272c88daa99d418/
+│   │   │   │   │   ├── dep-lib-windows
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-windows
+│   │   │   │   │   └── lib-windows.json
+│   │   │   │   ├── windows-9a336187680ed43d/
+│   │   │   │   │   ├── dep-lib-windows
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-windows
+│   │   │   │   │   └── lib-windows.json
+│   │   │   │   ├── windows-a3cbe7f4658008e1/
+│   │   │   │   │   ├── dep-lib-windows
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-windows
+│   │   │   │   │   └── lib-windows.json
+│   │   │   │   ├── windows-core-7d323e9a8402a946/
+│   │   │   │   │   ├── dep-lib-windows_core
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-windows_core
+│   │   │   │   │   └── lib-windows_core.json
+│   │   │   │   ├── windows-core-c236c9ee2af12b8f/
+│   │   │   │   │   ├── dep-lib-windows_core
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-windows_core
+│   │   │   │   │   └── lib-windows_core.json
+│   │   │   │   ├── windows-result-4ac07ccc847a383f/
+│   │   │   │   │   ├── dep-lib-windows_result
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-windows_result
+│   │   │   │   │   └── lib-windows_result.json
+│   │   │   │   ├── windows-result-6361e90ea376b99a/
+│   │   │   │   │   ├── dep-lib-windows_result
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-windows_result
+│   │   │   │   │   └── lib-windows_result.json
+│   │   │   │   ├── windows-sys-2006b0e023a1ec3b/
+│   │   │   │   │   ├── dep-lib-windows_sys
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-windows_sys
+│   │   │   │   │   └── lib-windows_sys.json
+│   │   │   │   ├── windows-sys-335b2703229f0f5e/
+│   │   │   │   │   ├── dep-lib-windows_sys
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-windows_sys
+│   │   │   │   │   └── lib-windows_sys.json
+│   │   │   │   ├── windows-targets-54827fe41b3cf7b6/
+│   │   │   │   │   ├── dep-lib-windows_targets
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-windows_targets
+│   │   │   │   │   └── lib-windows_targets.json
+│   │   │   │   ├── windows-targets-a625e578596c84fc/
+│   │   │   │   │   ├── dep-lib-windows_targets
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-windows_targets
+│   │   │   │   │   └── lib-windows_targets.json
+│   │   │   │   ├── windows-targets-c0e86eb42ff3a983/
+│   │   │   │   │   ├── dep-lib-windows_targets
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-windows_targets
+│   │   │   │   │   └── lib-windows_targets.json
+│   │   │   │   ├── windows-targets-c78d2b0844496050/
+│   │   │   │   │   ├── dep-lib-windows_targets
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-windows_targets
+│   │   │   │   │   └── lib-windows_targets.json
+│   │   │   │   ├── windows_x86_64_msvc-0a06def153ddddbc/
+│   │   │   │   │   ├── run-build-script-build-script-build
+│   │   │   │   │   └── run-build-script-build-script-build.json
+│   │   │   │   ├── windows_x86_64_msvc-0e3510ecaf0aa54e/
+│   │   │   │   │   ├── dep-lib-windows_x86_64_msvc
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-windows_x86_64_msvc
+│   │   │   │   │   └── lib-windows_x86_64_msvc.json
+│   │   │   │   ├── windows_x86_64_msvc-320f57820c09f9b1/
+│   │   │   │   │   ├── dep-lib-windows_x86_64_msvc
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-windows_x86_64_msvc
+│   │   │   │   │   └── lib-windows_x86_64_msvc.json
+│   │   │   │   ├── windows_x86_64_msvc-3ea8fa4762b9f0b9/
+│   │   │   │   │   ├── build-script-build-script-build
+│   │   │   │   │   ├── build-script-build-script-build.json
+│   │   │   │   │   ├── dep-build-script-build-script-build
+│   │   │   │   │   └── invoked.timestamp
+│   │   │   │   ├── windows_x86_64_msvc-49ca1fa9a63d912a/
+│   │   │   │   │   ├── build-script-build-script-build
+│   │   │   │   │   ├── build-script-build-script-build.json
+│   │   │   │   │   ├── dep-build-script-build-script-build
+│   │   │   │   │   └── invoked.timestamp
+│   │   │   │   ├── windows_x86_64_msvc-57634d9c23955b58/
+│   │   │   │   │   ├── dep-lib-windows_x86_64_msvc
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-windows_x86_64_msvc
+│   │   │   │   │   └── lib-windows_x86_64_msvc.json
+│   │   │   │   ├── windows_x86_64_msvc-b24d777b45caa605/
+│   │   │   │   │   ├── run-build-script-build-script-build
+│   │   │   │   │   └── run-build-script-build-script-build.json
+│   │   │   │   ├── windows_x86_64_msvc-c57f273565755acf/
+│   │   │   │   │   ├── dep-lib-windows_x86_64_msvc
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-windows_x86_64_msvc
+│   │   │   │   │   └── lib-windows_x86_64_msvc.json
+│   │   │   │   ├── windowsapps-a7a915d501225237/
+│   │   │   │   │   ├── dep-test-lib-windowsapps
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── test-lib-windowsapps
+│   │   │   │   │   └── test-lib-windowsapps.json
+│   │   │   │   ├── windowsapps-d99ab3d06d08f857/
+│   │   │   │   │   ├── dep-lib-windowsapps
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-windowsapps
+│   │   │   │   │   └── lib-windowsapps.json
+│   │   │   │   ├── winreg-07e2602ccf27ae2e/
+│   │   │   │   │   ├── dep-lib-winreg
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-winreg
+│   │   │   │   │   └── lib-winreg.json
+│   │   │   │   ├── winreg-d25f7014c40c817f/
+│   │   │   │   │   ├── dep-lib-winreg
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-winreg
+│   │   │   │   │   └── lib-winreg.json
+│   │   │   │   ├── zmij-42d0d62ba1780813/
+│   │   │   │   │   ├── build-script-build-script-build
+│   │   │   │   │   ├── build-script-build-script-build.json
+│   │   │   │   │   ├── dep-build-script-build-script-build
+│   │   │   │   │   └── invoked.timestamp
+│   │   │   │   ├── zmij-4325b5dca3b9aabb/
+│   │   │   │   │   ├── dep-lib-zmij
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-zmij
+│   │   │   │   │   └── lib-zmij.json
+│   │   │   │   ├── zmij-43bf39128fb65f6a/
+│   │   │   │   │   ├── run-build-script-build-script-build
+│   │   │   │   │   └── run-build-script-build-script-build.json
+│   │   │   │   └── zmij-ad706ccbdeeacfe2/
+│   │   │   │       ├── dep-lib-zmij
+│   │   │   │       ├── invoked.timestamp
+│   │   │   │       ├── lib-zmij
+│   │   │   │       └── lib-zmij.json
+│   │   │   ├── deps/
+│   │   │   │   ├── rmetaTMa5nB/
+│   │   │   │   │   └── full.rmeta
+│   │   │   │   ├── app_finder-0a4e555ba7f8141b.d
+│   │   │   │   ├── app_finder-19de4415c947446e.d
+│   │   │   │   ├── app_finder-55893aabab797a78.d
+│   │   │   │   ├── app_finder-ec94726b764df709.d
+│   │   │   │   ├── app_finder.d
+│   │   │   │   ├── app_finder.dll
+│   │   │   │   ├── app_finder.dll.exp
+│   │   │   │   ├── app_finder.dll.lib
+│   │   │   │   ├── app_finder.pdb
+│   │   │   │   ├── automation-043e5628b7e3ee1c.d
+│   │   │   │   ├── automation-c7ada4df385bd904.d
+│   │   │   │   ├── automation-e6116ff59d9cceb1.d
+│   │   │   │   ├── cfg_if-3dcb42ca3a02dcb5.d
+│   │   │   │   ├── cfg_if-958b7eb6cae6936d.d
+│   │   │   │   ├── heck-b54738d5e0d607f0.d
+│   │   │   │   ├── itoa-41a8b9ef9e35d87c.d
+│   │   │   │   ├── itoa-55c947be76da670e.d
+│   │   │   │   ├── libapp_finder-0a4e555ba7f8141b.rmeta
+│   │   │   │   ├── libapp_finder-55893aabab797a78.rmeta
+│   │   │   │   ├── libautomation-043e5628b7e3ee1c.rmeta
+│   │   │   │   ├── libautomation-c7ada4df385bd904.rmeta
+│   │   │   │   ├── libautomation-e6116ff59d9cceb1.rlib
+│   │   │   │   ├── libautomation-e6116ff59d9cceb1.rmeta
+│   │   │   │   ├── libc-77d1df6177943106.d
+│   │   │   │   ├── libc-8e28898ce301e38e.d
+│   │   │   │   ├── libcfg_if-3dcb42ca3a02dcb5.rmeta
+│   │   │   │   ├── libcfg_if-958b7eb6cae6936d.rlib
+│   │   │   │   ├── libcfg_if-958b7eb6cae6936d.rmeta
+│   │   │   │   ├── libheck-b54738d5e0d607f0.rlib
+│   │   │   │   ├── libheck-b54738d5e0d607f0.rmeta
+│   │   │   │   ├── libitoa-41a8b9ef9e35d87c.rmeta
+│   │   │   │   ├── libitoa-55c947be76da670e.rlib
+│   │   │   │   ├── libitoa-55c947be76da670e.rmeta
+│   │   │   │   ├── liblibc-77d1df6177943106.rlib
+│   │   │   │   ├── liblibc-77d1df6177943106.rmeta
+│   │   │   │   ├── liblibc-8e28898ce301e38e.rmeta
+│   │   │   │   ├── libmemchr-0618b7abc2c0c1b1.rlib
+│   │   │   │   ├── libmemchr-0618b7abc2c0c1b1.rmeta
+│   │   │   │   ├── libmemchr-6fa30735eda4ed40.rmeta
+│   │   │   │   ├── libonce_cell-3e70f2f2a6eadd01.rlib
+│   │   │   │   ├── libonce_cell-3e70f2f2a6eadd01.rmeta
+│   │   │   │   ├── libonce_cell-827c16bf5aa2c056.rmeta
+│   │   │   │   ├── libproc_macro2-a7f07268e053596c.rlib
+│   │   │   │   ├── libproc_macro2-a7f07268e053596c.rmeta
+│   │   │   │   ├── libpyo3-aeeb45e4e93f4bec.rlib
+│   │   │   │   ├── libpyo3-aeeb45e4e93f4bec.rmeta
+│   │   │   │   ├── libpyo3-c40b96f104ee354e.rmeta
+│   │   │   │   ├── libpyo3_build_config-f7cf8cf8d86548fd.rlib
+│   │   │   │   ├── libpyo3_build_config-f7cf8cf8d86548fd.rmeta
+│   │   │   │   ├── libpyo3_ffi-00c274aca194557c.rmeta
+│   │   │   │   ├── libpyo3_ffi-b6a049334957eb59.rlib
+│   │   │   │   ├── libpyo3_ffi-b6a049334957eb59.rmeta
+│   │   │   │   ├── libpyo3_macros_backend-e083af0e78036171.rlib
+│   │   │   │   ├── libpyo3_macros_backend-e083af0e78036171.rmeta
+│   │   │   │   ├── libquote-466a063a98314a58.rlib
+│   │   │   │   ├── libquote-466a063a98314a58.rmeta
+│   │   │   │   ├── libserde-27f081ffe1cec17c.rlib
+│   │   │   │   ├── libserde-27f081ffe1cec17c.rmeta
+│   │   │   │   ├── libserde-aaad423f7b013b1d.rmeta
+│   │   │   │   ├── libserde_core-41c4da796a7ac8f6.rmeta
+│   │   │   │   ├── libserde_core-d86809d9b0b73174.rlib
+│   │   │   │   ├── libserde_core-d86809d9b0b73174.rmeta
+│   │   │   │   ├── libserde_json-46946b4730089366.rmeta
+│   │   │   │   ├── libserde_json-fef3ee848844e8bb.rlib
+│   │   │   │   ├── libserde_json-fef3ee848844e8bb.rmeta
+│   │   │   │   ├── libsyn-36c2bc6e639711b1.rlib
+│   │   │   │   ├── libsyn-36c2bc6e639711b1.rmeta
+│   │   │   │   ├── libtarget_lexicon-01d02ecfa89dc8ff.rlib
+│   │   │   │   ├── libtarget_lexicon-01d02ecfa89dc8ff.rmeta
+│   │   │   │   ├── libunicode_ident-aee44922ab25625e.rlib
+│   │   │   │   ├── libunicode_ident-aee44922ab25625e.rmeta
+│   │   │   │   ├── libwindows-13c00067d89a3c50.rlib
+│   │   │   │   ├── libwindows-13c00067d89a3c50.rmeta
+│   │   │   │   ├── libwindows-47782ed29142bf69.rmeta
+│   │   │   │   ├── libwindows-9272c88daa99d418.rlib
+│   │   │   │   ├── libwindows-9272c88daa99d418.rmeta
+│   │   │   │   ├── libwindows-9a336187680ed43d.rmeta
+│   │   │   │   ├── libwindows-a3cbe7f4658008e1.rlib
+│   │   │   │   ├── libwindows-a3cbe7f4658008e1.rmeta
+│   │   │   │   ├── libwindows_core-7d323e9a8402a946.rmeta
+│   │   │   │   ├── libwindows_core-c236c9ee2af12b8f.rlib
+│   │   │   │   ├── libwindows_core-c236c9ee2af12b8f.rmeta
+│   │   │   │   ├── libwindows_result-4ac07ccc847a383f.rlib
+│   │   │   │   ├── libwindows_result-4ac07ccc847a383f.rmeta
+│   │   │   │   ├── libwindows_result-6361e90ea376b99a.rmeta
+│   │   │   │   ├── libwindows_sys-2006b0e023a1ec3b.rmeta
+│   │   │   │   ├── libwindows_sys-335b2703229f0f5e.rlib
+│   │   │   │   ├── libwindows_sys-335b2703229f0f5e.rmeta
+│   │   │   │   ├── libwindows_targets-54827fe41b3cf7b6.rlib
+│   │   │   │   ├── libwindows_targets-54827fe41b3cf7b6.rmeta
+│   │   │   │   ├── libwindows_targets-a625e578596c84fc.rlib
+│   │   │   │   ├── libwindows_targets-a625e578596c84fc.rmeta
+│   │   │   │   ├── libwindows_targets-c0e86eb42ff3a983.rmeta
+│   │   │   │   ├── libwindows_targets-c78d2b0844496050.rmeta
+│   │   │   │   ├── libwindows_x86_64_msvc-0e3510ecaf0aa54e.rmeta
+│   │   │   │   ├── libwindows_x86_64_msvc-320f57820c09f9b1.rlib
+│   │   │   │   ├── libwindows_x86_64_msvc-320f57820c09f9b1.rmeta
+│   │   │   │   ├── libwindows_x86_64_msvc-57634d9c23955b58.rlib
+│   │   │   │   ├── libwindows_x86_64_msvc-57634d9c23955b58.rmeta
+│   │   │   │   ├── libwindows_x86_64_msvc-c57f273565755acf.rmeta
+│   │   │   │   ├── libwindowsapps-a7a915d501225237.rmeta
+│   │   │   │   ├── libwindowsapps-d99ab3d06d08f857.rmeta
+│   │   │   │   ├── libwinreg-07e2602ccf27ae2e.rmeta
+│   │   │   │   ├── libwinreg-d25f7014c40c817f.rlib
+│   │   │   │   ├── libwinreg-d25f7014c40c817f.rmeta
+│   │   │   │   ├── libzmij-4325b5dca3b9aabb.rlib
+│   │   │   │   ├── libzmij-4325b5dca3b9aabb.rmeta
+│   │   │   │   ├── libzmij-ad706ccbdeeacfe2.rmeta
+│   │   │   │   ├── memchr-0618b7abc2c0c1b1.d
+│   │   │   │   ├── memchr-6fa30735eda4ed40.d
+│   │   │   │   ├── once_cell-3e70f2f2a6eadd01.d
+│   │   │   │   ├── once_cell-827c16bf5aa2c056.d
+│   │   │   │   ├── proc_macro2-a7f07268e053596c.d
+│   │   │   │   ├── pyo3-aeeb45e4e93f4bec.d
+│   │   │   │   ├── pyo3-c40b96f104ee354e.d
+│   │   │   │   ├── pyo3_build_config-f7cf8cf8d86548fd.d
+│   │   │   │   ├── pyo3_ffi-00c274aca194557c.d
+│   │   │   │   ├── pyo3_ffi-b6a049334957eb59.d
+│   │   │   │   ├── pyo3_macros-56cbe736856ba4f4.d
+│   │   │   │   ├── pyo3_macros-56cbe736856ba4f4.dll
+│   │   │   │   ├── pyo3_macros-56cbe736856ba4f4.dll.exp
+│   │   │   │   ├── pyo3_macros-56cbe736856ba4f4.dll.lib
+│   │   │   │   ├── pyo3_macros-56cbe736856ba4f4.pdb
+│   │   │   │   ├── pyo3_macros_backend-e083af0e78036171.d
+│   │   │   │   ├── quote-466a063a98314a58.d
+│   │   │   │   ├── serde-27f081ffe1cec17c.d
+│   │   │   │   ├── serde-aaad423f7b013b1d.d
+│   │   │   │   ├── serde_core-41c4da796a7ac8f6.d
+│   │   │   │   ├── serde_core-d86809d9b0b73174.d
+│   │   │   │   ├── serde_derive-d0a27682e8201b25.d
+│   │   │   │   ├── serde_derive-d0a27682e8201b25.dll
+│   │   │   │   ├── serde_derive-d0a27682e8201b25.dll.exp
+│   │   │   │   ├── serde_derive-d0a27682e8201b25.dll.lib
+│   │   │   │   ├── serde_derive-d0a27682e8201b25.pdb
+│   │   │   │   ├── serde_json-46946b4730089366.d
+│   │   │   │   ├── serde_json-fef3ee848844e8bb.d
+│   │   │   │   ├── syn-36c2bc6e639711b1.d
+│   │   │   │   ├── target_lexicon-01d02ecfa89dc8ff.d
+│   │   │   │   ├── unicode_ident-aee44922ab25625e.d
+│   │   │   │   ├── windows-13c00067d89a3c50.d
+│   │   │   │   ├── windows-47782ed29142bf69.d
+│   │   │   │   ├── windows-9272c88daa99d418.d
+│   │   │   │   ├── windows-9a336187680ed43d.d
+│   │   │   │   ├── windows-a3cbe7f4658008e1.d
+│   │   │   │   ├── windows_core-7d323e9a8402a946.d
+│   │   │   │   ├── windows_core-c236c9ee2af12b8f.d
+│   │   │   │   ├── windows_result-4ac07ccc847a383f.d
+│   │   │   │   ├── windows_result-6361e90ea376b99a.d
+│   │   │   │   ├── windows_sys-2006b0e023a1ec3b.d
+│   │   │   │   ├── windows_sys-335b2703229f0f5e.d
+│   │   │   │   ├── windows_targets-54827fe41b3cf7b6.d
+│   │   │   │   ├── windows_targets-a625e578596c84fc.d
+│   │   │   │   ├── windows_targets-c0e86eb42ff3a983.d
+│   │   │   │   ├── windows_targets-c78d2b0844496050.d
+│   │   │   │   ├── windows_x86_64_msvc-0e3510ecaf0aa54e.d
+│   │   │   │   ├── windows_x86_64_msvc-320f57820c09f9b1.d
+│   │   │   │   ├── windows_x86_64_msvc-57634d9c23955b58.d
+│   │   │   │   ├── windows_x86_64_msvc-c57f273565755acf.d
+│   │   │   │   ├── windowsapps-a7a915d501225237.d
+│   │   │   │   ├── windowsapps-d99ab3d06d08f857.d
+│   │   │   │   ├── winreg-07e2602ccf27ae2e.d
+│   │   │   │   ├── winreg-d25f7014c40c817f.d
+│   │   │   │   ├── zmij-4325b5dca3b9aabb.d
+│   │   │   │   └── zmij-ad706ccbdeeacfe2.d
+│   │   │   ├── examples/
+│   │   │   ├── incremental/
+│   │   │   │   ├── app_finder-0srhxpymlk6ub/
+│   │   │   │   │   ├── s-hh1dc66une-08fgnmr-6ct8w00dzr0h51066835yavvp/
+│   │   │   │   │   │   └── metadata.rmeta
+│   │   │   │   │   ├── s-hh1ddcm2ni-14pbors-d2t66hv7f3lr7nlpn35twmy77/
+│   │   │   │   │   │   └── metadata.rmeta
+│   │   │   │   │   ├── s-hh1dc66une-08fgnmr.lock
+│   │   │   │   │   └── s-hh1ddcm2ni-14pbors.lock
+│   │   │   │   ├── app_finder-2ek6fgh8uq9hv/
+│   │   │   │   │   ├── s-hh0uoq1oya-0ugrwc3-working/
+│   │   │   │   │   ├── s-hh0uoq7v7w-15r6894-working/
+│   │   │   │   │   ├── s-hh0uoqe5pr-1tqih3s-working/
+│   │   │   │   │   ├── s-hh0uotkvpy-118oejn-working/
+│   │   │   │   │   ├── s-hh0uougp5e-13hkmaz-working/
+│   │   │   │   │   ├── s-hh0uouoe2r-1jnbvq6-working/
+│   │   │   │   │   ├── s-hh0uoq1oya-0ugrwc3.lock
+│   │   │   │   │   ├── s-hh0uoq7v7w-15r6894.lock
+│   │   │   │   │   ├── s-hh0uoqe5pr-1tqih3s.lock
+│   │   │   │   │   ├── s-hh0uotkvpy-118oejn.lock
+│   │   │   │   │   ├── s-hh0uougp5e-13hkmaz.lock
+│   │   │   │   │   └── s-hh0uouoe2r-1jnbvq6.lock
+│   │   │   │   ├── app_finder-2wtak9gt69slk/
+│   │   │   │   │   ├── s-hh0umjwmui-00rhkck-working/
+│   │   │   │   │   └── s-hh0umjwmui-00rhkck.lock
+│   │   │   │   ├── app_finder-33ai6xg8m1uu8/
+│   │   │   │   │   ├── s-hh0xrvmmte-0ketadf-dwu48bk5h245ykkb1vkweqksh/
+│   │   │   │   │   │   ├── 012xb383zmfxbkbwkc1go8ukp.o
+│   │   │   │   │   │   ├── 02aicy9tmcmk0h8w1lgvy0lin.o
+│   │   │   │   │   │   ├── 02kr3q3xzuip0x0of1lkw037a.o
+│   │   │   │   │   │   ├── 06r0ai33d5jpe9ra9zfftd7jo.o
+│   │   │   │   │   │   ├── 09wkck4jpvbshv6a55fkno1ri.o
+│   │   │   │   │   │   ├── 0hd94df0rgigpquuent88vndm.o
+│   │   │   │   │   │   ├── 0nozngpd7seovhv5p78qmqpg9.o
+│   │   │   │   │   │   ├── 0vjf4rh3h8ifdy8ttwd6aq2yl.o
+│   │   │   │   │   │   ├── 0xy3wbngwtlhipr1l1qrvicn3.o
+│   │   │   │   │   │   ├── 19jvfpvn3luc3m7utv92xcmpv.o
+│   │   │   │   │   │   ├── 1c6v4o2dflvc8vh3abnzg7j08.o
+│   │   │   │   │   │   ├── 1hnpc0qinulqqb4jx4zp4o97k.o
+│   │   │   │   │   │   ├── 1hwlcalj5a79l7cm19090b8os.o
+│   │   │   │   │   │   ├── 1q95p3f4cio9dgxtbpg2u9iej.o
+│   │   │   │   │   │   ├── 1yorwcf0ooktlh1f4zr68vu2o.o
+│   │   │   │   │   │   ├── 20yh9gq3av7v7xt9ypelei8dn.o
+│   │   │   │   │   │   ├── 22iesr15l4d4ftz0gvqrm6puo.o
+│   │   │   │   │   │   ├── 2mpqqhtd11uomrbtw11jzmv89.o
+│   │   │   │   │   │   ├── 2npxcdk6il2qfva3tj2ico3z5.o
+│   │   │   │   │   │   ├── 2pfra4y84mgutc26v6nzqa18q.o
+│   │   │   │   │   │   ├── 2xslnlo3mmq1h1ef6mh6sxixs.o
+│   │   │   │   │   │   ├── 3eqpto1oj9bwa3vc3fyhdrzdi.o
+│   │   │   │   │   │   ├── 3idduc58gash6guo8xkmuxp2g.o
+│   │   │   │   │   │   ├── 3xz1mr45p9jmckn9tnpb2kcy6.o
+│   │   │   │   │   │   ├── 3y3lipd17413rkfhpduprwe7d.o
+│   │   │   │   │   │   ├── 40f25d41o0nk24yulnyknmq5u.o
+│   │   │   │   │   │   ├── 42hikdjcprefl2fn3bwqkd8z3.o
+│   │   │   │   │   │   ├── 4330i3j885kt2njtvuqbfx02f.o
+│   │   │   │   │   │   ├── 43tbcd7broyfh3s7hl60z0ywv.o
+│   │   │   │   │   │   ├── 45ki8v6kuegjofs1r6rjbqnjn.o
+│   │   │   │   │   │   ├── 4cj7pu1emgl3wjvst7tsbwwtv.o
+│   │   │   │   │   │   ├── 4f5p5j26z4souacvhvbtbi4ox.o
+│   │   │   │   │   │   ├── 4j8qvhdmdexykqhbltnly0cuz.o
+│   │   │   │   │   │   ├── 4l4939g18acf5thkftxdbqid9.o
+│   │   │   │   │   │   ├── 4ou4l8zuw47zjg3wbuq8qmezd.o
+│   │   │   │   │   │   ├── 4rs9ycfzekmaofui1fephuw98.o
+│   │   │   │   │   │   ├── 4s1ovea7usztoptt4qzmhkcup.o
+│   │   │   │   │   │   ├── 4tagnb8eexgznp9p76u8p82qw.o
+│   │   │   │   │   │   ├── 4voiptvux95pstv21alphq640.o
+│   │   │   │   │   │   ├── 4zefe6lxtwgdxnr5qc490xyf4.o
+│   │   │   │   │   │   ├── 55xg1guiaswsmmqm9fmgp9bfb.o
+│   │   │   │   │   │   ├── 5bslin1hxxa67a4klq3adccw6.o
+│   │   │   │   │   │   ├── 5cvh3ifv1upsh9ldbkdbpehqo.o
+│   │   │   │   │   │   ├── 5e2mvlho95e28mpdoqjuwbycz.o
+│   │   │   │   │   │   ├── 5eetu7s2nk60jmuvjk46306yn.o
+│   │   │   │   │   │   ├── 5f1swgle0ztwlihe76onkzwzw.o
+│   │   │   │   │   │   ├── 5h305dlg3i0g5m5ap3jjtc3l5.o
+│   │   │   │   │   │   ├── 5han33r4q2dgse16kl29w5mud.o
+│   │   │   │   │   │   ├── 5k78zwil5pkx5or2h85cdsuv7.o
+│   │   │   │   │   │   ├── 5tf0rfg9sjb1ms50ia508596k.o
+│   │   │   │   │   │   ├── 61aauscxqdquhi3qwv5c1psu6.o
+│   │   │   │   │   │   ├── 67e5xu7ua5mk1zxq68uo7wak3.o
+│   │   │   │   │   │   ├── 685plrdxd5dvi2end96bpggyo.o
+│   │   │   │   │   │   ├── 6bz7xm07zyhsjxpmvi8thz8zu.o
+│   │   │   │   │   │   ├── 6ljbbs4k972cmf2psj1ak11mj.o
+│   │   │   │   │   │   ├── 6ntrx91m4pjz6iovbxcr2dn74.o
+│   │   │   │   │   │   ├── 6trpsa9ebkvdkwz6ny6jua3ja.o
+│   │   │   │   │   │   ├── 6uxzb87tlc4sf5lemd2xtvh0o.o
+│   │   │   │   │   │   ├── 7765ae90mygfyj96l8n2o0oy5.o
+│   │   │   │   │   │   ├── 7i32ukh0o2sor2ww7qmmlh7bs.o
+│   │   │   │   │   │   ├── 7jnfj8n8n9uorwl6o8rhwznpq.o
+│   │   │   │   │   │   ├── 7jxfrth0pyz3i717na0fpnukb.o
+│   │   │   │   │   │   ├── 7ruj1o909xfmubg9cee290bkk.o
+│   │   │   │   │   │   ├── 7ug3r0oormzyreixoma2v158c.o
+│   │   │   │   │   │   ├── 7zq4qqfd7ip5i7svoy38l7qqa.o
+│   │   │   │   │   │   ├── 85e4f5pllp7nw5z8au527da2z.o
+│   │   │   │   │   │   ├── 85zqlr78mp0wa588xez98lgme.o
+│   │   │   │   │   │   ├── 87v7rr538udpvyqtzz5yv3kz0.o
+│   │   │   │   │   │   ├── 88mgayxzodwwmj07e7vddj6k7.o
+│   │   │   │   │   │   ├── 8q2iavpgzpt4ba5zngd9nznrr.o
+│   │   │   │   │   │   ├── 90fornv1rtmtq0pwbwmdgyjyl.o
+│   │   │   │   │   │   ├── 91gbqiwmjpgmonrcxmg18mc6j.o
+│   │   │   │   │   │   ├── 925rdcgacdcnjconywnrpw81v.o
+│   │   │   │   │   │   ├── 99tfr6jd6a3ib7rkum3v7nu8j.o
+│   │   │   │   │   │   ├── 9d37ttzg504w59rrpfwd6yniv.o
+│   │   │   │   │   │   ├── 9d9ptu3r149glcmrpobqksga6.o
+│   │   │   │   │   │   ├── 9lvpxv4cf26uneiv7y4wx5b2f.o
+│   │   │   │   │   │   ├── 9p5d2p8nqnbg1orzh91n324vx.o
+│   │   │   │   │   │   ├── 9q66pmk70aw016wp1708gejua.o
+│   │   │   │   │   │   ├── 9v2b2e4jadyvxlp9dsmu2pah1.o
+│   │   │   │   │   │   ├── a1qjxo4t3tk5o3e14a4ypmmiv.o
+│   │   │   │   │   │   ├── a6vqz0b1tt7ombrk0nhqrjkf2.o
+│   │   │   │   │   │   ├── a6w1q4iydjpias7gtlph2xles.o
+│   │   │   │   │   │   ├── acu0sxg8vqshusadkeib3zebr.o
+│   │   │   │   │   │   ├── arquabr87fmwjrhiumov93ria.o
+│   │   │   │   │   │   ├── av4advm6wf4gp0pvkk85421vs.o
+│   │   │   │   │   │   ├── ave4kf66j63oii121bolye2vf.o
+│   │   │   │   │   │   ├── az7u2ziqszzr2rqz2sserdgvo.o
+│   │   │   │   │   │   ├── b7rqjf0bwm5bykiedecdsdzvm.o
+│   │   │   │   │   │   ├── bjv567cbdhqea6z4516emyruu.o
+│   │   │   │   │   │   ├── bjynw1encct24mop8hru70f9l.o
+│   │   │   │   │   │   ├── brijtugiwdih0e1h86nqz8d6g.o
+│   │   │   │   │   │   ├── bt9b0850brbtj0olluo8onsri.o
+│   │   │   │   │   │   ├── bzgmsir07j9ay40wpfsrfyc2f.o
+│   │   │   │   │   │   ├── coy0hkfyd8ow1xcpt5javfl4h.o
+│   │   │   │   │   │   ├── cp7snf6951su1rwwz7hw7167d.o
+│   │   │   │   │   │   ├── cwh76i6fsvmckn18xuq52bt2r.o
+│   │   │   │   │   │   ├── cxfiw5lf3qja3d6ro05ws3u5v.o
+│   │   │   │   │   │   ├── cxul6hvyt63l7j7og0xytzwvl.o
+│   │   │   │   │   │   ├── cyrr8qavqjgs0pfnh4n9z3nnw.o
+│   │   │   │   │   │   ├── dbr2mjw4thf39umw2s7r7iw1g.o
+│   │   │   │   │   │   ├── do563j1n8wqvpcxgdgeej24cu.o
+│   │   │   │   │   │   ├── dpk4jtimsk9n9w6tjn6boe97t.o
+│   │   │   │   │   │   ├── dsrrvhuk99h34o63cj3zirf0a.o
+│   │   │   │   │   │   ├── du6b2zje7cruf83p8j47ciz49.o
+│   │   │   │   │   │   ├── dw4hyp8heqe5720i8bcy8d8mv.o
+│   │   │   │   │   │   ├── dzn1t2fwef46t4sorrwnsd0u4.o
+│   │   │   │   │   │   ├── e1f2s0o9wh97ia5bjhip1dfc1.o
+│   │   │   │   │   │   ├── e3v0wu9e6uew09xhl6to0m6ma.o
+│   │   │   │   │   │   ├── e3xwa1bcameohweatuaxadtsz.o
+│   │   │   │   │   │   ├── edi375zlrwfi160snr14vxtvv.o
+│   │   │   │   │   │   ├── edi689o1580lce428lq4rqein.o
+│   │   │   │   │   │   ├── edy9vd4d3m1gf600ftmbelu7v.o
+│   │   │   │   │   │   ├── ek5rvit39z2pfirubzttr0bk8.o
+│   │   │   │   │   │   ├── ektoen1ydbaxgzvry982h97hj.o
+│   │   │   │   │   │   ├── enc5toj8rbawns8q2vbqunylr.o
+│   │   │   │   │   │   ├── eo1yx1adixbqg9e8vlaoyp8l5.o
+│   │   │   │   │   │   ├── epe2ce6msl3gymzyw4fnrn6vg.o
+│   │   │   │   │   │   ├── er4d8x25ak7eabttkrvp8vd5d.o
+│   │   │   │   │   │   ├── es6fh0cqvjrfngj0u4fh320d6.o
+│   │   │   │   │   │   ├── eugymxwv6i82dft1bi1i0lrbs.o
+│   │   │   │   │   │   ├── exrncbup9ai2n5anxzi99lefv.o
+│   │   │   │   │   │   ├── exxsyrxsxyef60n31qpx2t50k.o
+│   │   │   │   │   │   ├── ezfxylth3zim1jumnze2zbhyo.o
+│   │   │   │   │   │   ├── ezjyfrahl0cxztu2w61oeji2c.o
+│   │   │   │   │   │   ├── f2n8hzkxzaweebwtpfqoflj04.o
+│   │   │   │   │   │   └── f3q3z762t1ydsahmj59x0iyh4.o
+│   │   │   │   │   ├── s-hh0xu6lwxb-07uo6u7-0u2senxe42rq5bot0ij2inyba/
+│   │   │   │   │   │   ├── 012xb383zmfxbkbwkc1go8ukp.o
+│   │   │   │   │   │   ├── 02aicy9tmcmk0h8w1lgvy0lin.o
+│   │   │   │   │   │   ├── 02kr3q3xzuip0x0of1lkw037a.o
+│   │   │   │   │   │   ├── 06r0ai33d5jpe9ra9zfftd7jo.o
+│   │   │   │   │   │   ├── 09wkck4jpvbshv6a55fkno1ri.o
+│   │   │   │   │   │   ├── 0hd94df0rgigpquuent88vndm.o
+│   │   │   │   │   │   ├── 0nozngpd7seovhv5p78qmqpg9.o
+│   │   │   │   │   │   ├── 0vjf4rh3h8ifdy8ttwd6aq2yl.o
+│   │   │   │   │   │   ├── 0xy3wbngwtlhipr1l1qrvicn3.o
+│   │   │   │   │   │   ├── 19jvfpvn3luc3m7utv92xcmpv.o
+│   │   │   │   │   │   ├── 1c6v4o2dflvc8vh3abnzg7j08.o
+│   │   │   │   │   │   ├── 1hnpc0qinulqqb4jx4zp4o97k.o
+│   │   │   │   │   │   ├── 1hwlcalj5a79l7cm19090b8os.o
+│   │   │   │   │   │   ├── 1q95p3f4cio9dgxtbpg2u9iej.o
+│   │   │   │   │   │   ├── 1yorwcf0ooktlh1f4zr68vu2o.o
+│   │   │   │   │   │   ├── 20yh9gq3av7v7xt9ypelei8dn.o
+│   │   │   │   │   │   ├── 22iesr15l4d4ftz0gvqrm6puo.o
+│   │   │   │   │   │   ├── 2mpqqhtd11uomrbtw11jzmv89.o
+│   │   │   │   │   │   ├── 2npxcdk6il2qfva3tj2ico3z5.o
+│   │   │   │   │   │   ├── 2pfra4y84mgutc26v6nzqa18q.o
+│   │   │   │   │   │   ├── 2xslnlo3mmq1h1ef6mh6sxixs.o
+│   │   │   │   │   │   ├── 3eqpto1oj9bwa3vc3fyhdrzdi.o
+│   │   │   │   │   │   ├── 3idduc58gash6guo8xkmuxp2g.o
+│   │   │   │   │   │   ├── 3xz1mr45p9jmckn9tnpb2kcy6.o
+│   │   │   │   │   │   ├── 3y3lipd17413rkfhpduprwe7d.o
+│   │   │   │   │   │   ├── 40f25d41o0nk24yulnyknmq5u.o
+│   │   │   │   │   │   ├── 42hikdjcprefl2fn3bwqkd8z3.o
+│   │   │   │   │   │   ├── 4330i3j885kt2njtvuqbfx02f.o
+│   │   │   │   │   │   ├── 43tbcd7broyfh3s7hl60z0ywv.o
+│   │   │   │   │   │   ├── 45ki8v6kuegjofs1r6rjbqnjn.o
+│   │   │   │   │   │   ├── 4cj7pu1emgl3wjvst7tsbwwtv.o
+│   │   │   │   │   │   ├── 4f5p5j26z4souacvhvbtbi4ox.o
+│   │   │   │   │   │   ├── 4j8qvhdmdexykqhbltnly0cuz.o
+│   │   │   │   │   │   ├── 4l4939g18acf5thkftxdbqid9.o
+│   │   │   │   │   │   ├── 4ou4l8zuw47zjg3wbuq8qmezd.o
+│   │   │   │   │   │   ├── 4rs9ycfzekmaofui1fephuw98.o
+│   │   │   │   │   │   ├── 4s1ovea7usztoptt4qzmhkcup.o
+│   │   │   │   │   │   ├── 4tagnb8eexgznp9p76u8p82qw.o
+│   │   │   │   │   │   ├── 4voiptvux95pstv21alphq640.o
+│   │   │   │   │   │   ├── 4zefe6lxtwgdxnr5qc490xyf4.o
+│   │   │   │   │   │   ├── 55xg1guiaswsmmqm9fmgp9bfb.o
+│   │   │   │   │   │   ├── 5bslin1hxxa67a4klq3adccw6.o
+│   │   │   │   │   │   ├── 5cvh3ifv1upsh9ldbkdbpehqo.o
+│   │   │   │   │   │   ├── 5e2mvlho95e28mpdoqjuwbycz.o
+│   │   │   │   │   │   ├── 5eetu7s2nk60jmuvjk46306yn.o
+│   │   │   │   │   │   ├── 5f1swgle0ztwlihe76onkzwzw.o
+│   │   │   │   │   │   ├── 5h305dlg3i0g5m5ap3jjtc3l5.o
+│   │   │   │   │   │   ├── 5han33r4q2dgse16kl29w5mud.o
+│   │   │   │   │   │   ├── 5k78zwil5pkx5or2h85cdsuv7.o
+│   │   │   │   │   │   ├── 5tf0rfg9sjb1ms50ia508596k.o
+│   │   │   │   │   │   ├── 61aauscxqdquhi3qwv5c1psu6.o
+│   │   │   │   │   │   ├── 67e5xu7ua5mk1zxq68uo7wak3.o
+│   │   │   │   │   │   ├── 685plrdxd5dvi2end96bpggyo.o
+│   │   │   │   │   │   ├── 6bz7xm07zyhsjxpmvi8thz8zu.o
+│   │   │   │   │   │   ├── 6ljbbs4k972cmf2psj1ak11mj.o
+│   │   │   │   │   │   ├── 6ntrx91m4pjz6iovbxcr2dn74.o
+│   │   │   │   │   │   ├── 6trpsa9ebkvdkwz6ny6jua3ja.o
+│   │   │   │   │   │   ├── 6uxzb87tlc4sf5lemd2xtvh0o.o
+│   │   │   │   │   │   ├── 7765ae90mygfyj96l8n2o0oy5.o
+│   │   │   │   │   │   ├── 7i32ukh0o2sor2ww7qmmlh7bs.o
+│   │   │   │   │   │   ├── 7jnfj8n8n9uorwl6o8rhwznpq.o
+│   │   │   │   │   │   ├── 7jxfrth0pyz3i717na0fpnukb.o
+│   │   │   │   │   │   ├── 7ruj1o909xfmubg9cee290bkk.o
+│   │   │   │   │   │   ├── 7ug3r0oormzyreixoma2v158c.o
+│   │   │   │   │   │   ├── 7zq4qqfd7ip5i7svoy38l7qqa.o
+│   │   │   │   │   │   ├── 85e4f5pllp7nw5z8au527da2z.o
+│   │   │   │   │   │   ├── 85zqlr78mp0wa588xez98lgme.o
+│   │   │   │   │   │   ├── 87v7rr538udpvyqtzz5yv3kz0.o
+│   │   │   │   │   │   ├── 88mgayxzodwwmj07e7vddj6k7.o
+│   │   │   │   │   │   ├── 8q2iavpgzpt4ba5zngd9nznrr.o
+│   │   │   │   │   │   ├── 90fornv1rtmtq0pwbwmdgyjyl.o
+│   │   │   │   │   │   ├── 91gbqiwmjpgmonrcxmg18mc6j.o
+│   │   │   │   │   │   ├── 925rdcgacdcnjconywnrpw81v.o
+│   │   │   │   │   │   ├── 99tfr6jd6a3ib7rkum3v7nu8j.o
+│   │   │   │   │   │   ├── 9d37ttzg504w59rrpfwd6yniv.o
+│   │   │   │   │   │   ├── 9d9ptu3r149glcmrpobqksga6.o
+│   │   │   │   │   │   ├── 9lvpxv4cf26uneiv7y4wx5b2f.o
+│   │   │   │   │   │   ├── 9p5d2p8nqnbg1orzh91n324vx.o
+│   │   │   │   │   │   ├── 9q66pmk70aw016wp1708gejua.o
+│   │   │   │   │   │   ├── 9v2b2e4jadyvxlp9dsmu2pah1.o
+│   │   │   │   │   │   ├── a1qjxo4t3tk5o3e14a4ypmmiv.o
+│   │   │   │   │   │   ├── a6vqz0b1tt7ombrk0nhqrjkf2.o
+│   │   │   │   │   │   ├── a6w1q4iydjpias7gtlph2xles.o
+│   │   │   │   │   │   ├── acu0sxg8vqshusadkeib3zebr.o
+│   │   │   │   │   │   ├── arquabr87fmwjrhiumov93ria.o
+│   │   │   │   │   │   ├── av4advm6wf4gp0pvkk85421vs.o
+│   │   │   │   │   │   ├── ave4kf66j63oii121bolye2vf.o
+│   │   │   │   │   │   ├── az7u2ziqszzr2rqz2sserdgvo.o
+│   │   │   │   │   │   ├── b7rqjf0bwm5bykiedecdsdzvm.o
+│   │   │   │   │   │   ├── bjv567cbdhqea6z4516emyruu.o
+│   │   │   │   │   │   ├── bjynw1encct24mop8hru70f9l.o
+│   │   │   │   │   │   ├── brijtugiwdih0e1h86nqz8d6g.o
+│   │   │   │   │   │   ├── bt9b0850brbtj0olluo8onsri.o
+│   │   │   │   │   │   ├── bzgmsir07j9ay40wpfsrfyc2f.o
+│   │   │   │   │   │   ├── coy0hkfyd8ow1xcpt5javfl4h.o
+│   │   │   │   │   │   ├── cp7snf6951su1rwwz7hw7167d.o
+│   │   │   │   │   │   ├── cwh76i6fsvmckn18xuq52bt2r.o
+│   │   │   │   │   │   ├── cxfiw5lf3qja3d6ro05ws3u5v.o
+│   │   │   │   │   │   ├── cxul6hvyt63l7j7og0xytzwvl.o
+│   │   │   │   │   │   ├── cyrr8qavqjgs0pfnh4n9z3nnw.o
+│   │   │   │   │   │   ├── dbr2mjw4thf39umw2s7r7iw1g.o
+│   │   │   │   │   │   ├── do563j1n8wqvpcxgdgeej24cu.o
+│   │   │   │   │   │   ├── dpk4jtimsk9n9w6tjn6boe97t.o
+│   │   │   │   │   │   ├── dsrrvhuk99h34o63cj3zirf0a.o
+│   │   │   │   │   │   ├── du6b2zje7cruf83p8j47ciz49.o
+│   │   │   │   │   │   ├── dw4hyp8heqe5720i8bcy8d8mv.o
+│   │   │   │   │   │   ├── dzn1t2fwef46t4sorrwnsd0u4.o
+│   │   │   │   │   │   ├── e1f2s0o9wh97ia5bjhip1dfc1.o
+│   │   │   │   │   │   ├── e3v0wu9e6uew09xhl6to0m6ma.o
+│   │   │   │   │   │   ├── e3xwa1bcameohweatuaxadtsz.o
+│   │   │   │   │   │   ├── edi375zlrwfi160snr14vxtvv.o
+│   │   │   │   │   │   ├── edi689o1580lce428lq4rqein.o
+│   │   │   │   │   │   ├── edy9vd4d3m1gf600ftmbelu7v.o
+│   │   │   │   │   │   ├── ek5rvit39z2pfirubzttr0bk8.o
+│   │   │   │   │   │   ├── ektoen1ydbaxgzvry982h97hj.o
+│   │   │   │   │   │   ├── enc5toj8rbawns8q2vbqunylr.o
+│   │   │   │   │   │   ├── eo1yx1adixbqg9e8vlaoyp8l5.o
+│   │   │   │   │   │   ├── epe2ce6msl3gymzyw4fnrn6vg.o
+│   │   │   │   │   │   ├── er4d8x25ak7eabttkrvp8vd5d.o
+│   │   │   │   │   │   ├── es6fh0cqvjrfngj0u4fh320d6.o
+│   │   │   │   │   │   ├── eugymxwv6i82dft1bi1i0lrbs.o
+│   │   │   │   │   │   ├── exrncbup9ai2n5anxzi99lefv.o
+│   │   │   │   │   │   ├── exxsyrxsxyef60n31qpx2t50k.o
+│   │   │   │   │   │   ├── ezfxylth3zim1jumnze2zbhyo.o
+│   │   │   │   │   │   ├── ezjyfrahl0cxztu2w61oeji2c.o
+│   │   │   │   │   │   ├── f2n8hzkxzaweebwtpfqoflj04.o
+│   │   │   │   │   │   └── f3q3z762t1ydsahmj59x0iyh4.o
+│   │   │   │   │   ├── s-hh0xrvmmte-0ketadf.lock
+│   │   │   │   │   └── s-hh0xu6lwxb-07uo6u7.lock
+│   │   │   │   ├── app_finder-374x7cgu5kxdu/
+│   │   │   │   │   ├── s-hh0uoq1pog-05idizl-working/
+│   │   │   │   │   ├── s-hh0uoq7v6f-1e3h8n2-working/
+│   │   │   │   │   ├── s-hh0uoqea7t-05tog8n-working/
+│   │   │   │   │   ├── s-hh0uotkz64-0fmh0r2-working/
+│   │   │   │   │   ├── s-hh0uougp50-05cftdu-working/
+│   │   │   │   │   ├── s-hh0uouoe33-14fhvmm-working/
+│   │   │   │   │   ├── s-hh0uoq1pog-05idizl.lock
+│   │   │   │   │   ├── s-hh0uoq7v6f-1e3h8n2.lock
+│   │   │   │   │   ├── s-hh0uoqea7t-05tog8n.lock
+│   │   │   │   │   ├── s-hh0uotkz64-0fmh0r2.lock
+│   │   │   │   │   ├── s-hh0uougp50-05cftdu.lock
+│   │   │   │   │   └── s-hh0uouoe33-14fhvmm.lock
+│   │   │   │   ├── app_finder-3b0issg1k0nuu/
+│   │   │   │   │   ├── s-hh1dc66unq-15qblcf-emeg647kb7dcxupjrgk3paaq8/
+│   │   │   │   │   ├── s-hh1ddcm2ny-08y83zf-5lfpbrpbcdh5w3i16i3sh6acr/
+│   │   │   │   │   ├── s-hh1dc66unq-15qblcf.lock
+│   │   │   │   │   └── s-hh1ddcm2ny-08y83zf.lock
+│   │   │   │   ├── automation-05tibho1gc7uq/
+│   │   │   │   │   ├── s-hh0umdrs4m-00qlxuq-b03a918hvs7xgsy3x9eg4e1wo/
+│   │   │   │   │   │   ├── 8v27vm5vteaeimyuzugwbz228.o
+│   │   │   │   │   │   └── metadata.rmeta
+│   │   │   │   │   └── s-hh0umdrs4m-00qlxuq.lock
+│   │   │   │   ├── automation-13ipc10ky6cj8/
+│   │   │   │   │   ├── s-hh0uoqdxam-07k2mca-aw5n32reoxo3p2zm99ryjlfy3/
+│   │   │   │   │   │   └── metadata.rmeta
+│   │   │   │   │   └── s-hh0uoqdxam-07k2mca.lock
+│   │   │   │   ├── automation-2k8jczpx44lyk/
+│   │   │   │   │   ├── s-hh0uoqe05r-1vlu2vb-ehqgbkup360y14nf7l16ajauy/
+│   │   │   │   │   └── s-hh0uoqe05r-1vlu2vb.lock
+│   │   │   │   ├── windows-1dob3fkff48x8/
+│   │   │   │   │   ├── s-hh0umdty99-02bud4x-elazfmj1y4af0bnngu10rzn9n/
+│   │   │   │   │   │   ├── 7bl17eousp0l8o4xc7kop5fcz.o
+│   │   │   │   │   │   └── metadata.rmeta
+│   │   │   │   │   └── s-hh0umdty99-02bud4x.lock
+│   │   │   │   ├── windowsapps-18ms07ssesq7y/
+│   │   │   │   │   ├── s-hh0uoqe2ux-1jxv6fz-8jkzxn99jne0zdgqhsz50bi27/
+│   │   │   │   │   │   └── metadata.rmeta
+│   │   │   │   │   └── s-hh0uoqe2ux-1jxv6fz.lock
+│   │   │   │   └── windowsapps-2zww65s6kgf01/
+│   │   │   │       ├── s-hh0uoqdupr-06ximjt-13hm9nu4pgn386oufuwql977g/
+│   │   │   │       └── s-hh0uoqdupr-06ximjt.lock
+│   │   │   ├── .cargo-lock
+│   │   │   ├── app_finder.d
+│   │   │   ├── app_finder.dll
+│   │   │   ├── app_finder.dll.exp
+│   │   │   ├── app_finder.dll.lib
+│   │   │   ├── app_finder.pdb
+│   │   │   ├── libautomation.rlib
+│   │   │   └── libwindows.rlib
+│   │   ├── maturin/
+│   │   │   └── app_finder.dll
+│   │   ├── release/
+│   │   │   ├── .fingerprint/
+│   │   │   │   ├── app_finder-faf28bffa249b5e8/
+│   │   │   │   │   ├── dep-lib-app_finder
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-app_finder
+│   │   │   │   │   ├── lib-app_finder.json
+│   │   │   │   │   └── output-lib-app_finder
+│   │   │   │   ├── cfg-if-e3bee5d3fe60db64/
+│   │   │   │   │   ├── dep-lib-cfg_if
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-cfg_if
+│   │   │   │   │   └── lib-cfg_if.json
+│   │   │   │   ├── heck-f175d90a81cdea44/
+│   │   │   │   │   ├── dep-lib-heck
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-heck
+│   │   │   │   │   └── lib-heck.json
+│   │   │   │   ├── itoa-92b82b84f15a8ece/
+│   │   │   │   │   ├── dep-lib-itoa
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-itoa
+│   │   │   │   │   └── lib-itoa.json
+│   │   │   │   ├── libc-6aad404774de75fe/
+│   │   │   │   │   ├── run-build-script-build-script-build
+│   │   │   │   │   └── run-build-script-build-script-build.json
+│   │   │   │   ├── libc-6cf9a8361e1cdba0/
+│   │   │   │   │   ├── build-script-build-script-build
+│   │   │   │   │   ├── build-script-build-script-build.json
+│   │   │   │   │   ├── dep-build-script-build-script-build
+│   │   │   │   │   └── invoked.timestamp
+│   │   │   │   ├── libc-a7f80316e3dccb7b/
+│   │   │   │   │   ├── dep-lib-libc
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-libc
+│   │   │   │   │   └── lib-libc.json
+│   │   │   │   ├── memchr-8af897666597a1e0/
+│   │   │   │   │   ├── dep-lib-memchr
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-memchr
+│   │   │   │   │   └── lib-memchr.json
+│   │   │   │   ├── once_cell-5d38b7b3bea0d71a/
+│   │   │   │   │   ├── dep-lib-once_cell
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-once_cell
+│   │   │   │   │   └── lib-once_cell.json
+│   │   │   │   ├── proc-macro2-601c74e7b44a19e7/
+│   │   │   │   │   ├── run-build-script-build-script-build
+│   │   │   │   │   └── run-build-script-build-script-build.json
+│   │   │   │   ├── proc-macro2-b471a4fe59dd6dce/
+│   │   │   │   │   ├── build-script-build-script-build
+│   │   │   │   │   ├── build-script-build-script-build.json
+│   │   │   │   │   ├── dep-build-script-build-script-build
+│   │   │   │   │   └── invoked.timestamp
+│   │   │   │   ├── proc-macro2-fd4410cff81a2975/
+│   │   │   │   │   ├── dep-lib-proc_macro2
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-proc_macro2
+│   │   │   │   │   └── lib-proc_macro2.json
+│   │   │   │   ├── pyo3-87178d995941c4a3/
+│   │   │   │   │   ├── run-build-script-build-script-build
+│   │   │   │   │   └── run-build-script-build-script-build.json
+│   │   │   │   ├── pyo3-93cbbd4d5050d341/
+│   │   │   │   │   ├── dep-lib-pyo3
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-pyo3
+│   │   │   │   │   └── lib-pyo3.json
+│   │   │   │   ├── pyo3-build-config-07c50ef7c317930a/
+│   │   │   │   │   ├── build-script-build-script-build
+│   │   │   │   │   ├── build-script-build-script-build.json
+│   │   │   │   │   ├── dep-build-script-build-script-build
+│   │   │   │   │   └── invoked.timestamp
+│   │   │   │   ├── pyo3-build-config-5acebcfb38bac865/
+│   │   │   │   │   ├── dep-lib-pyo3_build_config
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-pyo3_build_config
+│   │   │   │   │   └── lib-pyo3_build_config.json
+│   │   │   │   ├── pyo3-build-config-5cd321d505c81084/
+│   │   │   │   │   ├── run-build-script-build-script-build
+│   │   │   │   │   └── run-build-script-build-script-build.json
+│   │   │   │   ├── pyo3-d5d5eeddf725e52a/
+│   │   │   │   │   ├── build-script-build-script-build
+│   │   │   │   │   ├── build-script-build-script-build.json
+│   │   │   │   │   ├── dep-build-script-build-script-build
+│   │   │   │   │   └── invoked.timestamp
+│   │   │   │   ├── pyo3-ffi-556c83165c01511a/
+│   │   │   │   │   ├── build-script-build-script-build
+│   │   │   │   │   ├── build-script-build-script-build.json
+│   │   │   │   │   ├── dep-build-script-build-script-build
+│   │   │   │   │   └── invoked.timestamp
+│   │   │   │   ├── pyo3-ffi-a399b4b5b6d62615/
+│   │   │   │   │   ├── dep-lib-pyo3_ffi
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-pyo3_ffi
+│   │   │   │   │   └── lib-pyo3_ffi.json
+│   │   │   │   ├── pyo3-ffi-e9c401cb1cfe293c/
+│   │   │   │   │   ├── run-build-script-build-script-build
+│   │   │   │   │   └── run-build-script-build-script-build.json
+│   │   │   │   ├── pyo3-macros-6e67facf026de64e/
+│   │   │   │   │   ├── dep-lib-pyo3_macros
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-pyo3_macros
+│   │   │   │   │   └── lib-pyo3_macros.json
+│   │   │   │   ├── pyo3-macros-backend-76356dddaa52b9b1/
+│   │   │   │   │   ├── run-build-script-build-script-build
+│   │   │   │   │   └── run-build-script-build-script-build.json
+│   │   │   │   ├── pyo3-macros-backend-9fc157d1cbd70a1a/
+│   │   │   │   │   ├── dep-lib-pyo3_macros_backend
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-pyo3_macros_backend
+│   │   │   │   │   └── lib-pyo3_macros_backend.json
+│   │   │   │   ├── pyo3-macros-backend-c1e65207b4241974/
+│   │   │   │   │   ├── build-script-build-script-build
+│   │   │   │   │   ├── build-script-build-script-build.json
+│   │   │   │   │   ├── dep-build-script-build-script-build
+│   │   │   │   │   └── invoked.timestamp
+│   │   │   │   ├── quote-1e932969ba45dd6f/
+│   │   │   │   │   ├── dep-lib-quote
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-quote
+│   │   │   │   │   └── lib-quote.json
+│   │   │   │   ├── quote-5e0efe2822f18f5c/
+│   │   │   │   │   ├── run-build-script-build-script-build
+│   │   │   │   │   └── run-build-script-build-script-build.json
+│   │   │   │   ├── quote-d158c702124185cd/
+│   │   │   │   │   ├── build-script-build-script-build
+│   │   │   │   │   ├── build-script-build-script-build.json
+│   │   │   │   │   ├── dep-build-script-build-script-build
+│   │   │   │   │   └── invoked.timestamp
+│   │   │   │   ├── serde-7a951589fea3eec2/
+│   │   │   │   │   ├── dep-lib-serde
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-serde
+│   │   │   │   │   └── lib-serde.json
+│   │   │   │   ├── serde-7c62be7e116a6d02/
+│   │   │   │   │   ├── build-script-build-script-build
+│   │   │   │   │   ├── build-script-build-script-build.json
+│   │   │   │   │   ├── dep-build-script-build-script-build
+│   │   │   │   │   └── invoked.timestamp
+│   │   │   │   ├── serde-fdfabe2c787fc687/
+│   │   │   │   │   ├── run-build-script-build-script-build
+│   │   │   │   │   └── run-build-script-build-script-build.json
+│   │   │   │   ├── serde_core-0c2a5393574d48df/
+│   │   │   │   │   ├── build-script-build-script-build
+│   │   │   │   │   ├── build-script-build-script-build.json
+│   │   │   │   │   ├── dep-build-script-build-script-build
+│   │   │   │   │   └── invoked.timestamp
+│   │   │   │   ├── serde_core-56b2cc7122146081/
+│   │   │   │   │   ├── dep-lib-serde_core
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-serde_core
+│   │   │   │   │   └── lib-serde_core.json
+│   │   │   │   ├── serde_core-6e1f426c425672d2/
+│   │   │   │   │   ├── run-build-script-build-script-build
+│   │   │   │   │   └── run-build-script-build-script-build.json
+│   │   │   │   ├── serde_derive-72e1ac1ea9f1ff7b/
+│   │   │   │   │   ├── dep-lib-serde_derive
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-serde_derive
+│   │   │   │   │   └── lib-serde_derive.json
+│   │   │   │   ├── serde_json-8c281f15735c63db/
+│   │   │   │   │   ├── build-script-build-script-build
+│   │   │   │   │   ├── build-script-build-script-build.json
+│   │   │   │   │   ├── dep-build-script-build-script-build
+│   │   │   │   │   └── invoked.timestamp
+│   │   │   │   ├── serde_json-a058ac3fc2a6317d/
+│   │   │   │   │   ├── run-build-script-build-script-build
+│   │   │   │   │   └── run-build-script-build-script-build.json
+│   │   │   │   ├── serde_json-aecef2e55fbe9fe1/
+│   │   │   │   │   ├── dep-lib-serde_json
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-serde_json
+│   │   │   │   │   └── lib-serde_json.json
+│   │   │   │   ├── syn-765466cfeb7ebd9b/
+│   │   │   │   │   ├── dep-lib-syn
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-syn
+│   │   │   │   │   └── lib-syn.json
+│   │   │   │   ├── target-lexicon-4af2f7bd26cc5f48/
+│   │   │   │   │   ├── dep-lib-target_lexicon
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-target_lexicon
+│   │   │   │   │   └── lib-target_lexicon.json
+│   │   │   │   ├── target-lexicon-6e94b0b865da48ee/
+│   │   │   │   │   ├── build-script-build-script-build
+│   │   │   │   │   ├── build-script-build-script-build.json
+│   │   │   │   │   ├── dep-build-script-build-script-build
+│   │   │   │   │   └── invoked.timestamp
+│   │   │   │   ├── target-lexicon-b1fe3c848be89ab4/
+│   │   │   │   │   ├── run-build-script-build-script-build
+│   │   │   │   │   └── run-build-script-build-script-build.json
+│   │   │   │   ├── unicode-ident-193ecb0bf5e557b0/
+│   │   │   │   │   ├── dep-lib-unicode_ident
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-unicode_ident
+│   │   │   │   │   └── lib-unicode_ident.json
+│   │   │   │   ├── windows-core-e15143c3799a7fdc/
+│   │   │   │   │   ├── dep-lib-windows_core
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-windows_core
+│   │   │   │   │   └── lib-windows_core.json
+│   │   │   │   ├── windows-e4d49a5be845ff16/
+│   │   │   │   │   ├── dep-lib-windows
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-windows
+│   │   │   │   │   └── lib-windows.json
+│   │   │   │   ├── windows-result-b68f1b856bed51a2/
+│   │   │   │   │   ├── dep-lib-windows_result
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-windows_result
+│   │   │   │   │   └── lib-windows_result.json
+│   │   │   │   ├── windows-sys-1b630d4734490d03/
+│   │   │   │   │   ├── dep-lib-windows_sys
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-windows_sys
+│   │   │   │   │   └── lib-windows_sys.json
+│   │   │   │   ├── windows-targets-7a4f22e277edda3f/
+│   │   │   │   │   ├── dep-lib-windows_targets
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-windows_targets
+│   │   │   │   │   └── lib-windows_targets.json
+│   │   │   │   ├── windows-targets-d7ec4569158a11b1/
+│   │   │   │   │   ├── dep-lib-windows_targets
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-windows_targets
+│   │   │   │   │   └── lib-windows_targets.json
+│   │   │   │   ├── windows_x86_64_msvc-38e8fb247c1c6d2a/
+│   │   │   │   │   ├── dep-lib-windows_x86_64_msvc
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-windows_x86_64_msvc
+│   │   │   │   │   └── lib-windows_x86_64_msvc.json
+│   │   │   │   ├── windows_x86_64_msvc-3d55a65879854a0b/
+│   │   │   │   │   ├── build-script-build-script-build
+│   │   │   │   │   ├── build-script-build-script-build.json
+│   │   │   │   │   ├── dep-build-script-build-script-build
+│   │   │   │   │   └── invoked.timestamp
+│   │   │   │   ├── windows_x86_64_msvc-9883ce6e4079126b/
+│   │   │   │   │   ├── run-build-script-build-script-build
+│   │   │   │   │   └── run-build-script-build-script-build.json
+│   │   │   │   ├── windows_x86_64_msvc-bba25152f809f76c/
+│   │   │   │   │   ├── build-script-build-script-build
+│   │   │   │   │   ├── build-script-build-script-build.json
+│   │   │   │   │   ├── dep-build-script-build-script-build
+│   │   │   │   │   └── invoked.timestamp
+│   │   │   │   ├── windows_x86_64_msvc-c23da85895d1bc79/
+│   │   │   │   │   ├── dep-lib-windows_x86_64_msvc
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-windows_x86_64_msvc
+│   │   │   │   │   └── lib-windows_x86_64_msvc.json
+│   │   │   │   ├── windows_x86_64_msvc-c344250a356a15de/
+│   │   │   │   │   ├── run-build-script-build-script-build
+│   │   │   │   │   └── run-build-script-build-script-build.json
+│   │   │   │   ├── winreg-f0788129653a062d/
+│   │   │   │   │   ├── dep-lib-winreg
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-winreg
+│   │   │   │   │   └── lib-winreg.json
+│   │   │   │   ├── zmij-0417b40b11b5f330/
+│   │   │   │   │   ├── build-script-build-script-build
+│   │   │   │   │   ├── build-script-build-script-build.json
+│   │   │   │   │   ├── dep-build-script-build-script-build
+│   │   │   │   │   └── invoked.timestamp
+│   │   │   │   ├── zmij-c1c4d77eb2ef0cdc/
+│   │   │   │   │   ├── dep-lib-zmij
+│   │   │   │   │   ├── invoked.timestamp
+│   │   │   │   │   ├── lib-zmij
+│   │   │   │   │   └── lib-zmij.json
+│   │   │   │   └── zmij-c72b712d77c0470a/
+│   │   │   │       ├── run-build-script-build-script-build
+│   │   │   │       └── run-build-script-build-script-build.json
+│   │   │   ├── deps/
+│   │   │   │   ├── app_finder.d
+│   │   │   │   ├── app_finder.dll
+│   │   │   │   ├── app_finder.dll.exp
+│   │   │   │   ├── app_finder.dll.lib
+│   │   │   │   ├── app_finder.pdb
+│   │   │   │   ├── cfg_if-e3bee5d3fe60db64.d
+│   │   │   │   ├── heck-f175d90a81cdea44.d
+│   │   │   │   ├── itoa-92b82b84f15a8ece.d
+│   │   │   │   ├── libc-a7f80316e3dccb7b.d
+│   │   │   │   ├── libcfg_if-e3bee5d3fe60db64.rlib
+│   │   │   │   ├── libcfg_if-e3bee5d3fe60db64.rmeta
+│   │   │   │   ├── libheck-f175d90a81cdea44.rlib
+│   │   │   │   ├── libheck-f175d90a81cdea44.rmeta
+│   │   │   │   ├── libitoa-92b82b84f15a8ece.rlib
+│   │   │   │   ├── libitoa-92b82b84f15a8ece.rmeta
+│   │   │   │   ├── liblibc-a7f80316e3dccb7b.rlib
+│   │   │   │   ├── liblibc-a7f80316e3dccb7b.rmeta
+│   │   │   │   ├── libmemchr-8af897666597a1e0.rlib
+│   │   │   │   ├── libmemchr-8af897666597a1e0.rmeta
+│   │   │   │   ├── libonce_cell-5d38b7b3bea0d71a.rlib
+│   │   │   │   ├── libonce_cell-5d38b7b3bea0d71a.rmeta
+│   │   │   │   ├── libproc_macro2-fd4410cff81a2975.rlib
+│   │   │   │   ├── libproc_macro2-fd4410cff81a2975.rmeta
+│   │   │   │   ├── libpyo3-93cbbd4d5050d341.rlib
+│   │   │   │   ├── libpyo3-93cbbd4d5050d341.rmeta
+│   │   │   │   ├── libpyo3_build_config-5acebcfb38bac865.rlib
+│   │   │   │   ├── libpyo3_build_config-5acebcfb38bac865.rmeta
+│   │   │   │   ├── libpyo3_ffi-a399b4b5b6d62615.rlib
+│   │   │   │   ├── libpyo3_ffi-a399b4b5b6d62615.rmeta
+│   │   │   │   ├── libpyo3_macros_backend-9fc157d1cbd70a1a.rlib
+│   │   │   │   ├── libpyo3_macros_backend-9fc157d1cbd70a1a.rmeta
+│   │   │   │   ├── libquote-1e932969ba45dd6f.rlib
+│   │   │   │   ├── libquote-1e932969ba45dd6f.rmeta
+│   │   │   │   ├── libserde-7a951589fea3eec2.rlib
+│   │   │   │   ├── libserde-7a951589fea3eec2.rmeta
+│   │   │   │   ├── libserde_core-56b2cc7122146081.rlib
+│   │   │   │   ├── libserde_core-56b2cc7122146081.rmeta
+│   │   │   │   ├── libserde_json-aecef2e55fbe9fe1.rlib
+│   │   │   │   ├── libserde_json-aecef2e55fbe9fe1.rmeta
+│   │   │   │   ├── libsyn-765466cfeb7ebd9b.rlib
+│   │   │   │   ├── libsyn-765466cfeb7ebd9b.rmeta
+│   │   │   │   ├── libtarget_lexicon-4af2f7bd26cc5f48.rlib
+│   │   │   │   ├── libtarget_lexicon-4af2f7bd26cc5f48.rmeta
+│   │   │   │   ├── libunicode_ident-193ecb0bf5e557b0.rlib
+│   │   │   │   ├── libunicode_ident-193ecb0bf5e557b0.rmeta
+│   │   │   │   ├── libwindows-e4d49a5be845ff16.rlib
+│   │   │   │   ├── libwindows-e4d49a5be845ff16.rmeta
+│   │   │   │   ├── libwindows_core-e15143c3799a7fdc.rlib
+│   │   │   │   ├── libwindows_core-e15143c3799a7fdc.rmeta
+│   │   │   │   ├── libwindows_result-b68f1b856bed51a2.rlib
+│   │   │   │   ├── libwindows_result-b68f1b856bed51a2.rmeta
+│   │   │   │   ├── libwindows_sys-1b630d4734490d03.rlib
+│   │   │   │   ├── libwindows_sys-1b630d4734490d03.rmeta
+│   │   │   │   ├── libwindows_targets-7a4f22e277edda3f.rlib
+│   │   │   │   ├── libwindows_targets-7a4f22e277edda3f.rmeta
+│   │   │   │   ├── libwindows_targets-d7ec4569158a11b1.rlib
+│   │   │   │   ├── libwindows_targets-d7ec4569158a11b1.rmeta
+│   │   │   │   ├── libwindows_x86_64_msvc-38e8fb247c1c6d2a.rlib
+│   │   │   │   ├── libwindows_x86_64_msvc-38e8fb247c1c6d2a.rmeta
+│   │   │   │   ├── libwindows_x86_64_msvc-c23da85895d1bc79.rlib
+│   │   │   │   ├── libwindows_x86_64_msvc-c23da85895d1bc79.rmeta
+│   │   │   │   ├── libwinreg-f0788129653a062d.rlib
+│   │   │   │   ├── libwinreg-f0788129653a062d.rmeta
+│   │   │   │   ├── libzmij-c1c4d77eb2ef0cdc.rlib
+│   │   │   │   ├── libzmij-c1c4d77eb2ef0cdc.rmeta
+│   │   │   │   ├── memchr-8af897666597a1e0.d
+│   │   │   │   ├── once_cell-5d38b7b3bea0d71a.d
+│   │   │   │   ├── proc_macro2-fd4410cff81a2975.d
+│   │   │   │   ├── pyo3-93cbbd4d5050d341.d
+│   │   │   │   ├── pyo3_build_config-5acebcfb38bac865.d
+│   │   │   │   ├── pyo3_ffi-a399b4b5b6d62615.d
+│   │   │   │   ├── pyo3_macros-6e67facf026de64e.d
+│   │   │   │   ├── pyo3_macros-6e67facf026de64e.dll
+│   │   │   │   ├── pyo3_macros-6e67facf026de64e.dll.exp
+│   │   │   │   ├── pyo3_macros-6e67facf026de64e.dll.lib
+│   │   │   │   ├── pyo3_macros-6e67facf026de64e.pdb
+│   │   │   │   ├── pyo3_macros_backend-9fc157d1cbd70a1a.d
+│   │   │   │   ├── quote-1e932969ba45dd6f.d
+│   │   │   │   ├── serde-7a951589fea3eec2.d
+│   │   │   │   ├── serde_core-56b2cc7122146081.d
+│   │   │   │   ├── serde_derive-72e1ac1ea9f1ff7b.d
+│   │   │   │   ├── serde_derive-72e1ac1ea9f1ff7b.dll
+│   │   │   │   ├── serde_derive-72e1ac1ea9f1ff7b.dll.exp
+│   │   │   │   ├── serde_derive-72e1ac1ea9f1ff7b.dll.lib
+│   │   │   │   ├── serde_derive-72e1ac1ea9f1ff7b.pdb
+│   │   │   │   ├── serde_json-aecef2e55fbe9fe1.d
+│   │   │   │   ├── syn-765466cfeb7ebd9b.d
+│   │   │   │   ├── target_lexicon-4af2f7bd26cc5f48.d
+│   │   │   │   ├── unicode_ident-193ecb0bf5e557b0.d
+│   │   │   │   ├── windows-e4d49a5be845ff16.d
+│   │   │   │   ├── windows_core-e15143c3799a7fdc.d
+│   │   │   │   ├── windows_result-b68f1b856bed51a2.d
+│   │   │   │   ├── windows_sys-1b630d4734490d03.d
+│   │   │   │   ├── windows_targets-7a4f22e277edda3f.d
+│   │   │   │   ├── windows_targets-d7ec4569158a11b1.d
+│   │   │   │   ├── windows_x86_64_msvc-38e8fb247c1c6d2a.d
+│   │   │   │   ├── windows_x86_64_msvc-c23da85895d1bc79.d
+│   │   │   │   ├── winreg-f0788129653a062d.d
+│   │   │   │   └── zmij-c1c4d77eb2ef0cdc.d
+│   │   │   ├── examples/
+│   │   │   ├── incremental/
+│   │   │   ├── .cargo-lock
+│   │   │   ├── app_finder.d
+│   │   │   ├── app_finder.dll
+│   │   │   ├── app_finder.dll.exp
+│   │   │   ├── app_finder.dll.lib
+│   │   │   └── app_finder.pdb
+│   │   ├── .rustc_info.json
+│   │   └── CACHEDIR.TAG
+│   └── Cargo.toml
+├── intents/
+│   └── library/
+│       ├── app_control.py
+│       ├── dev_mode.py
+│       └── startup_mode.py
+├── pipeline/
+│   ├── classifier.py
+│   ├── dataset.py
+│   ├── extractor.py
+│   ├── intent.py
+│   └── pipeline.py
+├── runtime/
+├── stt/
+│   ├── detector.py
+│   ├── listener.py
+│   └── transcriber.py
+├── .gitignore
+├── README.md
+├── config.json
+├── config.py
+├── hell-cert.cer
+├── main.py
+├── project-structure.txt
+└── sign.ps1

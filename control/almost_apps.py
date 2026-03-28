@@ -1,4 +1,12 @@
-# control/apps.py
+# control/almost_apps.py
+"""
+    A file where half written and almost working app.py file is kept.
+    Where upto this point of the update work the file was working correctly.
+    Just paste this and work over this if any-day something breaks.
+
+
+"""
+
 
 __all__ = [
     "launch",
@@ -22,16 +30,16 @@ import psutil
 # CONSTANTS
 # ─────────────────────────────────────────
 
-DETACHED   = 0x00000008
-NO_WINDOW  = 0x08000000
-SW_HIDE    = 0
-SW_RESTORE = 9
+DETACHED    = 0x00000008
+NO_WINDOW   = 0x08000000
+SW_HIDE     = 0
+SW_RESTORE  = 9
 SW_MINIMIZE = 6
-WM_CLOSE   = 0x0010
+WM_CLOSE    = 0x0010
 
 
 # ─────────────────────────────────────────
-# NORMALIZATION  (single definition)
+# NORMALIZATION
 # ─────────────────────────────────────────
 
 def normalize_app(app):
@@ -63,18 +71,14 @@ def normalize_app(app):
 
 # ─────────────────────────────────────────
 # ARG SANITIZATION
-# Only strips genuinely harmful launcher junk.
-# Preserves legitimate args like -tab, --cd-to-home, etc.
 # ─────────────────────────────────────────
 
-# Args that are only meaningful to uninstallers / Squirrel launchers
-# and must never be passed when launching normally.
 _BLOCKED_ARGS = {
     "--uninstall",
     "--uninstall-app-id",
     "--force-uninstall",
     "--remove",
-    "--processstart",          # Squirrel: start a sub-process
+    "--processstart",
     "--process-start",
     "--original-process-start-time",
     "-removeonly",
@@ -85,10 +89,10 @@ def sanitize_args(args, exe, app_name=""):
     if not args:
         return []
 
-    cleaned = []
+    cleaned   = []
     skip_next = False
 
-    for i, arg in enumerate(args):
+    for arg in args:
         if skip_next:
             skip_next = False
             continue
@@ -98,11 +102,9 @@ def sanitize_args(args, exe, app_name=""):
         if not a:
             continue
 
-        # block known uninstall/launcher flags
         if a in _BLOCKED_ARGS:
             continue
 
-        # block --processStart Discord.exe style (value in same token)
         if a.startswith("--processstart") or a.startswith("--process-start"):
             continue
 
@@ -143,10 +145,10 @@ def is_pwa_running(match_title=None):
 
 
 def is_running_smart(app):
-    exe        = app["exe"]
-    path       = app["path"]
-    app_type   = app["type"]
-    win_title  = app["window_title"]
+    exe       = app["exe_name"]
+    path      = app["resolved_path"]
+    app_type  = app["app_type"]
+    win_title = app.get("window_title") or app.get("name")
 
     if app_type == "pwa" or path == "explorer.exe":
         return is_pwa_running(match_title=win_title)
@@ -155,20 +157,17 @@ def is_running_smart(app):
 
 
 # ─────────────────────────────────────────
-# POPEN  (single definition)
-# Builds the subprocess command from attempt dict.
-# attempt keys: method, path, args, shell
+# POPEN
 # ─────────────────────────────────────────
 
 def _popen(attempt, name):
-    path  = attempt["path"]
-    args  = attempt.get("args", [])
-    shell = attempt.get("shell", False)
+    path   = attempt["path"]
+    args   = attempt.get("args", [])
+    shell  = attempt.get("shell", False)
     method = attempt["method"]
 
     try:
         if shell:
-            # shell=True: pass as a single string so the shell handles quoting
             quoted = f'"{path}"'
             if args:
                 quoted += " " + " ".join(
@@ -208,12 +207,12 @@ def _popen(attempt, name):
 async def launch(app, timeout=30, interval=2):
     app = normalize_app(app)
 
-    name       = app["name"]
-    exe        = app["exe"]
-    path       = app["path"]
-    args       = app["args"]
-    app_type   = app["type"]
-    win_title  = app["window_title"]
+    name      = app["name"]
+    exe       = app["exe"]
+    path      = app["path"]
+    args      = app["args"]
+    app_type  = app["type"]
+    win_title = app["window_title"]
 
     timeout  = app.get("launch_timeout",  timeout)
     interval = app.get("launch_interval", interval)
@@ -225,9 +224,9 @@ async def launch(app, timeout=30, interval=2):
 
     # ── already running ───────────────────
     if is_running_smart(app):
-        if name == "discord":
+        if name.lower() == "discord":
             print(f"\n  Relaunching Discord")
-            kill(app)
+            await _relaunch(app)
         else:
             print(f"  {name} already running → showing window")
             await _show(app, app_type, exe, win_title)
@@ -237,18 +236,14 @@ async def launch(app, timeout=30, interval=2):
     attempts = []
 
     if app_type == "pwa":
-        # PWAs launched via explorer.exe — must use shell=True
-        # to avoid passing creationflags that break explorer
         if path and args:
             attempts.append({
                 "method": "pwa_explorer",
-                "path":   path,          # explorer.exe
-                "args":   args,          # ["shell:appsFolder\\..."]
+                "path":   path,
+                "args":   args,
                 "shell":  True,
             })
-
     else:
-        # 1. direct path (best)
         if path and os.path.exists(path):
             attempts.append({
                 "method": "path",
@@ -257,7 +252,6 @@ async def launch(app, timeout=30, interval=2):
                 "shell":  False,
             })
 
-        # 2. exe name on PATH fallback
         if exe:
             attempts.append({
                 "method": "exe",
@@ -266,7 +260,6 @@ async def launch(app, timeout=30, interval=2):
                 "shell":  False,
             })
 
-        # 3. shell fallback (handles edge cases)
         base = path if path else exe
         if base:
             attempts.append({
@@ -311,57 +304,198 @@ async def launch(app, timeout=30, interval=2):
 
 
 # ─────────────────────────────────────────
-# CLOSE
+# CLOSE  (attempt loop mirrors launch)
 # ─────────────────────────────────────────
 
-def close(app):
-    name = app["name"]
-    exe = app["exe"]
+async def close(app, timeout=10, interval=1):
+    app = normalize_app(app)
 
-    # approach 1 — WM_CLOSE via window handle
-    try:
-        result = _close_by_window(app)
-        if result:
-            print(f"  {name} → closed via window ✓")
-            return True
-    except Exception as e:
-        print(f"  {name} → window close failed: {e}")
+    name      = app["name"]
+    exe       = app["exe"]
+    app_type  = app["type"]
 
-    # approach 2 — terminate by PID
-    try:
-        result = _close_pwa_by_pid(app)
-        if result:
-            print(f"  {name} → closed via PID ✓")
-            return True
-    except Exception as e:
-        print(f"  {name} → PID close failed: {e}")
+    timeout  = app.get("close_timeout",  timeout)
+    interval = app.get("close_interval", interval)
 
-    try:
-        result = hide_by_title(app)
-        if result:
-            print(f"  {name} → closed via title ✓")
-            return True
-    except Exception as e:
-        print(f"  {name} → title close failed: {e}")
+    print(f"\n  Closing: {name}")
 
-    # approach 4 — taskkill force
-    try:
-        subprocess.run(
-            ["taskkill", "/F", "/IM", exe],
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL
-        )
-        print(f"  {name} → force closed ✓")
+    if not is_running_smart(app):
+        print(f"  {name} → not running, nothing to close")
         return True
-    except Exception as e:
-        print(f"  {name} → taskkill failed: {e}")
 
-    print(f"  {name} → all close methods failed")
+    # ── build close attempts ──────────────
+    #
+    # Each attempt has:
+    #   method  – label for logging
+    #   fn      – callable that triggers the close action, returns bool
+    #             (True = action was dispatched, not necessarily closed yet)
+    #
+    # Graceful first, force last.
+    # After each fn fires we poll is_running_smart until gone or timed out.
+    # If timed out we escalate to the next attempt.
+
+    if app_type == "pwa":
+        # PWAs have no real exe to enumerate — skip window close
+        attempts = [
+            {
+                "method": "pwa_pid",
+                "fn":     lambda: _close_pwa_by_pid(app),
+            },
+            # {
+            #     "method": "taskkill",
+            #     "fn":     lambda: _taskkill(exe),
+            # },
+        ]
+    else:
+        attempts = [
+            {
+                "method": "window_close",       # WM_CLOSE to all matching hwnds
+                "fn":     lambda: _close_by_window(app),
+            },
+            {
+                "method": "pwa_pid",            # terminate PIDs owning windows
+                "fn":     lambda: _close_pwa_by_pid(app),
+            },
+            # {
+            #     "method": "taskkill",           # /F force kill — last resort
+            #     "fn":     lambda: _taskkill(exe),
+            # },
+        ]
+
+    success = False
+
+    for attempt in attempts:
+        method = attempt["method"]
+        print(f"  {name} → trying {method}")
+
+        try:
+            triggered = attempt["fn"]()
+        except Exception as e:
+            print(f"  {name} → {method} raised: {e}")
+            continue
+
+        if not triggered:
+            print(f"  {name} → {method} found nothing, skipping")
+            continue
+
+        # poll until gone or timeout
+        deadline = time.time() + timeout
+
+        while time.time() < deadline:
+            if not _is_visible(app):
+                print(f"  {name} → confirmed closed ✓  ({method})")
+                success = True
+                break
+            print(f"  {name} → waiting for exit ({interval}s)...")
+            await asyncio.sleep(interval)
+
+        if success:
+            break
+
+        print(f"  {name} → {method} timed out, escalating")
+
+    if not success:
+        print(f"  {name} → all close methods failed")
+        return False
+
+    return True
+
+
+def _close_by_window(app):
+    app     = normalize_app(app)
+    user32  = ctypes.windll.user32
+    WM_CLOSE = 0x0010
+
+    windows = _iter_windows(match_exe=app["exe"])
+
+    if not windows:
+        return False
+
+    closed_any = False
+
+    for w in windows:
+        hwnd = w["hwnd"]
+
+        # post close
+        posted = user32.PostMessageW(hwnd, WM_CLOSE, 0, 0)
+
+        if not posted:
+            continue
+
+        # give app time to react
+        time.sleep(0.3)  # 300ms
+
+        # verify window disappeared
+        if not user32.IsWindow(hwnd):
+            closed_any = True
+
+    return closed_any
+
+def _is_visible(app):
+    app = normalize_app(app)
+
+    exe       = app["exe_name"]
+    win_title = app.get("window_title") or app.get("name")
+
+    user32 = ctypes.windll.user32
+
+    windows = _iter_windows(match_exe=exe, match_title=win_title)
+
+    for w in windows:
+        hwnd = w["hwnd"]
+
+        if user32.IsWindow(hwnd) and user32.IsWindowVisible(hwnd):
+            return True
+
     return False
 
 
+def _close_pwa_by_pid(app):
+
+    window_title = app["name"]
+
+    user32 = ctypes.windll.user32
+    pids = []
+
+    def callback(hwnd, _):
+        length = user32.GetWindowTextLengthW(hwnd)
+        if length == 0:
+            return True
+        buf = ctypes.create_unicode_buffer(length + 1)
+        user32.GetWindowTextW(hwnd, buf, length + 1)
+        title = buf.value
+
+        if window_title.lower() in title.lower():
+            pid = ctypes.wintypes.DWORD()
+            user32.GetWindowThreadProcessId(hwnd, ctypes.byref(pid))
+            pids.append(pid.value)
+        return True
+
+    WNDENUMPROC = ctypes.WINFUNCTYPE(ctypes.c_bool,
+                                     ctypes.wintypes.HWND,
+                                     ctypes.wintypes.LPARAM)
+    user32.EnumWindows(WNDENUMPROC(callback), 0)
+
+    # terminate only the pids that own Instagram windows
+    for pid in pids:
+        try:
+            psutil.Process(pid).terminate()
+        except (psutil.NoSuchProcess, psutil.AccessDenied):
+            pass
+
+    return len(pids) > 0
+
+def _taskkill(exe):
+    result = subprocess.run(
+        ["taskkill", "/F", "/IM", exe],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
+    return result.returncode == 0
+
+
 # ─────────────────────────────────────────
-# KILL
+# KILL  (immediate, no confirmation loop)
 # ─────────────────────────────────────────
 
 def kill(app):
@@ -484,12 +618,11 @@ def show_app(exe=None, window_title=None):
 
 
 def show_app_interactive(exe=None, window_title=None):
-    """Bring window to foreground using SendInput to bypass focus-steal prevention."""
     user32 = ctypes.windll.user32
 
-    INPUT_KEYBOARD   = 1
-    KEYEVENTF_KEYUP  = 0x0002
-    VK_MENU          = 0x12
+    INPUT_KEYBOARD  = 1
+    KEYEVENTF_KEYUP = 0x0002
+    VK_MENU         = 0x12
 
     class KEYBDINPUT(ctypes.Structure):
         _fields_ = [
@@ -504,9 +637,9 @@ def show_app_interactive(exe=None, window_title=None):
         _fields_ = [("type", ctypes.c_ulong), ("ki", KEYBDINPUT)]
 
     def send_key(vk, flags=0):
-        inp = INPUT()
-        inp.type    = INPUT_KEYBOARD
-        inp.ki.wVk  = vk
+        inp            = INPUT()
+        inp.type       = INPUT_KEYBOARD
+        inp.ki.wVk     = vk
         inp.ki.dwFlags = flags
         user32.SendInput(1, ctypes.byref(inp), ctypes.sizeof(INPUT))
 
@@ -559,11 +692,6 @@ async def _relaunch(app):
 
 
 async def _wait_for_window(app, timeout=15, interval=1):
-    """
-    Wait until the app has at least one visible window, or timeout.
-    Falls back gracefully — if no window appears we still proceed.
-    For tray-only apps (no visible window) this will timeout and that's fine.
-    """
     exe       = app["exe"]
     win_title = app["window_title"]
     app_type  = app["type"]
@@ -576,7 +704,6 @@ async def _wait_for_window(app, timeout=15, interval=1):
         else:
             windows = _iter_windows(match_exe=exe)
 
-        # at least one visible, responsive window
         ready = any(w["visible"] and w["responded"] for w in windows)
 
         if ready:
@@ -588,6 +715,7 @@ async def _wait_for_window(app, timeout=15, interval=1):
     print(f"  {app['name']} → window wait timed out (proceeding anyway)")
     return False
 
+
 # ─────────────────────────────────────────
 # LAUNCH AND INTENT
 # ─────────────────────────────────────────
@@ -595,30 +723,17 @@ async def _wait_for_window(app, timeout=15, interval=1):
 async def launch_and_intent(app, wait=5):
     app = normalize_app(app)
 
-    name             = app["name"]
-    exe              = app["exe"]
-    app_type         = app["type"]
-    win_title        = app["window_title"]
-    action           = app.get("action", "close")
-    action_wait_time = app.get("action_wait_time", 15)
+    name      = app["name"]
+    exe       = app["exe"]
+    app_type  = app["type"]
+    win_title = app["window_title"]
 
-    if is_running_smart(app):
-        if name == "discord":
-            print(f"\n  Relaunching Discord")
-            kill(app)
-        else:
-            print(f"  {name} already running → showing window")
-            await _show(app, app_type, exe, win_title)
-            return True
-    else:
-        launched = await launch(app)
-        if not launched:
-            print(f"  {name} → all launch methods failed")
-            return False
+    await launch(app)
 
     await _wait_for_window(app)
+    await asyncio.sleep(15)
 
-    result = close(app) or _close_pwa_by_pid(app)
+    result = await close(app)
     print(f"  {name} → {'closed ✓' if result else 'could not close'}")
     return result
 
@@ -635,7 +750,6 @@ def _iter_windows(match_exe=None, match_title=None):
     GWL_EXSTYLE     = -20
 
     def callback(hwnd, _):
-        # title
         length = user32.GetWindowTextLengthW(hwnd)
         title  = ""
         if length:
@@ -643,7 +757,6 @@ def _iter_windows(match_exe=None, match_title=None):
             user32.GetWindowTextW(hwnd, buf, length + 1)
             title = buf.value
 
-        # pid → exe name
         pid = ctypes.wintypes.DWORD()
         user32.GetWindowThreadProcessId(hwnd, ctypes.byref(pid))
         exe = None
@@ -652,18 +765,15 @@ def _iter_windows(match_exe=None, match_title=None):
         except Exception:
             pass
 
-        # area
         rect = ctypes.wintypes.RECT()
         user32.GetWindowRect(hwnd, ctypes.byref(rect))
         area = (rect.right - rect.left) * (rect.bottom - rect.top)
 
-        # apply filters
         if match_exe and exe and exe.lower() != match_exe.lower():
             return True
         if match_title and match_title.lower() not in title.lower():
             return True
 
-        # responsiveness check (reuses pid DWORD as output buffer)
         responded = user32.SendMessageTimeoutW(
             hwnd, 0x0000, 0, 0, 0x0002, 1000, ctypes.byref(pid)
         )
@@ -686,34 +796,4 @@ def _iter_windows(match_exe=None, match_title=None):
     user32.EnumWindows(WNDENUMPROC(callback), 0)
     return results
 
-def _close_by_window(app):
-    exe = app["exe"]
-    user32 = ctypes.windll.user32
-    WM_CLOSE = 0x0010
 
-    windows = _iter_windows(match_exe=exe)
-
-    for w in windows:
-        user32.PostMessageW(w["hwnd"], WM_CLOSE, 0, 0)
-
-    return len(windows) > 0
-
-# find pwahelper.exe pids
-# but only the one whose window title matches "Instagram"
-# terminate that specific pid
-
-def _close_pwa_by_pid(app):
-
-
-    window_title = app["name"]
-
-    user32 = ctypes.windll.user32
-    pids = _iter_windows(match_exe=app["exe"], match_title=window_title)
-    # terminate only the pids that own Instagram windows
-    for pid in pids:
-        try:
-            psutil.Process(pid).terminate()
-        except (psutil.NoSuchProcess, psutil.AccessDenied):
-            pass
-
-    return len(pids) > 0

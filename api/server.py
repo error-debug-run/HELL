@@ -151,23 +151,13 @@ def jobs():
     }
 
 @app.post("/apps/write")
-def write_apps(body: dict):
-    """Write scanned app list to config.json."""
-    import json
-    from pathlib import Path
+async def run_finder():
+    """Rewrite installed apps or modify it with any apps available."""
 
-    config_path = Path(__file__).parent.parent / "config.json"
+    from finderr.finder import run_finder
 
-    with open(config_path) as f:
-        config = json.load(f)
-
-    # write all found apps to config
-    config["installed_apps"] = body.get("apps", [])
-
-    with open(config_path, "w") as f:
-        json.dump(config, f, indent=2)
-
-    return {"success": True, "count": len(body.get("apps", []))}
+    result = await asyncio.to_thread(run_finder)
+    return {"status": "ok", "result": result}
 
 
 @app.post("/apps/assign_mode")

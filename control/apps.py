@@ -17,6 +17,7 @@ import ctypes.wintypes
 
 import psutil
 
+from core.log import logger
 
 # ─────────────────────────────────────────
 # CONSTANTS
@@ -184,10 +185,13 @@ def _popen(attempt, name):
 
     except FileNotFoundError:
         print(f"  {name} → {method} failed: not found")
+        logger.error("popen_failed_not_found", app=name, method=method, path=path)
     except PermissionError:
         print(f"  {name} → {method} failed: permission denied")
+        logger.error("popen_failed_permission", app=name, method=method, path=path)
     except Exception as e:
         print(f"  {name} → {method} failed: {e}")
+        logger.error("popen_failed", app=name, method=method, error=str(e))
 
     return False
 
@@ -209,6 +213,7 @@ async def launch(app, timeout=30, interval=2):
     timeout  = app.get("launch_timeout",  timeout)
     interval = app.get("launch_interval", interval)
 
+    logger.info("launch_start", app=name, path=path, exe=exe, args=args)
     print(f"\n  Launching: {name}")
     print(f"    path : {path}")
     print(f"    exe  : {exe}")
@@ -219,9 +224,11 @@ async def launch(app, timeout=30, interval=2):
         if name.lower() == "discord":
             print(f"\n  Relaunching Discord")
             await _relaunch(app)
+            logger.warning("discord_relaunch", app=name)
         else:
             print(f"  {name} already running → showing window")
             await _show(app, app_type, exe, win_title)
+            logger.info("app_already_running", app=name)
             return True
 
     # ── build attempts ────────────────────
@@ -268,7 +275,16 @@ async def launch(app, timeout=30, interval=2):
     success = False
 
     for attempt in attempts:
+
         print(f"  {name} → trying {attempt['method']}: {attempt['path']} {attempt['args']}")
+
+        logger.info(
+            "launch_attempt",
+            app=name,
+            method=attempt["method"],
+            path=attempt["path"],
+            args=attempt["args"]
+        )
 
         if not _popen(attempt, name):
             continue
@@ -278,18 +294,22 @@ async def launch(app, timeout=30, interval=2):
         while time.time() < deadline:
             if is_running_smart(app):
                 print(f"  {name} → confirmed running ✓")
+                logger.info("launch_success", app=name)
                 success = True
                 break
             print(f"  {name} → waiting ({interval}s)...")
+            logger.debug("launch_waiting", app=name, interval=interval)
             await asyncio.sleep(interval)
 
         if success:
             break
 
         print(f"  {name} → {attempt['method']} timed out")
+        logger.warning("launch_timeout", app=name, method=attempt["method"])
 
     if not success:
         print(f"  {name} → all launch methods failed")
+        logger.error("launch_failed_all_methods", app=name)
         return False
 
     return True
@@ -310,6 +330,7 @@ async def close(app, timeout=10, interval=1):
     interval = app.get("close_interval", interval)
 
     print(f"\n  Closing: {name}")
+    logger.info("close_attempt", app=name)
 
     if not is_running_smart(app):
         print(f"  {name} → not running, nothing to close")
@@ -364,6 +385,7 @@ async def close(app, timeout=10, interval=1):
             triggered = attempt["fn"]()
         except Exception as e:
             print(f"  {name} → {method} raised: {e}")
+            logger.warning(method, app=name, error=str(e))
             continue
 
         if not triggered:
@@ -377,7 +399,9 @@ async def close(app, timeout=10, interval=1):
             if not _is_visible(app):
                 print(f"  {name} → confirmed closed ✓  ({method})")
                 success = True
+                logger.info(method, app=name)
                 break
+
             print(f"  {name} → waiting for exit ({interval}s)...")
             await asyncio.sleep(interval)
 
@@ -385,6 +409,7 @@ async def close(app, timeout=10, interval=1):
             break
 
         print(f"  {name} → {method} timed out, escalating")
+
 
     if not success:
         print(f"  {name} → all close methods failed")
@@ -499,6 +524,7 @@ def kill(app):
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
     )
+    logger.warning("kill_app", app=exe_name)
     return result.returncode == 0
 
 
@@ -531,6 +557,9 @@ def minimize(app):
         ctypes.c_bool, ctypes.wintypes.HWND, ctypes.wintypes.LPARAM
     )
     user32.EnumWindows(WNDENUMPROC(callback), 0)
+
+    logger.info("minimize_attempt", app=exe_name)
+
     return minimized > 0
 
 
@@ -606,6 +635,9 @@ def show_app(exe=None, window_title=None):
     print(f"  showing: '{best['title']}' hwnd={best['hwnd']}")
     ctypes.windll.user32.ShowWindow(best["hwnd"], SW_RESTORE)
     ctypes.windll.user32.SetForegroundWindow(best["hwnd"])
+
+    logger.info("show_window", title=best["title"], hwnd=best["hwnd"])
+
     return True
 
 
@@ -638,6 +670,7 @@ def show_app_interactive(exe=None, window_title=None):
     candidates = _iter_windows(match_exe=exe, match_title=window_title)
     if not candidates:
         print(f"  no window found for exe={exe} title={window_title}")
+        logger.warning("show_no_window_found", exe=exe, title=window_title)
         return False
 
     best = max(candidates, key=lambda c: (
@@ -649,6 +682,7 @@ def show_app_interactive(exe=None, window_title=None):
 
     hwnd = best["hwnd"]
     print(f"  target: '{best['title']}' hwnd={hwnd}")
+    logger.info("show_interactive_target", title=best["title"], hwnd=hwnd)
 
     send_key(VK_MENU)
     time.sleep(0.05)
@@ -675,8 +709,10 @@ async def _show(app, app_type, exe, window_title):
 
 
 async def _relaunch(app):
+
     app  = normalize_app(app)
     name = app["name"]
+    logger.warning("relaunch_app", app=name)
     print(f"  {name} → relaunching...")
     kill(app)
     await asyncio.sleep(1)
@@ -700,11 +736,13 @@ async def _wait_for_window(app, timeout=15, interval=1):
 
         if ready:
             print(f"  {app['name']} → window ready ✓")
+            logger.info("window_ready", app=app["name"])
             return True
 
         await asyncio.sleep(interval)
 
     print(f"  {app['name']} → window wait timed out (proceeding anyway)")
+    logger.warning("window_wait_timeout", app=app["name"])
     return False
 
 
@@ -719,13 +757,17 @@ async def launch_and_intent(app, wait=5):
     exe       = app["exe"]
     app_type  = app["type"]
     win_title = app["window_title"]
-
+    logger.info("launch_and_intent_start", app=name)
     await launch(app)
 
     await _wait_for_window(app)
     await asyncio.sleep(15)
 
     result = await close(app)
+    if result:
+        logger.info("launch_and_intent_result", app=name, success=result)
+    else:
+        logger.info("launch_and_intent_success", app=name, success=result)
     print(f"  {name} → {'closed ✓' if result else 'could not close'}")
     return result
 

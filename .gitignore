@@ -46,7 +46,11 @@ gui/TestResults/
 
 # Rust
 hell-rm/target/
+hell-rm/Cargo.lock
 
 #private keys
 hell-cert.pfx
 *.pfx
+*.p12
+*.snk
+*.key

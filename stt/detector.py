@@ -6,6 +6,7 @@ from config import config
 from stt.listener import AudioListener
 from stt.transcriber import Transcriber
 from api.server import audio_state
+from core.log import logger   # ← ADDED
 
 HALLUCINATIONS = [
     "thank you for watching",
@@ -59,6 +60,7 @@ class WakeWordDetector:
         self._running            = True
         audio_state["recording"] = True
         audio_state["mode"]      = "idle"
+        logger.info("wake_detector_start", wake_word=self.wake_word)
         print(f"  wake word detector ready — waiting for '{self.wake_word}'",
               flush=True)
 
@@ -67,13 +69,16 @@ class WakeWordDetector:
         self._running            = False
         audio_state["recording"] = False
         audio_state["mode"]      = "idle"
+        logger.info("wake_detector_stop")
         print("  wake word detector stopped")
 
     async def run(self):
+
         while self._running:
             await asyncio.sleep(self.slide_every)
 
             if not self.listener.has_sound():
+                logger.debug("audio_detected")
                 continue
 
             if self.mode == self.IDLE:
@@ -86,17 +91,21 @@ class WakeWordDetector:
         """IDLE mode — cheap check for wake word only."""
         energy = self.listener.get_energy()
         if energy < self.transcribe_threshold:
+            logger.debug("wake_check_energy_pass", energy=energy)
             return
 
         audio      = self.listener.get_window()
         transcript = self.transcriber.transcribe(audio)
+        logger.debug("wake_transcript", text=transcript)
 
         if not transcript or is_hallucination(transcript):
+            logger.debug("wake_ignored", reason="empty_or_hallucination")
             return
 
         print(f"  heard: '{transcript}'")
 
         if self.wake_word in transcript:
+            logger.info("wake_word_detected", transcript=transcript)
             print(f"  wake word detected → ACTIVE")
             self.mode           = self.ACTIVE
             audio_state["mode"] = "active"
@@ -115,10 +124,12 @@ class WakeWordDetector:
         """
         audio_state["mode"] = "command"
         print(f"  listening for command ({self.command_timeout}s)...")
+        logger.info("command_listening_start", timeout=self.command_timeout)
         await asyncio.sleep(self.command_timeout)
 
         audio      = self.listener.get_window(seconds=self.command_timeout)
         command    = self.transcriber.transcribe(audio)
+        logger.debug("command_transcribed", text=command)
 
         # clear buffer after each capture
         self.listener.buffer = np.zeros(
@@ -129,11 +140,13 @@ class WakeWordDetector:
         if not command or is_hallucination(command):
             # nothing heard — stay active, keep listening
             audio_state["mode"] = "active"
+            logger.debug("command_empty_or_hallucination")
             print("  nothing heard — still listening...")
             return
 
         # sleep word → back to IDLE
         if self.sleep_word in command.lower():
+            logger.info("sleep_word_detected", command=command)
             print(f"  sleep word heard → going idle")
             self.mode           = self.IDLE
             audio_state["mode"] = "idle"
@@ -141,10 +154,13 @@ class WakeWordDetector:
 
         # valid command — process it, stay ACTIVE
         print(f"  command: '{command}'")
+        logger.info("command_detected", command=command)
         audio_state["mode"] = "active"
 
         if self.on_command:
+            logger.debug("command_forwarding")
             await self.on_command(command)
+            logger.info("command_processed")
 
         # stay in ACTIVE — ready for next command immediately
         print(f"  ready for next command...")

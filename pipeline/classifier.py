@@ -5,7 +5,7 @@ import math
 import numpy as np
 from collections import defaultdict
 from pathlib import Path
-
+from core.log import logger
 
 # ─────────────────────────────────────────────
 # NLP UTILITIES — kept for TFIDFEngine fallback
@@ -49,6 +49,7 @@ class TFIDFEngine:
         self.labels      = []
 
     def fit(self, dataset):
+        logger.info("tfidf_fit_start", samples=len(dataset))
         docs        = [get_features(text) for text, _ in dataset]
         self.labels = [label for _, label in dataset]
         N           = len(docs)
@@ -59,11 +60,13 @@ class TFIDFEngine:
                 df[term] += 1
 
         self.vocab = {term: i for i, term in enumerate(df.keys())}
+        logger.info("tfidf_vocab_built", size=len(self.vocab))
         self.idf   = {term: math.log(N / (df[term] + 1)) for term in df}
 
         self.doc_vectors = []
         for doc in docs:
             self.doc_vectors.append(self._vectorize(doc))
+        logger.info("tfidf_fit_complete", docs=len(self.doc_vectors))
 
     def _vectorize(self, tokens):
         tf    = defaultdict(float)
@@ -86,6 +89,7 @@ class TFIDFEngine:
         return dot / (mag1 * mag2)
 
     def predict(self, text, top_n=3):
+        logger.debug("tfidf_predict_start", text=text)
         tokens    = get_features(text)
         query_vec = self._vectorize(tokens)
 
@@ -105,7 +109,9 @@ class TFIDFEngine:
 
         best       = max(vote, key=vote.get)
         confidence = vote[best] / (sum(vote.values()) + 1e-9)
-        return best, round(confidence * 100, 1)
+        rounded_count = round(confidence * 100, 1)
+        logger.info("tfidf_predict_result", intent=best, confidence=rounded_count)
+        return best, rounded_count
 
 # ─────────────────────────────────────────────
 # MINILM ENGINE — semantic understanding
@@ -134,12 +140,16 @@ class MiniLMEngine:
         Load MiniLM model from local path.
         Call once before fit().
         """
+
+
         from sentence_transformers import SentenceTransformer
 
         path = str(model_path or MINILM_PATH)
+        logger.info("minilm_load_start", path=path)
         print(f"  loading MiniLM from: {path}")
         self.model   = SentenceTransformer(path)
         self._loaded = True
+        logger.info("minilm_loaded")
         print(f"  MiniLM ready")
 
     def fit(self, dataset):
@@ -147,6 +157,9 @@ class MiniLMEngine:
         Encode all training examples.
         Same signature as TFIDFEngine.fit().
         """
+
+        logger.info("minilm_fit_start", samples=len(dataset))
+
         if not self._loaded:
             raise RuntimeError(
                 "Call load() before fit(). "
@@ -157,13 +170,17 @@ class MiniLMEngine:
         self.train_texts  = [text  for text, _  in dataset]
         self.train_labels = [label for _,    label in dataset]
 
+        logger.info("minilm_encoding_start", count=len(self.train_texts))
         print(f"  encoding {len(self.train_texts)} training examples...")
+
         self.train_embeddings = self.model.encode(
             self.train_texts,
             convert_to_numpy    = True,
             show_progress_bar   = False,
             batch_size          = 32,
         )
+
+        logger.info("minilm_fit_complete", embeddings=len(self.train_embeddings))
         print(f"  training complete")
 
     def predict(self, text, top_n=3):
@@ -172,7 +189,11 @@ class MiniLMEngine:
         Same signature as TFIDFEngine.predict().
         Returns (intent, confidence_percent).
         """
+
+        logger.debug("minilm_predict_start", text=text)
+
         if self.train_embeddings is None:
+            logger.warning("minilm_not_trained")
             return "unknown", 0.0
 
         # encode query
@@ -187,6 +208,7 @@ class MiniLMEngine:
         q_norm = np.linalg.norm(query_vec)
 
         if q_norm == 0:
+            logger.warning("minilm_zero_vector")
             return "unknown", 0.0
 
         sims = self.train_embeddings @ query_vec / (norms * q_norm + 1e-9)
@@ -203,7 +225,7 @@ class MiniLMEngine:
         best       = max(vote, key=vote.get)
         total      = sum(vote.values())
         confidence = vote[best] / (total + 1e-9) * 100
-
+        logger.info("minilm_predict_result", intent=best, confidence=round(confidence, 1))
         return best, round(confidence, 1)
 
     @staticmethod
@@ -215,8 +237,10 @@ class MiniLMEngine:
         from sentence_transformers import SentenceTransformer
 
         path = str(save_path or MINILM_PATH)
+        logger.info("minilm_download_start", path=path)
         print(f"  downloading all-MiniLM-L6-v2 to: {path}")
         model = SentenceTransformer("all-MiniLM-L6-v2")
         model.save(path)
+        logger.info("minilm_download_complete", path=path)
         print(f"  saved to {path}")
         print(f"  model is now offline-ready")
