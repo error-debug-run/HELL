@@ -1,6 +1,6 @@
 # HELL System — Full Python Architecture Reference
 
-> Voice-Driven Windows Automation System
+> Voice-Driven OS Automation System
 
 ---
 
