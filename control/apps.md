@@ -290,36 +290,37 @@ sequenceDiagram
 ## 7. Security & Sanitization Flow
 
 ```mermaid
+
 flowchart TD
-    A[App Config Args] --> B[sanitize_args]
-    B --> C{Args Empty?}
-    C -->|Yes| D[Return Empty List]
-    C -->|No| E[Iterate Each Arg]
+    A["App Config Args"] --> B["sanitize_args"]
+    B --> C{"Args Empty"}
+    C -->|Yes| D["Return Empty List"]
+    C -->|No| E["Iterate Each Arg"]
     
-    E --> F[Strip & Lowercase]
-    F --> G{Empty/Whitespace?}
-    G -->|Yes| H[Skip Arg]
-    G -->|No| I{In BLOCKED_ARGS?}
+    E --> F["Strip and Lowercase"]
+    F --> G{"Empty or Whitespace"}
+    G -->|Yes| H["Skip Arg"]
+    G -->|No| I{"In BLOCKED_ARGS"}
     
-    I -->|Yes| J[Block - Skip Arg]
-    I -->|No| K{Process Injection Pattern?}
+    I -->|Yes| J["Block Skip Arg"]
+    I -->|No| K{"Process Injection Pattern"}
     
     K -->|Yes| J
-    K -->|No| L[Keep Original Arg]
+    K -->|No| L["Keep Original Arg"]
     
-    H --> M{More Args?}
+    H --> M{"More Args"}
     J --> M
     L --> M
     
     M -->|Yes| E
-    M -->|No| N[Return Cleaned List]
+    M -->|No| N["Return Cleaned List"]
     
     subgraph BLOCKED_ARGS
-        O[--uninstall]
-        P[--force-uninstall]
-        Q[--remove]
-        R[--processstart]
-        S[/uninstall]
+        O["--uninstall"]
+        P["--force-uninstall"]
+        Q["--remove"]
+        R["--processstart"]
+        S["/uninstall"]
     end
     
     I -.-> O
@@ -327,8 +328,8 @@ flowchart TD
     I -.-> Q
     I -.-> R
     I -.-> S
-```
 
+```
 ---
 
 ## 8. Complete Module API Summary
