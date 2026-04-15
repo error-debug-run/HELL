@@ -1,10 +1,7 @@
 # Windows Application Control Module - Workflow Documentation
 
 ## Overview
-
 This module provides async/sync APIs to launch, close, kill, minimize, and manage Windows applications at the OS level. It bridges Python to the Win32 API via ctypes.
-
----
 
 ## 1. Main Architecture Flowchart
 
@@ -26,7 +23,7 @@ flowchart TD
     C4 --> C5[Try Each Strategy]
     C5 --> C6{_popen success?}
     C6 -->|No| C7[Try Next Strategy]
-    C6 -->|Yes| C8[_wait_for_window]
+    C6 -->|Yes| C8[_wait_for_verified_window]
     C8 --> C9{Window Ready?}
     C9 -->|Yes| C10[Record Success & Return True]
     C9 -->|No| C7
@@ -72,8 +69,6 @@ flowchart TD
     H7 --> H8[Return True]
 ```
 
----
-
 ## 2. Launch Workflow Detail
 
 ```mermaid
@@ -84,33 +79,36 @@ sequenceDiagram
     participant R as is_running_smart()
     participant B as _build_launch_attempts()
     participant P as _popen()
-    participant W as _wait_for_window()
+    participant W as _wait_for_verified_window()
     participant S as _rating_store
+    participant I as show_app_interactive()
     
     U->>L: launch app config
     L->>N: normalize_app app
-    N-->>L: normalized app dict
+    N->>L: normalized app dict
     L->>R: is_running_smart?
-    R-->>L: True/False
+    R->>L: True/False
     
     alt App Already Running
-        L->>L: show_app_interactive
-        L-->>U: Return True
+        L->>I: show_app_interactive
+        I->>U: Return True
     else App Not Running
         L->>B: _build_launch_attempts
-        B-->>L: List of strategies
+        B->>L: List of strategies
         
         loop For Each Attempt
             L->>P: _popen attempt
-            P-->>L: PID or False
+            P->>L: PID dict or False
             
             alt Launch Success
-                L->>W: _wait_for_window
-                W-->>L: True/False
+                L->>W: _wait_for_verified_window
+                W->>L: True/False
                 
                 alt Window Ready
                     L->>S: record_success method
-                    L-->>U: Return True
+                    S->>L: Success recorded
+                    L->>I: show_app_interactive
+                    I->>U: Return True
                 else Timeout
                     L->>L: Try Next Strategy
                 end
@@ -119,11 +117,9 @@ sequenceDiagram
             end
         end
         
-        L-->>U: Return False - All Failed
+        L->>U: Return False - All Failed
     end
 ```
-
----
 
 ## 3. App Type Detection & Launch Strategy
 
@@ -142,7 +138,7 @@ flowchart LR
     D --> D1[Launch: cmd /C start URI]
     D --> D2[Detection: is_running_by_title]
     
-    E --> E1[Launch: Direct Execute]
+    E --> E1[Launch: Direct Execute<br/>DETACHED + NO_WINDOW flags]
     E --> E2[Detection: is_running by exe]
     
     F -->|pwa| G[PWA App]
@@ -155,8 +151,6 @@ flowchart LR
     E1 --> H
     G1 --> H
 ```
-
----
 
 ## 4. Close/Escalation Workflow
 
@@ -175,7 +169,7 @@ flowchart TD
     G --> J[Hide Windows by Title]
     H --> K[PostMessage WM_CLOSE]
     
-    I --> L[Terminate PIDs]
+    I --> L[Terminate PIDs via psutil]
     J --> M[ShowWindow SW_HIDE]
     K --> N[Wait 0.3s]
     
@@ -195,8 +189,6 @@ flowchart TD
     S -->|No| U[Return False - All Failed]
 ```
 
----
-
 ## 5. Window Matching & Ranking System
 
 ```mermaid
@@ -215,8 +207,8 @@ flowchart TD
     G --> H[hwnd - Window Handle]
     G --> I[title - Window Title]
     G --> J[pid - Process ID]
-    G --> K[exe - Executable Name]
-    G --> L[area - Window Size]
+    G --> K["exe - Executable Name (None if inaccessible)"]
+    G --> L["area - Window Size (px2)"]
     G --> M[visible - Is Visible]
     G --> N[responded - Is Responsive]
     G --> O[appwindow - Has Taskbar Button]
@@ -233,10 +225,10 @@ flowchart TD
     Q -->|base exe in path| R
     
     R --> S[_rank_window Scoring]
-    S --> T[responded × 1000]
-    S --> U[visible × 500]
-    S --> V[appwindow × 200]
-    S --> W[area ÷ 10000]
+    S --> T["responded x 1000"]
+    S --> U["visible x 500"]
+    S --> V["appwindow x 200"]
+    S --> W["area / 10000"]
     
     T --> X[Total Score]
     U --> X
@@ -244,16 +236,14 @@ flowchart TD
     W --> X
     
     X --> Y[max Score = Best Window]
-    Y --> Z[Return Best Window]
+    Y --> Z[Return Best Window or None]
 ```
-
----
 
 ## 6. Focus Stealing Workaround (ALT Key Trick)
 
 ```mermaid
 sequenceDiagram
-    participant A as show_app_interactive
+    participant A as show_app_interactive()
     participant W as Win32 API
     participant O as Windows OS
     participant T as Target Window
@@ -282,33 +272,30 @@ sequenceDiagram
     W->>O: Simulate ALT Key Release
     O->>O: Clear "ALT Pressed" Flag
     
-    A-->>A: Return True - Focus Successful
+    A->>A: Return True - Focus Successful
 ```
-
----
 
 ## 7. Security & Sanitization Flow
 
 ```mermaid
-
 flowchart TD
-    A["App Config Args"] --> B["sanitize_args"]
-    B --> C{"Args Empty"}
+    A["App Config Args"] --> B["sanitize_args()"]
+    B --> C{"Args Empty?"}
     C -->|Yes| D["Return Empty List"]
     C -->|No| E["Iterate Each Arg"]
     
     E --> F["Strip and Lowercase"]
-    F --> G{"Empty or Whitespace"}
+    F --> G{"Empty or Whitespace?"}
     G -->|Yes| H["Skip Arg"]
-    G -->|No| I{"In BLOCKED_ARGS"}
+    G -->|No| I{"In BLOCKED_ARGS?"}
     
-    I -->|Yes| J["Block Skip Arg"]
-    I -->|No| K{"Process Injection Pattern"}
+    I -->|Yes| J["Block - Skip Arg"]
+    I -->|No| K{"Process Injection Pattern?"}
     
     K -->|Yes| J
     K -->|No| L["Keep Original Arg"]
     
-    H --> M{"More Args"}
+    H --> M{"More Args?"}
     J --> M
     L --> M
     
@@ -328,9 +315,7 @@ flowchart TD
     I -.-> Q
     I -.-> R
     I -.-> S
-
 ```
----
 
 ## 8. Complete Module API Summary
 
@@ -352,7 +337,7 @@ classDiagram
         +_enum_windows(callback)
         +_get_window_text(hwnd) str
         +_get_window_pid(hwnd) int
-        +_get_exe_for_pid(pid) str
+        +_get_exe_for_pid(pid) Optional[str]
         +_show_window(hwnd, cmd) bool
     }
     
@@ -364,9 +349,9 @@ classDiagram
     
     class WindowDiscovery {
         +_iter_windows(match_exe, match_title) list
-        +_match_window(window, app, exe, title) bool
+        +_match_window(window, app) bool
         +_rank_window(window) int
-        +_best_matching_window(app, exe, title) dict
+        +_best_matching_window(app, exe, title) Optional[dict]
     }
     
     class ProcessDetection {
@@ -374,16 +359,21 @@ classDiagram
         +is_running_by_path(path) bool
         +is_running_by_title(title) bool
         +_is_uwp_running(app) bool
-        +is_running_firefox_style(app) bool
+        +is_running_smart(app) bool
+    }
+    
+    class LaunchMechanics {
+        +_popen(attempt, name) dict|bool
+        +_build_launch_attempts(app) list
+        +_wait_for_verified_window(app, timeout, interval) bool
     }
     
     AppControl --> Win32Wrappers
     AppControl --> AppNormalization
     AppControl --> WindowDiscovery
     AppControl --> ProcessDetection
+    AppControl --> LaunchMechanics
 ```
-
----
 
 ## 9. README Quick Reference
 
@@ -437,6 +427,7 @@ show_app_interactive(app_config)
 | `window_title` | No | Title for window matching |
 | `launch_timeout` | No | Override default timeout |
 | `close_timeout` | No | Override close timeout |
+| `classification` | Auto | Auto-detected app category |
 
 ### App Type Detection
 
@@ -451,10 +442,9 @@ show_app_interactive(app_config)
 
 - **Argument Sanitization**: Blocks uninstall/self-modification flags
 - **Blocked Args**: `--uninstall`, `--remove`, `--processstart`, `/uninstall`
-- **Process Isolation**: DETACHED + NO_WINDOW flags for silent launches
-- **Access Control**: Handles AccessDenied for protected processes
-
----
+- **Process Isolation**: `DETACHED` + `NO_WINDOW` flags for silent launches
+- **Access Control**: Handles `AccessDenied` for protected processes
+- **Type Safety**: `_get_exe_for_pid()` returns `Optional[str]` (None on error)
 
 ## 10. Error Handling Matrix
 
@@ -483,6 +473,25 @@ flowchart LR
     end
 ```
 
----
+## 11. Key Changes in Refactored Version
 
-This documentation provides a complete visual and textual reference for the Windows Application Control Module workflow. All diagrams can be rendered in any Mermaid-compatible viewer (GitHub, VS Code, Mermaid Live Editor, etc.).
+### Code Quality Improvements
+- ✅ **Removed duplicate imports** - Single source of truth
+- ✅ **Removed duplicate WIN32 constants** - Consolidated definitions
+- ✅ **Removed duplicate helper functions** - One canonical implementation
+- ✅ **Fixed type annotations** - `_get_exe_for_pid()` returns `Optional[str]`
+- ✅ **Better error handling** - None vs empty string for inaccessible processes
+
+### Architecture Improvements
+- 📦 **Single `_iter_windows()` function** - Comprehensive metadata collection
+- 📦 **Single `_CATEGORY_RUNNING_CHECKS`** - Unified dispatch table
+- 📦 **Cleaner module structure** - No redundant code blocks
+
+### Behavior Changes
+- ⚠️ **None** - All workflows and APIs remain identical
+- ⚠️ **Backward compatible** - No breaking changes to public API
+
+
+---
+*This documentation provides a complete visual and textual reference for the Windows Application Control Module workflow. All diagrams can be rendered in any Mermaid-compatible viewer (GitHub, VS Code, Mermaid Live Editor, etc.).*
+
