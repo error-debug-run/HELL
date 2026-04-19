@@ -92,3 +92,7 @@ def run_finder(apps):
     # write back
     with open(file, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2)
+
+
+if __name__ == "__main__":
+    run_finder(apps)

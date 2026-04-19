@@ -1,4 +1,5 @@
 # hell/stt/detector.py
+
 import asyncio
 import numpy as np
 from config import config
@@ -7,10 +8,7 @@ from stt.transcriber import Transcriber
 from api.server import audio_state
 from core.log import logger
 import concurrent.futures
-import psutil
 
-# Add lock for audio state synchronization
-audio_state_lock = asyncio.Lock()
 
 HALLUCINATIONS = [
     "thank you for watching",
@@ -24,7 +22,6 @@ HALLUCINATIONS = [
     "www.",
     ".com",
 ]
-
 
 def is_hallucination(transcript):
     t = transcript.lower().strip()
@@ -42,41 +39,43 @@ def is_hallucination(transcript):
 
 
 class WakeWordDetector:
-    IDLE = "idle"
-    ACTIVE = "active"  # ← replaces COMMAND — stays active forever
-    COMMAND = "command"  # ← sub-state within ACTIVE — capturing right now
+
+    IDLE    = "idle"
+    ACTIVE  = "active"    # ← replaces COMMAND — stays active forever
+    COMMAND = "command"   # ← sub-state within ACTIVE — capturing right now
 
     def __init__(self):
-        self.wake_word = config.stt["wake_word"].lower()
-        self.sleep_word = config.stt["sleep_word"].lower()
-        self.slide_every = config.stt["slide_every"]
-        self.command_timeout = config.stt["command_timeout"]
+        self.wake_word            = config.stt["wake_word"].lower()
+        self.sleep_word           = config.stt["sleep_word"].lower()
+        self.slide_every          = config.stt["slide_every"]
+        self.command_timeout      = config.stt["command_timeout"]
         self.transcribe_threshold = config.stt["transcribe_threshold"]
-        self.mode = self.IDLE
-        self.on_command = None
-        self.listener = AudioListener()
-        self.transcriber = Transcriber()
-        self._running = False
+        self.mode                 = self.IDLE
+        self.on_command           = None
+        self.listener             = AudioListener()
+        self.transcriber          = Transcriber()
+        self._running             = False
 
     def start(self):
         self.transcriber.load()
         self.listener.start()
-        self._running = True
+        self._running            = True
         audio_state["recording"] = True
-        audio_state["mode"] = "idle"
+        audio_state["mode"]      = "idle"
         logger.info("wake_detector_start", wake_word=self.wake_word)
         print(f"  wake word detector ready — waiting for '{self.wake_word}'",
               flush=True)
 
     def stop(self):
         self.listener.stop()
-        self._running = False
+        self._running            = False
         audio_state["recording"] = False
-        audio_state["mode"] = "idle"
+        audio_state["mode"]      = "idle"
         logger.info("wake_detector_stop")
         print("  wake word detector stopped")
 
     async def run(self):
+
         while self._running:
             await asyncio.sleep(self.slide_every)
 
@@ -97,7 +96,7 @@ class WakeWordDetector:
             logger.debug("wake_check_energy_pass", energy=energy)
             return
 
-        audio = self.listener.get_window()
+        audio      = self.listener.get_window()
         transcript = self.transcriber.transcribe(audio)
         logger.debug("wake_transcript", text=transcript)
 
@@ -110,7 +109,7 @@ class WakeWordDetector:
         if self.wake_word in transcript:
             logger.info("wake_word_detected", transcript=transcript)
             print(f"  wake word detected → ACTIVE")
-            self.mode = self.ACTIVE
+            self.mode           = self.ACTIVE
             audio_state["mode"] = "active"
 
             # clear buffer — don't include wake word in first command
@@ -125,16 +124,13 @@ class WakeWordDetector:
         Stays in ACTIVE after each command.
         Only returns to IDLE on sleep word or stop().
         """
-        async with audio_state_lock:
-            audio_state["mode"] = "command"
-            audio_state["recording"] = True
-
+        audio_state["mode"] = "command"
         print(f"  listening for command ({self.command_timeout}s)...")
         logger.info("command_listening_start", timeout=self.command_timeout)
         await asyncio.sleep(self.command_timeout)
 
-        audio = self.listener.get_window(seconds=self.command_timeout)
-        command = self.transcriber.transcribe(audio)
+        audio      = self.listener.get_window(seconds=self.command_timeout)
+        command    = self.transcriber.transcribe(audio)
         logger.debug("command_transcribed", text=command)
 
         # clear buffer after each capture
@@ -145,10 +141,7 @@ class WakeWordDetector:
 
         if not command or is_hallucination(command):
             # nothing heard — stay active, keep listening
-            async with audio_state_lock:
-                audio_state["mode"] = "active"
-                audio_state["recording"] = False
-
+            audio_state["mode"] = "active"
             logger.debug("command_empty_or_hallucination")
             print("  nothing heard — still listening...")
             return
@@ -157,25 +150,14 @@ class WakeWordDetector:
         if self.sleep_word in command.lower():
             logger.info("sleep_word_detected", command=command)
             print(f"  sleep word heard → going idle")
-            self.mode = self.IDLE
-            async with audio_state_lock:
-                audio_state["mode"] = "idle"
-            return
-
-        if "stop hell"  in command.lower() :
-            logger.info("stop_command_detected", command=command)
-            print(f"  stop command heard → shutting down")
-            # self.mode = self.IDLE
-            # async with audio_state_lock:
-            #     audio_state["mode"] = "idle"
-            self.stop()  # ← This calls stop() and terminates the detector
+            self.mode           = self.IDLE
+            audio_state["mode"] = "idle"
             return
 
         # valid command — process it, stay ACTIVE
         print(f"  command: '{command}'")
         logger.info("command_detected", command=command)
-        async with audio_state_lock:
-            audio_state["mode"] = "active"
+        audio_state["mode"] = "active"
 
         if self.on_command:
             logger.debug("command_forwarding")
@@ -186,15 +168,12 @@ class WakeWordDetector:
         print(f"  ready for next command...")
 
 
-
-
 if __name__ == "__main__":
 
     from pipeline.pipeline import handle_command
 
-
     async def main():
-        detector = WakeWordDetector()
+        detector            = WakeWordDetector()
         detector.on_command = handle_command
         detector.start()
 
@@ -206,6 +185,5 @@ if __name__ == "__main__":
             await detector.run()
         except KeyboardInterrupt:
             detector.stop()
-
 
     asyncio.run(main())

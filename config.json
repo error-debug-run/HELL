@@ -52,17 +52,18 @@
       },
       {
         "name": "Instagram",
-        "exe_name": "Instagram.exe",
-        "window_title": "Instagram",
-        "resolved_path": "explorer.exe",
+        "exe_name": "msedge_proxy.exe",
+        "full_path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge_proxy.exe",
+        "resolved_path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge_proxy.exe",
         "args": [
-          "shell:appsFolder\\Facebook.InstagramBeta_8xx8rvfyw5nnt!App"
+          "--profile-directory=Default",
+          "--app-id=akpamiohjfcnimfljfndmaldlcfphjmp",
+          "--app-url=https://www.instagram.com/?utm_source=pwa_homescreen&__pwa=1",
+          "--app-run-on-os-login-mode=windowed",
+          "--app-launch-source=19"
         ],
-        "app_type": "pwa",
-        "action": "close",
-        "launch_timeout": 5,
-        "launch_interval": 2,
-        "method": "path_for_pwa"
+        "app_type": "lnk",
+        "publisher": ""
       }
     ]
   },
@@ -78,9 +79,7 @@
           "https://pypi.org"
         ],
         "trigger_apps": [
-          "Code.exe",
           "pycharm64.exe",
-          "GitHubDesktop.exe",
           "firefox.exe",
           "brave.exe",
           "msedge.exe"
@@ -88,12 +87,13 @@
       }
     },
     "trigger_apps": [
-      "Anaconda Navigator.lnk",
       "brave.exe",
-      "Firefox.lnk",
-      "Firefox Developer Edition.lnk",
-      "File Explorer.lnk",
-      "Factorio.lnk"
+      "firefox.exe",
+      "Code.exe",
+      "GitHubDesktop.exe",
+      "msedge.exe",
+      "taskmgr.exe",
+      "rustrover64.exe"
     ]
   },
   "game_mode": {
@@ -114,6 +114,24 @@
     ]
   },
   "installed_apps": [
+    {
+      "name": "1527c705-839a-4832-9118-54d4 Bd6a0c89",
+      "exe_name": "1527c705-839a-4832-9118-54d4Bd6a0c89_cw5n1h2txyewy!Microsoft.Windows.FilePicker",
+      "full_path": "shell:AppsFolder\\1527c705-839a-4832-9118-54d4Bd6a0c89_cw5n1h2txyewy!Microsoft.Windows.FilePicker",
+      "resolved_path": "shell:AppsFolder\\1527c705-839a-4832-9118-54d4Bd6a0c89_cw5n1h2txyewy!Microsoft.Windows.FilePicker",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "60719898. Inp App",
+      "exe_name": "MicrosoftWindows.60719898.InpApp_cw5n1h2txyewy!InputApp",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.60719898.InpApp_cw5n1h2txyewy!InputApp",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.60719898.InpApp_cw5n1h2txyewy!InputApp",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
     {
       "name": "== ElAmigos Releases and Updates @ pastebin ==",
       "exe_name": "_ElAmigos Releases and Updates.url",
@@ -142,6 +160,33 @@
       "publisher": ""
     },
     {
+      "name": "A A D. Broker Plugin",
+      "exe_name": "Microsoft.AAD.BrokerPlugin_cw5n1h2txyewy!App",
+      "full_path": "shell:AppsFolder\\Microsoft.AAD.BrokerPlugin_cw5n1h2txyewy!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.AAD.BrokerPlugin_cw5n1h2txyewy!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "A V C Encoder Video Extension",
+      "exe_name": "Microsoft.AVCEncoderVideoExtension_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.AVCEncoderVideoExtension_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.AVCEncoderVideoExtension_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "A V1 Video Extension",
+      "exe_name": "Microsoft.AV1VideoExtension_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.AV1VideoExtension_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.AV1VideoExtension_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
       "name": "About Java",
       "exe_name": "javacpl.exe",
       "full_path": "C:\\Program Files\\Java\\jre1.8.0_481\\bin\\javacpl.exe",
@@ -161,6 +206,15 @@
       "args": [],
       "app_type": "lnk",
       "publisher": ""
+    },
+    {
+      "name": "Accounts Control",
+      "exe_name": "Microsoft.AccountsControl_cw5n1h2txyewy!App",
+      "full_path": "shell:AppsFolder\\Microsoft.AccountsControl_cw5n1h2txyewy!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.AccountsControl_cw5n1h2txyewy!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
     },
     {
       "name": "Administrative Tools",
@@ -184,13 +238,13 @@
       "publisher": ""
     },
     {
-      "name": "aimgr_0.20.29.0_x64__8wekyb3d8bbwe",
-      "exe_name": "aimgr_0.20.29.0_x64__8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\aimgr_0.20.29.0_x64__8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\aimgr_0.20.29.0_x64__8wekyb3d8bbwe",
+      "name": "aicontext",
+      "exe_name": "MicrosoftWindows.Client.CoreAI_cw5n1h2txyewy!aicontext",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.CoreAI_cw5n1h2txyewy!aicontext",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.CoreAI_cw5n1h2txyewy!aicontext",
       "args": [],
-      "app_type": "pwa",
-      "publisher": ""
+      "app_type": "uwp",
+      "publisher": "unknown"
     },
     {
       "name": "AmbientLED",
@@ -255,11 +309,20 @@
     {
       "name": "APP Center",
       "exe_name": "ARPPRODUCTICON.exe",
-      "full_path": "C:\\Windows\\Installer\\{D50BEE9A-0EC6-4A58-BF90-35BDC6D6495D}\\ARPPRODUCTICON.exe",
-      "resolved_path": "C:\\Windows\\Installer\\{D50BEE9A-0EC6-4A58-BF90-35BDC6D6495D}\\ARPPRODUCTICON.exe",
+      "full_path": "C:\\WINDOWS\\Installer\\{D50BEE9A-0EC6-4A58-BF90-35BDC6D6495D}\\ARPPRODUCTICON.exe",
+      "resolved_path": "C:\\WINDOWS\\Installer\\{D50BEE9A-0EC6-4A58-BF90-35BDC6D6495D}\\ARPPRODUCTICON.exe",
       "args": [],
       "app_type": "exe",
       "publisher": "Gigabyte"
+    },
+    {
+      "name": "Application Compatibility Enhancements",
+      "exe_name": "Microsoft.ApplicationCompatibilityEnhancements_8wekyb3d8bbwe!Microsoft.ApplicationCompatibilityEnhancements",
+      "full_path": "shell:AppsFolder\\Microsoft.ApplicationCompatibilityEnhancements_8wekyb3d8bbwe!Microsoft.ApplicationCompatibilityEnhancements",
+      "resolved_path": "shell:AppsFolder\\Microsoft.ApplicationCompatibilityEnhancements_8wekyb3d8bbwe!Microsoft.ApplicationCompatibilityEnhancements",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
     },
     {
       "name": "Application Verifier (WOW)",
@@ -298,6 +361,15 @@
       "publisher": ""
     },
     {
+      "name": "Async Text Service",
+      "exe_name": "Microsoft.AsyncTextService_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.AsyncTextService_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.AsyncTextService_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
       "name": "Audacity 3.7.7",
       "exe_name": "audacity.exe",
       "full_path": "D:\\Audacity\\audacity.exe",
@@ -334,6 +406,42 @@
       "publisher": ""
     },
     {
+      "name": "Bing News",
+      "exe_name": "Microsoft.BingNews_8wekyb3d8bbwe!AppexNews",
+      "full_path": "shell:AppsFolder\\Microsoft.BingNews_8wekyb3d8bbwe!AppexNews",
+      "resolved_path": "shell:AppsFolder\\Microsoft.BingNews_8wekyb3d8bbwe!AppexNews",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Bing Search",
+      "exe_name": "Microsoft.BingSearch_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.BingSearch_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.BingSearch_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Bing Weather",
+      "exe_name": "Microsoft.BingWeather_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.BingWeather_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.BingWeather_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Bio Enrollment",
+      "exe_name": "Microsoft.BioEnrollment_cw5n1h2txyewy!App",
+      "full_path": "shell:AppsFolder\\Microsoft.BioEnrollment_cw5n1h2txyewy!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.BioEnrollment_cw5n1h2txyewy!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
       "name": "Blender",
       "exe_name": "blender.exe",
       "full_path": "C:\\Program Files\\Blender Foundation\\Blender 5.0\\blender.exe",
@@ -361,6 +469,24 @@
       "publisher": "Brave Software Inc"
     },
     {
+      "name": "c5e2524a-ea46-4f67-841f-6a9465d9d515",
+      "exe_name": "c5e2524a-ea46-4f67-841f-6a9465d9d515_cw5n1h2txyewy!App",
+      "full_path": "shell:AppsFolder\\c5e2524a-ea46-4f67-841f-6a9465d9d515_cw5n1h2txyewy!App",
+      "resolved_path": "shell:AppsFolder\\c5e2524a-ea46-4f67-841f-6a9465d9d515_cw5n1h2txyewy!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "CapturePicker",
+      "exe_name": "Microsoft.Windows.CapturePicker_cw5n1h2txyewy!App",
+      "full_path": "shell:AppsFolder\\Microsoft.Windows.CapturePicker_cw5n1h2txyewy!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.Windows.CapturePicker_cw5n1h2txyewy!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
       "name": "Character Map",
       "exe_name": "charmap.exe",
       "full_path": "C:\\WINDOWS\\system32\\charmap.exe",
@@ -368,6 +494,51 @@
       "args": [],
       "app_type": "lnk",
       "publisher": ""
+    },
+    {
+      "name": "Client. C B S",
+      "exe_name": "MicrosoftWindows.Client.CBS_cw5n1h2txyewy!ActionRuntime",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!ActionRuntime",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!ActionRuntime",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Client. Core",
+      "exe_name": "MicrosoftWindows.Client.Core_cw5n1h2txyewy!ScreenClipping",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.Core_cw5n1h2txyewy!ScreenClipping",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.Core_cw5n1h2txyewy!ScreenClipping",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Client. Core A I",
+      "exe_name": "MicrosoftWindows.Client.CoreAI_cw5n1h2txyewy!ClickToDoApp",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.CoreAI_cw5n1h2txyewy!ClickToDoApp",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.CoreAI_cw5n1h2txyewy!ClickToDoApp",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Client. O O B E",
+      "exe_name": "MicrosoftWindows.Client.OOBE_cw5n1h2txyewy!OobeHost",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.OOBE_cw5n1h2txyewy!OobeHost",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.OOBE_cw5n1h2txyewy!OobeHost",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Client. Web Experience",
+      "exe_name": "MicrosoftWindows.Client.WebExperience_cw5n1h2txyewy!Widgets",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.WebExperience_cw5n1h2txyewy!Widgets",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.WebExperience_cw5n1h2txyewy!Widgets",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
     },
     {
       "name": "CLion 2025.3",
@@ -379,13 +550,13 @@
       "publisher": "JetBrains s.r.o."
     },
     {
-      "name": "Clipchamp.Clipchamp_4.5.10220.0_neutral_~_yxz26nhyzhsrt",
-      "exe_name": "Clipchamp.Clipchamp_4.5.10220.0_neutral_~_yxz26nhyzhsrt",
-      "full_path": "shell:appsFolder\\Clipchamp.Clipchamp_4.5.10220.0_neutral_~_yxz26nhyzhsrt",
-      "resolved_path": "shell:appsFolder\\Clipchamp.Clipchamp_4.5.10220.0_neutral_~_yxz26nhyzhsrt",
+      "name": "Clipchamp",
+      "exe_name": "Clipchamp.Clipchamp_yxz26nhyzhsrt!App",
+      "full_path": "shell:AppsFolder\\Clipchamp.Clipchamp_yxz26nhyzhsrt!App",
+      "resolved_path": "shell:AppsFolder\\Clipchamp.Clipchamp_yxz26nhyzhsrt!App",
       "args": [],
-      "app_type": "pwa",
-      "publisher": ""
+      "app_type": "uwp",
+      "publisher": "unknown"
     },
     {
       "name": "Component Services",
@@ -444,6 +615,24 @@
       "publisher": "CPUID, Inc."
     },
     {
+      "name": "Cred Dialog Host",
+      "exe_name": "Microsoft.CredDialogHost_cw5n1h2txyewy!App",
+      "full_path": "shell:AppsFolder\\Microsoft.CredDialogHost_cw5n1h2txyewy!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.CredDialogHost_cw5n1h2txyewy!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Cross Device",
+      "exe_name": "MicrosoftWindows.CrossDevice_cw5n1h2txyewy!SettingsUXHostApp",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.CrossDevice_cw5n1h2txyewy!SettingsUXHostApp",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.CrossDevice_cw5n1h2txyewy!SettingsUXHostApp",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
       "name": "cuobjdump",
       "exe_name": "cuobjdump.exe",
       "full_path": "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.1\\bin\\cuobjdump.exe",
@@ -464,6 +653,15 @@
       "publisher": ""
     },
     {
+      "name": "Desktop App Installer",
+      "exe_name": "Microsoft.DesktopAppInstaller_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
       "name": "Desktop Overlay Host",
       "exe_name": "DesktopOverlayHost.exe",
       "full_path": "C:\\Program Files (x86)\\RivaTuner Statistics Server\\DesktopOverlayHost.exe",
@@ -471,6 +669,24 @@
       "args": [],
       "app_type": "lnk",
       "publisher": ""
+    },
+    {
+      "name": "DesktopPackageMetadata",
+      "exe_name": "MicrosoftWindows.Client.FileExp_cw5n1h2txyewy!PackageMetadata",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.FileExp_cw5n1h2txyewy!PackageMetadata",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.FileExp_cw5n1h2txyewy!PackageMetadata",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "DesktopStickerEditorCentennial",
+      "exe_name": "MicrosoftWindows.Client.CBS_cw5n1h2txyewy!DesktopStickerEditorCentennial",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!DesktopStickerEditorCentennial",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!DesktopStickerEditorCentennial",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
     },
     {
       "name": "Developer PowerShell for VS (2)",
@@ -553,6 +769,24 @@
       "publisher": "DEV47APPS"
     },
     {
+      "name": "E C App",
+      "exe_name": "Microsoft.ECApp_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.ECApp_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.ECApp_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "E2 A4 F912-2574-4 A75-9 B B0-0 D023378592 B",
+      "exe_name": "E2A4F912-2574-4A75-9BB0-0D023378592B_cw5n1h2txyewy!Microsoft.Windows.AppResolverUX",
+      "full_path": "shell:AppsFolder\\E2A4F912-2574-4A75-9BB0-0D023378592B_cw5n1h2txyewy!Microsoft.Windows.AppResolverUX",
+      "resolved_path": "shell:AppsFolder\\E2A4F912-2574-4A75-9BB0-0D023378592B_cw5n1h2txyewy!Microsoft.Windows.AppResolverUX",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
       "name": "EasyTune",
       "exe_name": "ARPPRODUCTICON.exe",
       "full_path": "C:\\Windows\\Installer\\{7F635314-EE21-4E4B-A68D-69AE70BA0E9B}\\ARPPRODUCTICON.exe",
@@ -578,6 +812,15 @@
       "args": [],
       "app_type": "lnk",
       "publisher": ""
+    },
+    {
+      "name": "English (United Kingdom) Local Experience Pack",
+      "exe_name": "Microsoft.LanguageExperiencePacken-GB_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.LanguageExperiencePacken-GB_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.LanguageExperiencePacken-GB_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
     },
     {
       "name": "Epic Games Launcher",
@@ -627,6 +870,15 @@
       "publisher": ""
     },
     {
+      "name": "F46 D4000- F D22-4 D B4- A C8 E-4 E1 D D D E828 F E",
+      "exe_name": "F46D4000-FD22-4DB4-AC8E-4E1DDDE828FE_cw5n1h2txyewy!App",
+      "full_path": "shell:AppsFolder\\F46D4000-FD22-4DB4-AC8E-4E1DDDE828FE_cw5n1h2txyewy!App",
+      "resolved_path": "shell:AppsFolder\\F46D4000-FD22-4DB4-AC8E-4E1DDDE828FE_cw5n1h2txyewy!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
       "name": "Factorio",
       "exe_name": "factorio.exe",
       "full_path": "C:\\GOG Games\\Factorio\\bin\\x64\\factorio.exe",
@@ -672,13 +924,22 @@
       "publisher": ""
     },
     {
-      "name": "GeForce Experience",
-      "exe_name": "NVIDIA GeForce Experience.exe",
-      "full_path": "C:\\Program Files\\NVIDIA Corporation\\NVIDIA GeForce Experience\\NVIDIA GeForce Experience.exe",
-      "resolved_path": "C:\\Program Files\\NVIDIA Corporation\\NVIDIA GeForce Experience\\NVIDIA GeForce Experience.exe",
+      "name": "Game Bar",
+      "exe_name": "Microsoft.XboxGamingOverlay_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.XboxGamingOverlay_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.XboxGamingOverlay_8wekyb3d8bbwe!App",
       "args": [],
-      "app_type": "lnk",
-      "publisher": ""
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Get Help",
+      "exe_name": "Microsoft.GetHelp_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.GetHelp_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.GetHelp_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
     },
     {
       "name": "Git",
@@ -748,6 +1009,411 @@
       "publisher": ""
     },
     {
+      "name": "Global.AccountDialog",
+      "exe_name": "MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.AccountDialog",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.AccountDialog",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.AccountDialog",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.Accounts",
+      "exe_name": "MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.Accounts",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.Accounts",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.Accounts",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.ActionUI",
+      "exe_name": "MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.ActionUI",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.ActionUI",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.ActionUI",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.ActionUI.Common",
+      "exe_name": "MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.ActionUI.Common",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.ActionUI.Common",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.ActionUI.Common",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.AppListBackup",
+      "exe_name": "MicrosoftWindows.Client.Core_cw5n1h2txyewy!Global.AppListBackup",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.Core_cw5n1h2txyewy!Global.AppListBackup",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.Core_cw5n1h2txyewy!Global.AppListBackup",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.BackupBanner",
+      "exe_name": "MicrosoftWindows.Client.Core_cw5n1h2txyewy!Global.BackupBanner",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.Core_cw5n1h2txyewy!Global.BackupBanner",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.Core_cw5n1h2txyewy!Global.BackupBanner",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.DesktopSpotlight",
+      "exe_name": "MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.DesktopSpotlight",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.DesktopSpotlight",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.DesktopSpotlight",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.DesktopStickerEditor",
+      "exe_name": "MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.DesktopStickerEditor",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.DesktopStickerEditor",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.DesktopStickerEditor",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.DiscoveryOverlay",
+      "exe_name": "MicrosoftWindows.Client.CoreAI_cw5n1h2txyewy!Global.DiscoveryOverlay",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.CoreAI_cw5n1h2txyewy!Global.DiscoveryOverlay",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.CoreAI_cw5n1h2txyewy!Global.DiscoveryOverlay",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.DragTray",
+      "exe_name": "MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.DragTray",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.DragTray",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.DragTray",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.ExperienceExtensions",
+      "exe_name": "MicrosoftWindows.Client.Photon_cw5n1h2txyewy!Global.ExperienceExtensions",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.Photon_cw5n1h2txyewy!Global.ExperienceExtensions",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.Photon_cw5n1h2txyewy!Global.ExperienceExtensions",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.FamilyValueProp",
+      "exe_name": "MicrosoftWindows.Client.Core_cw5n1h2txyewy!Global.FamilyValueProp",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.Core_cw5n1h2txyewy!Global.FamilyValueProp",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.Core_cw5n1h2txyewy!Global.FamilyValueProp",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.FeatureDiscoverability",
+      "exe_name": "MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.FeatureDiscoverability",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.FeatureDiscoverability",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.FeatureDiscoverability",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.Feedback",
+      "exe_name": "MicrosoftWindows.Client.CoreAI_cw5n1h2txyewy!Global.Feedback",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.CoreAI_cw5n1h2txyewy!Global.Feedback",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.CoreAI_cw5n1h2txyewy!Global.Feedback",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.FileExplorerExtensions",
+      "exe_name": "MicrosoftWindows.Client.FileExp_cw5n1h2txyewy!Global.FileExplorerExtensions",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.FileExp_cw5n1h2txyewy!Global.FileExplorerExtensions",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.FileExp_cw5n1h2txyewy!Global.FileExplorerExtensions",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.IrisService",
+      "exe_name": "MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.IrisService",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.IrisService",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.IrisService",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.LiveCaptionsDesktop",
+      "exe_name": "MicrosoftWindows.60719895.Livtop_cw5n1h2txyewy!Global.LiveCaptionsDesktop",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.60719895.Livtop_cw5n1h2txyewy!Global.LiveCaptionsDesktop",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.60719895.Livtop_cw5n1h2txyewy!Global.LiveCaptionsDesktop",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.LockCanvas",
+      "exe_name": "MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.LockCanvas",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.LockCanvas",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.LockCanvas",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.MicrosoftGraphRecentItemsManager",
+      "exe_name": "MicrosoftWindows.Client.Core_cw5n1h2txyewy!Global.MicrosoftGraphRecentItemsManager",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.Core_cw5n1h2txyewy!Global.MicrosoftGraphRecentItemsManager",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.Core_cw5n1h2txyewy!Global.MicrosoftGraphRecentItemsManager",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.ModelManagementUX",
+      "exe_name": "MicrosoftWindows.Client.CoreAI_cw5n1h2txyewy!Global.ModelManagementUX",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.CoreAI_cw5n1h2txyewy!Global.ModelManagementUX",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.CoreAI_cw5n1h2txyewy!Global.ModelManagementUX",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.PeopleExperiencePlatform",
+      "exe_name": "MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.PeopleExperiencePlatform",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.PeopleExperiencePlatform",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.PeopleExperiencePlatform",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.PeopleWidget",
+      "exe_name": "MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.PeopleWidget",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.PeopleWidget",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.PeopleWidget",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.PersonaCardManager",
+      "exe_name": "MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.PersonaCardManager",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.PersonaCardManager",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.PersonaCardManager",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.RulesEngine",
+      "exe_name": "MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.RulesEngine",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.RulesEngine",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.RulesEngine",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.SnapLayout",
+      "exe_name": "MicrosoftWindows.Client.Core_cw5n1h2txyewy!Global.SnapLayout",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.Core_cw5n1h2txyewy!Global.SnapLayout",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.Core_cw5n1h2txyewy!Global.SnapLayout",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.SpeechRecognizerExtension",
+      "exe_name": "MicrosoftWindows.60719890.Voiess_cw5n1h2txyewy!Global.SpeechRecognizerExtension",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.60719890.Voiess_cw5n1h2txyewy!Global.SpeechRecognizerExtension",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.60719890.Voiess_cw5n1h2txyewy!Global.SpeechRecognizerExtension",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.SpeechSynthesizerExtension",
+      "exe_name": "MicrosoftWindows.60719896.Speion_cw5n1h2txyewy!Global.SpeechSynthesizerExtension",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.60719896.Speion_cw5n1h2txyewy!Global.SpeechSynthesizerExtension",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.60719896.Speion_cw5n1h2txyewy!Global.SpeechSynthesizerExtension",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.StartMenu",
+      "exe_name": "MicrosoftWindows.Client.Core_cw5n1h2txyewy!Global.StartMenu",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.Core_cw5n1h2txyewy!Global.StartMenu",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.Core_cw5n1h2txyewy!Global.StartMenu",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.SystemTray",
+      "exe_name": "MicrosoftWindows.57242383.Tasbar_cw5n1h2txyewy!Global.SystemTray",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.57242383.Tasbar_cw5n1h2txyewy!Global.SystemTray",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.57242383.Tasbar_cw5n1h2txyewy!Global.SystemTray",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.Taskbar",
+      "exe_name": "MicrosoftWindows.57242383.Tasbar_cw5n1h2txyewy!Global.Taskbar",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.57242383.Tasbar_cw5n1h2txyewy!Global.Taskbar",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.57242383.Tasbar_cw5n1h2txyewy!Global.Taskbar",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.TextInputExtensions",
+      "exe_name": "MicrosoftWindows.60719898.InpApp_cw5n1h2txyewy!Global.TextInputExtensions",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.60719898.InpApp_cw5n1h2txyewy!Global.TextInputExtensions",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.60719898.InpApp_cw5n1h2txyewy!Global.TextInputExtensions",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.TwinSxS",
+      "exe_name": "MicrosoftWindows.Client.Core_cw5n1h2txyewy!Global.TwinSxS",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.Core_cw5n1h2txyewy!Global.TwinSxS",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.Core_cw5n1h2txyewy!Global.TwinSxS",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.ValueBanner",
+      "exe_name": "MicrosoftWindows.Client.Core_cw5n1h2txyewy!Global.ValueBanner",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.Core_cw5n1h2txyewy!Global.ValueBanner",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.Core_cw5n1h2txyewy!Global.ValueBanner",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.VoiceAccessHost",
+      "exe_name": "MicrosoftWindows.60719890.Voiess_cw5n1h2txyewy!Global.VoiceAccessHost",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.60719890.Voiess_cw5n1h2txyewy!Global.VoiceAccessHost",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.60719890.Voiess_cw5n1h2txyewy!Global.VoiceAccessHost",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.VoiceAccessPlugin",
+      "exe_name": "MicrosoftWindows.60719890.Voiess_cw5n1h2txyewy!Global.VoiceAccessPlugin",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.60719890.Voiess_cw5n1h2txyewy!Global.VoiceAccessPlugin",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.60719890.Voiess_cw5n1h2txyewy!Global.VoiceAccessPlugin",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.WidgetDataModel",
+      "exe_name": "MicrosoftWindows.Client.WebExperience_cw5n1h2txyewy!Global.WidgetDataModel",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.WebExperience_cw5n1h2txyewy!Global.WidgetDataModel",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.WebExperience_cw5n1h2txyewy!Global.WidgetDataModel",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.WidgetPicker",
+      "exe_name": "MicrosoftWindows.Client.WebExperience_cw5n1h2txyewy!Global.WidgetPicker",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.WebExperience_cw5n1h2txyewy!Global.WidgetPicker",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.WebExperience_cw5n1h2txyewy!Global.WidgetPicker",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.WidgetViewUWP",
+      "exe_name": "MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.WidgetViewUWP",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.WidgetViewUWP",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.WidgetViewUWP",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.WidgetViewWinUI3",
+      "exe_name": "MicrosoftWindows.Client.WebExperience_cw5n1h2txyewy!Global.WidgetViewWinUI3",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.WebExperience_cw5n1h2txyewy!Global.WidgetViewWinUI3",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.WebExperience_cw5n1h2txyewy!Global.WidgetViewWinUI3",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.WindowsMigration",
+      "exe_name": "MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.WindowsMigration",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.WindowsMigration",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.WindowsMigration",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.WindowsOobeAppHost",
+      "exe_name": "MicrosoftWindows.Client.OOBE_cw5n1h2txyewy!Global.WindowsOobeAppHost",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.OOBE_cw5n1h2txyewy!Global.WindowsOobeAppHost",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.OOBE_cw5n1h2txyewy!Global.WindowsOobeAppHost",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.WindowsPeopleExperience",
+      "exe_name": "MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.WindowsPeopleExperience",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.WindowsPeopleExperience",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.WindowsPeopleExperience",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.WindowsPersonaCard",
+      "exe_name": "MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.WindowsPersonaCard",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.WindowsPersonaCard",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.WindowsPersonaCard",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.wsw",
+      "exe_name": "MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.wsw",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.wsw",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!Global.wsw",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Global.WsxPackManager",
+      "exe_name": "MicrosoftWindows.Client.Photon_cw5n1h2txyewy!Global.WsxPackManager",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.Photon_cw5n1h2txyewy!Global.WsxPackManager",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.Photon_cw5n1h2txyewy!Global.WsxPackManager",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
       "name": "GoLand 2025.3",
       "exe_name": "goland64.exe",
       "full_path": "D:\\GoLand 2025.3\\bin\\goland64.exe",
@@ -773,6 +1439,24 @@
       "args": [],
       "app_type": "lnk",
       "publisher": ""
+    },
+    {
+      "name": "H E I F Image Extension",
+      "exe_name": "Microsoft.HEIFImageExtension_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.HEIFImageExtension_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.HEIFImageExtension_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "H E V C Video Extension",
+      "exe_name": "Microsoft.HEVCVideoExtension_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.HEVCVideoExtension_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.HEVCVideoExtension_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
     },
     {
       "name": "IDLE (Python 3.10 64-bit)",
@@ -817,6 +1501,15 @@
       ],
       "app_type": "lnk",
       "publisher": ""
+    },
+    {
+      "name": "immersivecontrolpanel",
+      "exe_name": "windows.immersivecontrolpanel_cw5n1h2txyewy!microsoft.windows.immersivecontrolpanel",
+      "full_path": "shell:AppsFolder\\windows.immersivecontrolpanel_cw5n1h2txyewy!microsoft.windows.immersivecontrolpanel",
+      "resolved_path": "shell:AppsFolder\\windows.immersivecontrolpanel_cw5n1h2txyewy!microsoft.windows.immersivecontrolpanel",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
     },
     {
       "name": "Instagram",
@@ -887,8 +1580,8 @@
     {
       "name": "Launch APP Center",
       "exe_name": "RunUpd.exe_5A66DF1D3F3F46A5BDB6096EE00EA84F.exe",
-      "full_path": "C:\\Windows\\Installer\\{D50BEE9A-0EC6-4A58-BF90-35BDC6D6495D}\\RunUpd.exe_5A66DF1D3F3F46A5BDB6096EE00EA84F.exe",
-      "resolved_path": "C:\\Windows\\Installer\\{D50BEE9A-0EC6-4A58-BF90-35BDC6D6495D}\\RunUpd.exe_5A66DF1D3F3F46A5BDB6096EE00EA84F.exe",
+      "full_path": "C:\\WINDOWS\\Installer\\{D50BEE9A-0EC6-4A58-BF90-35BDC6D6495D}\\RunUpd.exe_5A66DF1D3F3F46A5BDB6096EE00EA84F.exe",
+      "resolved_path": "C:\\WINDOWS\\Installer\\{D50BEE9A-0EC6-4A58-BF90-35BDC6D6495D}\\RunUpd.exe_5A66DF1D3F3F46A5BDB6096EE00EA84F.exe",
       "args": [],
       "app_type": "lnk",
       "publisher": ""
@@ -910,6 +1603,51 @@
       "args": [],
       "app_type": "lnk",
       "publisher": ""
+    },
+    {
+      "name": "Lively Wallpaper",
+      "exe_name": "12030rocksdanister.LivelyWallpaper_97hta09mmv6hy!App",
+      "full_path": "shell:AppsFolder\\12030rocksdanister.LivelyWallpaper_97hta09mmv6hy!App",
+      "resolved_path": "shell:AppsFolder\\12030rocksdanister.LivelyWallpaper_97hta09mmv6hy!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Local Artificial Intelligence Manager",
+      "exe_name": "aimgr_8wekyb3d8bbwe!aimgr",
+      "full_path": "shell:AppsFolder\\aimgr_8wekyb3d8bbwe!aimgr",
+      "resolved_path": "shell:AppsFolder\\aimgr_8wekyb3d8bbwe!aimgr",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Lock App",
+      "exe_name": "Microsoft.LockApp_cw5n1h2txyewy!WindowsDefaultLockScreen",
+      "full_path": "shell:AppsFolder\\Microsoft.LockApp_cw5n1h2txyewy!WindowsDefaultLockScreen",
+      "resolved_path": "shell:AppsFolder\\Microsoft.LockApp_cw5n1h2txyewy!WindowsDefaultLockScreen",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "LogonWebHost",
+      "exe_name": "MicrosoftWindows.Client.Core_cw5n1h2txyewy!LogonWebHost",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.Core_cw5n1h2txyewy!LogonWebHost",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.Core_cw5n1h2txyewy!LogonWebHost",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "M P E G2 Video Extension",
+      "exe_name": "Microsoft.MPEG2VideoExtension_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.MPEG2VideoExtension_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.MPEG2VideoExtension_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
     },
     {
       "name": "Magnify",
@@ -939,22 +1677,58 @@
       "publisher": "Microsoft Corporation"
     },
     {
+      "name": "Microsoft 365 Copilot",
+      "exe_name": "Microsoft.MicrosoftOfficeHub_8wekyb3d8bbwe!Microsoft.MicrosoftOfficeHub",
+      "full_path": "shell:AppsFolder\\Microsoft.MicrosoftOfficeHub_8wekyb3d8bbwe!Microsoft.MicrosoftOfficeHub",
+      "resolved_path": "shell:AppsFolder\\Microsoft.MicrosoftOfficeHub_8wekyb3d8bbwe!Microsoft.MicrosoftOfficeHub",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Microsoft 365 Push Notifications Utility",
+      "exe_name": "Microsoft.OfficePushNotificationUtility_8wekyb3d8bbwe!OPushUtil",
+      "full_path": "shell:AppsFolder\\Microsoft.OfficePushNotificationUtility_8wekyb3d8bbwe!OPushUtil",
+      "resolved_path": "shell:AppsFolder\\Microsoft.OfficePushNotificationUtility_8wekyb3d8bbwe!OPushUtil",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
       "name": "Microsoft Edge",
       "exe_name": "msedge.exe",
-      "full_path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\146.0.3856.72\\msedge.exe",
-      "resolved_path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\146.0.3856.72\\msedge.exe",
+      "full_path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\146.0.3856.109\\msedge.exe",
+      "resolved_path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\146.0.3856.109\\msedge.exe",
       "args": [],
       "app_type": "exe",
       "publisher": "Microsoft Corporation"
     },
     {
+      "name": "Microsoft Edge Dev Tools Client",
+      "exe_name": "Microsoft.MicrosoftEdgeDevToolsClient_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.MicrosoftEdgeDevToolsClient_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.MicrosoftEdgeDevToolsClient_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
       "name": "Microsoft Edge WebView2 Runtime",
       "exe_name": "msedgewebview2.exe",
-      "full_path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\146.0.3856.78\\msedgewebview2.exe",
-      "resolved_path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\146.0.3856.78\\msedgewebview2.exe",
+      "full_path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\146.0.3856.109\\msedgewebview2.exe",
+      "resolved_path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\146.0.3856.109\\msedgewebview2.exe",
       "args": [],
       "app_type": "exe",
       "publisher": "Microsoft Corporation"
+    },
+    {
+      "name": "Microsoft Office",
+      "exe_name": "Microsoft.Office.ActionsServer_8wekyb3d8bbwe!Microsoft.Office.ActionsServer",
+      "full_path": "shell:AppsFolder\\Microsoft.Office.ActionsServer_8wekyb3d8bbwe!Microsoft.Office.ActionsServer",
+      "resolved_path": "shell:AppsFolder\\Microsoft.Office.ActionsServer_8wekyb3d8bbwe!Microsoft.Office.ActionsServer",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
     },
     {
       "name": "Microsoft Office Professional Plus 2021 - en-us",
@@ -964,6 +1738,60 @@
       "args": [],
       "app_type": "exe",
       "publisher": "Microsoft Corporation"
+    },
+    {
+      "name": "Microsoft Sticky Notes",
+      "exe_name": "Microsoft.MicrosoftStickyNotes_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.MicrosoftStickyNotes_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.MicrosoftStickyNotes_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Microsoft Store",
+      "exe_name": "Microsoft.WindowsStore_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.WindowsStore_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.WindowsStore_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Microsoft Store CLI tool",
+      "exe_name": "Microsoft.WindowsStore_8wekyb3d8bbwe!StoreCLI",
+      "full_path": "shell:AppsFolder\\Microsoft.WindowsStore_8wekyb3d8bbwe!StoreCLI",
+      "resolved_path": "shell:AppsFolder\\Microsoft.WindowsStore_8wekyb3d8bbwe!StoreCLI",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Microsoft Store Server",
+      "exe_name": "Microsoft.WindowsStore_8wekyb3d8bbwe!StoreDesktopExtension",
+      "full_path": "shell:AppsFolder\\Microsoft.WindowsStore_8wekyb3d8bbwe!StoreDesktopExtension",
+      "resolved_path": "shell:AppsFolder\\Microsoft.WindowsStore_8wekyb3d8bbwe!StoreDesktopExtension",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Microsoft Teams",
+      "exe_name": "MSTeams_8wekyb3d8bbwe!MSTeams",
+      "full_path": "shell:AppsFolder\\MSTeams_8wekyb3d8bbwe!MSTeams",
+      "resolved_path": "shell:AppsFolder\\MSTeams_8wekyb3d8bbwe!MSTeams",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Microsoft Teams Remote Module Container",
+      "exe_name": "MSTeams_8wekyb3d8bbwe!MSTeamsRemoteModuleContainer",
+      "full_path": "shell:AppsFolder\\MSTeams_8wekyb3d8bbwe!MSTeamsRemoteModuleContainer",
+      "resolved_path": "shell:AppsFolder\\MSTeams_8wekyb3d8bbwe!MSTeamsRemoteModuleContainer",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
     },
     {
       "name": "Microsoft Visual C++ 2012 Redistributable (x64) - 11.0.61030",
@@ -1020,528 +1848,6 @@
       "publisher": "Microsoft Corporation"
     },
     {
-      "name": "Microsoft.ApplicationCompatibilityEnhancements_1.2511.9.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.ApplicationCompatibilityEnhancements_1.2511.9.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.ApplicationCompatibilityEnhancements_1.2511.9.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.ApplicationCompatibilityEnhancements_1.2511.9.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.AV1VideoExtension_2.0.7.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.AV1VideoExtension_2.0.7.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.AV1VideoExtension_2.0.7.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.AV1VideoExtension_2.0.7.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.AVCEncoderVideoExtension_1.1.23.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.AVCEncoderVideoExtension_1.1.23.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.AVCEncoderVideoExtension_1.1.23.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.AVCEncoderVideoExtension_1.1.23.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.BingNews_4.8.11001.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.BingNews_4.8.11001.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.BingNews_4.8.11001.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.BingNews_4.8.11001.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.BingSearch_2022.1.43.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.BingSearch_2022.1.43.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.BingSearch_2022.1.43.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.BingSearch_2022.1.43.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.BingWeather_4.54.63029.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.BingWeather_4.54.63029.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.BingWeather_4.54.63029.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.BingWeather_4.54.63029.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.DesktopAppInstaller_2026.306.1850.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.DesktopAppInstaller_2026.306.1850.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.DesktopAppInstaller_2026.306.1850.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.DesktopAppInstaller_2026.306.1850.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.GamingApp_2603.1001.17.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.GamingApp_2603.1001.17.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.GamingApp_2603.1001.17.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.GamingApp_2603.1001.17.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.GetHelp_10.2409.33293.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.GetHelp_10.2409.33293.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.GetHelp_10.2409.33293.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.GetHelp_10.2409.33293.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.HEIFImageExtension_1.2.29.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.HEIFImageExtension_1.2.29.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.HEIFImageExtension_1.2.29.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.HEIFImageExtension_1.2.29.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.HEVCVideoExtension_2.4.43.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.HEVCVideoExtension_2.4.43.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.HEVCVideoExtension_2.4.43.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.HEVCVideoExtension_2.4.43.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.MicrosoftEdge.Stable_142.0.3595.94_neutral__8wekyb3d8bbwe",
-      "exe_name": "Microsoft.MicrosoftEdge.Stable_142.0.3595.94_neutral__8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.MicrosoftEdge.Stable_142.0.3595.94_neutral__8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.MicrosoftEdge.Stable_142.0.3595.94_neutral__8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.MicrosoftOfficeHub_2026.323.1412.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.MicrosoftOfficeHub_2026.323.1412.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.MicrosoftOfficeHub_2026.323.1412.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.MicrosoftOfficeHub_2026.323.1412.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.MicrosoftSolitaireCollection_4.25.3102.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.MicrosoftSolitaireCollection_4.25.3102.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.MicrosoftSolitaireCollection_4.25.3102.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.MicrosoftSolitaireCollection_4.25.3102.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.MicrosoftStickyNotes_6.1.4.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.MicrosoftStickyNotes_6.1.4.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.MicrosoftStickyNotes_6.1.4.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.MicrosoftStickyNotes_6.1.4.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.MPEG2VideoExtension_1.2.13.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.MPEG2VideoExtension_1.2.13.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.MPEG2VideoExtension_1.2.13.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.MPEG2VideoExtension_1.2.13.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.Office.ActionsServer_16.0.19328.20244_neutral__8wekyb3d8bbwe",
-      "exe_name": "Microsoft.Office.ActionsServer_16.0.19328.20244_neutral__8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.Office.ActionsServer_16.0.19328.20244_neutral__8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.Office.ActionsServer_16.0.19328.20244_neutral__8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.OfficePushNotificationUtility_16.0.19328.20244_neutral__8wekyb3d8bbwe",
-      "exe_name": "Microsoft.OfficePushNotificationUtility_16.0.19328.20244_neutral__8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.OfficePushNotificationUtility_16.0.19328.20244_neutral__8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.OfficePushNotificationUtility_16.0.19328.20244_neutral__8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.OneDriveSync_26035.222.2.0_neutral__8wekyb3d8bbwe",
-      "exe_name": "Microsoft.OneDriveSync_26035.222.2.0_neutral__8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.OneDriveSync_26035.222.2.0_neutral__8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.OneDriveSync_26035.222.2.0_neutral__8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.OutlookForWindows_1.2026.303.100_x64__8wekyb3d8bbwe",
-      "exe_name": "Microsoft.OutlookForWindows_1.2026.303.100_x64__8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.OutlookForWindows_1.2026.303.100_x64__8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.OutlookForWindows_1.2026.303.100_x64__8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.Paint_11.2601.401.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.Paint_11.2601.401.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.Paint_11.2601.401.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.Paint_11.2601.401.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.People_2021.2202.100.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.People_2021.2202.100.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.People_2021.2202.100.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.People_2021.2202.100.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.PowerAutomateDesktop_11.2602.145.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.PowerAutomateDesktop_11.2602.145.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.PowerAutomateDesktop_11.2602.145.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.PowerAutomateDesktop_11.2602.145.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.RawImageExtension_2.5.7.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.RawImageExtension_2.5.7.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.RawImageExtension_2.5.7.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.RawImageExtension_2.5.7.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.ScreenSketch_2022.2601.2.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.ScreenSketch_2022.2601.2.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.ScreenSketch_2022.2601.2.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.ScreenSketch_2022.2601.2.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.SecHealthUI_1000.29510.1001.0_x64__8wekyb3d8bbwe",
-      "exe_name": "Microsoft.SecHealthUI_1000.29510.1001.0_x64__8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.SecHealthUI_1000.29510.1001.0_x64__8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.SecHealthUI_1000.29510.1001.0_x64__8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.StorePurchaseApp_22601.1401.1.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.StorePurchaseApp_22601.1401.1.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.StorePurchaseApp_22601.1401.1.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.StorePurchaseApp_22601.1401.1.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.Todos_2.172.6603.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.Todos_2.172.6603.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.Todos_2.172.6603.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.Todos_2.172.6603.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.VCLibs.140.00_14.0.33519.0_x64__8wekyb3d8bbwe",
-      "exe_name": "Microsoft.VCLibs.140.00_14.0.33519.0_x64__8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.VCLibs.140.00_14.0.33519.0_x64__8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.VCLibs.140.00_14.0.33519.0_x64__8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.VP9VideoExtensions_1.2.12.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.VP9VideoExtensions_1.2.12.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.VP9VideoExtensions_1.2.12.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.VP9VideoExtensions_1.2.12.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.WebMediaExtensions_1.2.17.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.WebMediaExtensions_1.2.17.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.WebMediaExtensions_1.2.17.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.WebMediaExtensions_1.2.17.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.WebpImageExtension_1.2.14.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.WebpImageExtension_1.2.14.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.WebpImageExtension_1.2.14.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.WebpImageExtension_1.2.14.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.Windows.DevHome_2024.401.618.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.Windows.DevHome_2024.401.618.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.Windows.DevHome_2024.401.618.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.Windows.DevHome_2024.401.618.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.Windows.Photos_2026.11020.20001.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.Windows.Photos_2026.11020.20001.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.Windows.Photos_2026.11020.20001.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.Windows.Photos_2026.11020.20001.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.WindowsAlarms_2021.2512.0.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.WindowsAlarms_2021.2512.0.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.WindowsAlarms_2021.2512.0.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.WindowsAlarms_2021.2512.0.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.WindowsCalculator_2021.2508.4.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.WindowsCalculator_2021.2508.4.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.WindowsCalculator_2021.2508.4.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.WindowsCalculator_2021.2508.4.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.WindowsCamera_2022.2510.2.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.WindowsCamera_2022.2510.2.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.WindowsCamera_2022.2510.2.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.WindowsCamera_2022.2510.2.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "microsoft.windowscommunicationsapps_16005.14326.22342.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "microsoft.windowscommunicationsapps_16005.14326.22342.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\microsoft.windowscommunicationsapps_16005.14326.22342.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\microsoft.windowscommunicationsapps_16005.14326.22342.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.WindowsFeedbackHub_2026.213.1621.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.WindowsFeedbackHub_2026.213.1621.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.WindowsFeedbackHub_2026.213.1621.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.WindowsFeedbackHub_2026.213.1621.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.WindowsMaps_2022.2506.3.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.WindowsMaps_2022.2506.3.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.WindowsMaps_2022.2506.3.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.WindowsMaps_2022.2506.3.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.WindowsNotepad_11.2512.26.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.WindowsNotepad_11.2512.26.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.WindowsNotepad_11.2512.26.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.WindowsNotepad_11.2512.26.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.WindowsSoundRecorder_2021.2512.0.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.WindowsSoundRecorder_2021.2512.0.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.WindowsSoundRecorder_2021.2512.0.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.WindowsSoundRecorder_2021.2512.0.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.WindowsStore_22602.1401.3.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.WindowsStore_22602.1401.3.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.WindowsStore_22602.1401.3.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.WindowsStore_22602.1401.3.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.WindowsTerminal_3001.23.20211.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.WindowsTerminal_3001.23.20211.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.WindowsTerminal_3001.23.20211.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.WindowsTerminal_3001.23.20211.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.Xbox.TCUI_1.24.10001.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.Xbox.TCUI_1.24.10001.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.Xbox.TCUI_1.24.10001.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.Xbox.TCUI_1.24.10001.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.XboxGameOverlay_1.54.4001.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.XboxGameOverlay_1.54.4001.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.XboxGameOverlay_1.54.4001.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.XboxGameOverlay_1.54.4001.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.XboxGamingOverlay_7.326.2102.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.XboxGamingOverlay_7.326.2102.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.XboxGamingOverlay_7.326.2102.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.XboxGamingOverlay_7.326.2102.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.XboxIdentityProvider_12.130.16001.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.XboxIdentityProvider_12.130.16001.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.XboxIdentityProvider_12.130.16001.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.XboxIdentityProvider_12.130.16001.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.XboxSpeechToTextOverlay_1.21.13002.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.XboxSpeechToTextOverlay_1.21.13002.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.XboxSpeechToTextOverlay_1.21.13002.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.XboxSpeechToTextOverlay_1.21.13002.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.YourPhone_1.26012.101.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.YourPhone_1.26012.101.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.YourPhone_1.26012.101.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.YourPhone_1.26012.101.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.ZuneMusic_11.2601.11.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.ZuneMusic_11.2601.11.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.ZuneMusic_11.2601.11.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.ZuneMusic_11.2601.11.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "Microsoft.ZuneVideo_2019.25121.10051.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "Microsoft.ZuneVideo_2019.25121.10051.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\Microsoft.ZuneVideo_2019.25121.10051.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\Microsoft.ZuneVideo_2019.25121.10051.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "MicrosoftCorporationII.QuickAssist_2026.219.226.0_neutral_~_8wekyb3d8bbwe",
-      "exe_name": "MicrosoftCorporationII.QuickAssist_2026.219.226.0_neutral_~_8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\MicrosoftCorporationII.QuickAssist_2026.219.226.0_neutral_~_8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\MicrosoftCorporationII.QuickAssist_2026.219.226.0_neutral_~_8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "MicrosoftCorporationII.WinAppRuntime.Main.1.8_8000.770.947.0_x64__8wekyb3d8bbwe",
-      "exe_name": "MicrosoftCorporationII.WinAppRuntime.Main.1.8_8000.770.947.0_x64__8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\MicrosoftCorporationII.WinAppRuntime.Main.1.8_8000.770.947.0_x64__8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\MicrosoftCorporationII.WinAppRuntime.Main.1.8_8000.770.947.0_x64__8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "MicrosoftCorporationII.WindowsSubsystemForLinux_2.6.1.0_x64__8wekyb3d8bbwe",
-      "exe_name": "MicrosoftCorporationII.WindowsSubsystemForLinux_2.6.1.0_x64__8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\MicrosoftCorporationII.WindowsSubsystemForLinux_2.6.1.0_x64__8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\MicrosoftCorporationII.WindowsSubsystemForLinux_2.6.1.0_x64__8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "MicrosoftTeams_25306.704.4082.2816_x64__8wekyb3d8bbwe",
-      "exe_name": "MicrosoftTeams_25306.704.4082.2816_x64__8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\MicrosoftTeams_25306.704.4082.2816_x64__8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\MicrosoftTeams_25306.704.4082.2816_x64__8wekyb3d8bbwe",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "MicrosoftWindows.Client.WebExperience_526.1202.40.0_neutral_~_cw5n1h2txyewy",
-      "exe_name": "MicrosoftWindows.Client.WebExperience_526.1202.40.0_neutral_~_cw5n1h2txyewy",
-      "full_path": "shell:appsFolder\\MicrosoftWindows.Client.WebExperience_526.1202.40.0_neutral_~_cw5n1h2txyewy",
-      "resolved_path": "shell:appsFolder\\MicrosoftWindows.Client.WebExperience_526.1202.40.0_neutral_~_cw5n1h2txyewy",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
-      "name": "MicrosoftWindows.CrossDevice_1.26012.79.0_neutral_~_cw5n1h2txyewy",
-      "exe_name": "MicrosoftWindows.CrossDevice_1.26012.79.0_neutral_~_cw5n1h2txyewy",
-      "full_path": "shell:appsFolder\\MicrosoftWindows.CrossDevice_1.26012.79.0_neutral_~_cw5n1h2txyewy",
-      "resolved_path": "shell:appsFolder\\MicrosoftWindows.CrossDevice_1.26012.79.0_neutral_~_cw5n1h2txyewy",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
-    },
-    {
       "name": "Mozilla Firefox (x64 en-US)",
       "exe_name": "firefox.exe",
       "full_path": "C:\\Program Files\\Mozilla Firefox\\firefox.exe",
@@ -1549,6 +1855,15 @@
       "args": [],
       "app_type": "exe",
       "publisher": "Mozilla"
+    },
+    {
+      "name": "ms-teamsupdate",
+      "exe_name": "MSTeams_8wekyb3d8bbwe!MSTeams.Update",
+      "full_path": "shell:AppsFolder\\MSTeams_8wekyb3d8bbwe!MSTeams.Update",
+      "resolved_path": "shell:AppsFolder\\MSTeams_8wekyb3d8bbwe!MSTeams.Update",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
     },
     {
       "name": "MSI Afterburner",
@@ -1578,13 +1893,13 @@
       "publisher": ""
     },
     {
-      "name": "MSTeams_26043.2016.4478.2773_x64__8wekyb3d8bbwe",
-      "exe_name": "MSTeams_26043.2016.4478.2773_x64__8wekyb3d8bbwe",
-      "full_path": "shell:appsFolder\\MSTeams_26043.2016.4478.2773_x64__8wekyb3d8bbwe",
-      "resolved_path": "shell:appsFolder\\MSTeams_26043.2016.4478.2773_x64__8wekyb3d8bbwe",
+      "name": "msteamsautostarter",
+      "exe_name": "MSTeams_8wekyb3d8bbwe!msteamsautostarter",
+      "full_path": "shell:AppsFolder\\MSTeams_8wekyb3d8bbwe!msteamsautostarter",
+      "resolved_path": "shell:AppsFolder\\MSTeams_8wekyb3d8bbwe!msteamsautostarter",
       "args": [],
-      "app_type": "pwa",
-      "publisher": ""
+      "app_type": "uwp",
+      "publisher": "unknown"
     },
     {
       "name": "MSYS2",
@@ -1648,6 +1963,15 @@
       "args": [],
       "app_type": "lnk",
       "publisher": ""
+    },
+    {
+      "name": "Netflix",
+      "exe_name": "4DF9E0F8.Netflix_mcm4njqhnhss8!Netflix.App",
+      "full_path": "shell:AppsFolder\\4DF9E0F8.Netflix_mcm4njqhnhss8!Netflix.App",
+      "resolved_path": "shell:AppsFolder\\4DF9E0F8.Netflix_mcm4njqhnhss8!Netflix.App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
     },
     {
       "name": "Nmap - Zenmap GUI",
@@ -1725,6 +2049,15 @@
       "publisher": ""
     },
     {
+      "name": "NVIDIA Control Panel",
+      "exe_name": "NVIDIACorp.NVIDIAControlPanel_56jybvy8sckqj!NVIDIACorp.NVIDIAControlPanel",
+      "full_path": "shell:AppsFolder\\NVIDIACorp.NVIDIAControlPanel_56jybvy8sckqj!NVIDIACorp.NVIDIAControlPanel",
+      "resolved_path": "shell:AppsFolder\\NVIDIACorp.NVIDIAControlPanel_56jybvy8sckqj!NVIDIACorp.NVIDIAControlPanel",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
       "name": "NVIDIA CUDA Documentation 12.1",
       "exe_name": "at.exe",
       "full_path": "C:\\WINDOWS\\SysWOW64\\at.exe",
@@ -1732,15 +2065,6 @@
       "args": [],
       "app_type": "exe",
       "publisher": "NVIDIA Corporation"
-    },
-    {
-      "name": "NVIDIACorp.NVIDIAControlPanel_8.1.969.0_x64__56jybvy8sckqj",
-      "exe_name": "NVIDIACorp.NVIDIAControlPanel_8.1.969.0_x64__56jybvy8sckqj",
-      "full_path": "shell:appsFolder\\NVIDIACorp.NVIDIAControlPanel_8.1.969.0_x64__56jybvy8sckqj",
-      "resolved_path": "shell:appsFolder\\NVIDIACorp.NVIDIAControlPanel_8.1.969.0_x64__56jybvy8sckqj",
-      "args": [],
-      "app_type": "pwa",
-      "publisher": ""
     },
     {
       "name": "nvprune",
@@ -1788,6 +2112,24 @@
       "publisher": ""
     },
     {
+      "name": "Ollama",
+      "exe_name": "ollama app.exe",
+      "full_path": "C:\\Users\\Admin\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+      "resolved_path": "C:\\Users\\Admin\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+      "args": [],
+      "app_type": "lnk",
+      "publisher": ""
+    },
+    {
+      "name": "Ollama version 0.18.2",
+      "exe_name": "unins000.exe",
+      "full_path": "C:\\Users\\Admin\\AppData\\Local\\Programs\\Ollama\\unins000.exe",
+      "resolved_path": "C:\\Users\\Admin\\AppData\\Local\\Programs\\Ollama\\unins000.exe",
+      "args": [],
+      "app_type": "exe",
+      "publisher": "Ollama"
+    },
+    {
       "name": "On-Screen Keyboard",
       "exe_name": "osk.exe",
       "full_path": "C:\\WINDOWS\\system32\\osk.exe",
@@ -1795,6 +2137,15 @@
       "args": [],
       "app_type": "lnk",
       "publisher": ""
+    },
+    {
+      "name": "One Drive Sync",
+      "exe_name": "Microsoft.OneDriveSync_8wekyb3d8bbwe!Microsoft.OneDrive.ActionsServer",
+      "full_path": "shell:AppsFolder\\Microsoft.OneDriveSync_8wekyb3d8bbwe!Microsoft.OneDrive.ActionsServer",
+      "resolved_path": "shell:AppsFolder\\Microsoft.OneDriveSync_8wekyb3d8bbwe!Microsoft.OneDrive.ActionsServer",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
     },
     {
       "name": "OneDrive",
@@ -1813,6 +2164,15 @@
       "args": [],
       "app_type": "lnk",
       "publisher": ""
+    },
+    {
+      "name": "Outlook",
+      "exe_name": "Microsoft.OutlookForWindows_8wekyb3d8bbwe!Microsoft.OutlookforWindows",
+      "full_path": "shell:AppsFolder\\Microsoft.OutlookForWindows_8wekyb3d8bbwe!Microsoft.OutlookforWindows",
+      "resolved_path": "shell:AppsFolder\\Microsoft.OutlookForWindows_8wekyb3d8bbwe!Microsoft.OutlookforWindows",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
     },
     {
       "name": "Outlook (classic)",
@@ -1845,6 +2205,24 @@
       "publisher": "Overwolf Ltd."
     },
     {
+      "name": "Paint",
+      "exe_name": "Microsoft.Paint_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.Paint_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.Paint_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "People",
+      "exe_name": "Microsoft.People_8wekyb3d8bbwe!x4c7a3b7dy2188y46d4ya362y19ac5a5805e5x",
+      "full_path": "shell:AppsFolder\\Microsoft.People_8wekyb3d8bbwe!x4c7a3b7dy2188y46d4ya362y19ac5a5805e5x",
+      "resolved_path": "shell:AppsFolder\\Microsoft.People_8wekyb3d8bbwe!x4c7a3b7dy2188y46d4ya362y19ac5a5805e5x",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
       "name": "Performance Monitor",
       "exe_name": "perfmon.msc",
       "full_path": "C:\\WINDOWS\\system32\\perfmon.msc",
@@ -1854,6 +2232,15 @@
       ],
       "app_type": "lnk",
       "publisher": ""
+    },
+    {
+      "name": "PinningConfirmationDialog",
+      "exe_name": "Microsoft.Windows.PinningConfirmationDialog_cw5n1h2txyewy!App",
+      "full_path": "shell:AppsFolder\\Microsoft.Windows.PinningConfirmationDialog_cw5n1h2txyewy!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.Windows.PinningConfirmationDialog_cw5n1h2txyewy!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
     },
     {
       "name": "Postman",
@@ -1872,6 +2259,60 @@
       "args": [],
       "app_type": "exe",
       "publisher": "Postman"
+    },
+    {
+      "name": "Power Automate",
+      "exe_name": "Microsoft.PowerAutomateDesktop_8wekyb3d8bbwe!PAD.Console",
+      "full_path": "shell:AppsFolder\\Microsoft.PowerAutomateDesktop_8wekyb3d8bbwe!PAD.Console",
+      "resolved_path": "shell:AppsFolder\\Microsoft.PowerAutomateDesktop_8wekyb3d8bbwe!PAD.Console",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Power Automate Designer",
+      "exe_name": "Microsoft.PowerAutomateDesktop_8wekyb3d8bbwe!PAD.Designer",
+      "full_path": "shell:AppsFolder\\Microsoft.PowerAutomateDesktop_8wekyb3d8bbwe!PAD.Designer",
+      "resolved_path": "shell:AppsFolder\\Microsoft.PowerAutomateDesktop_8wekyb3d8bbwe!PAD.Designer",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Power Automate Desktop Browser Native Message Host",
+      "exe_name": "Microsoft.PowerAutomateDesktop_8wekyb3d8bbwe!PAD.BrowserNativeMessageHost",
+      "full_path": "shell:AppsFolder\\Microsoft.PowerAutomateDesktop_8wekyb3d8bbwe!PAD.BrowserNativeMessageHost",
+      "resolved_path": "shell:AppsFolder\\Microsoft.PowerAutomateDesktop_8wekyb3d8bbwe!PAD.BrowserNativeMessageHost",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Power Automate Desktop Updater",
+      "exe_name": "Microsoft.PowerAutomateDesktop_8wekyb3d8bbwe!PAD.Updater.MSIX",
+      "full_path": "shell:AppsFolder\\Microsoft.PowerAutomateDesktop_8wekyb3d8bbwe!PAD.Updater.MSIX",
+      "resolved_path": "shell:AppsFolder\\Microsoft.PowerAutomateDesktop_8wekyb3d8bbwe!PAD.Updater.MSIX",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Power Automate service for Picture-in-Picture",
+      "exe_name": "Microsoft.PowerAutomateDesktop_8wekyb3d8bbwe!PAD.ChildSession.Service.Host",
+      "full_path": "shell:AppsFolder\\Microsoft.PowerAutomateDesktop_8wekyb3d8bbwe!PAD.ChildSession.Service.Host",
+      "resolved_path": "shell:AppsFolder\\Microsoft.PowerAutomateDesktop_8wekyb3d8bbwe!PAD.ChildSession.Service.Host",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Power Automate Troubleshooter",
+      "exe_name": "Microsoft.PowerAutomateDesktop_8wekyb3d8bbwe!PAD.Troubleshooter",
+      "full_path": "shell:AppsFolder\\Microsoft.PowerAutomateDesktop_8wekyb3d8bbwe!PAD.Troubleshooter",
+      "resolved_path": "shell:AppsFolder\\Microsoft.PowerAutomateDesktop_8wekyb3d8bbwe!PAD.Troubleshooter",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
     },
     {
       "name": "PowerPoint",
@@ -1902,6 +2343,15 @@
       "args": [],
       "app_type": "exe",
       "publisher": "Microsoft Corporation"
+    },
+    {
+      "name": "Print Dialog",
+      "exe_name": "Windows.PrintDialog_cw5n1h2txyewy!Microsoft.Windows.PrintDialog",
+      "full_path": "shell:AppsFolder\\Windows.PrintDialog_cw5n1h2txyewy!Microsoft.Windows.PrintDialog",
+      "resolved_path": "shell:AppsFolder\\Windows.PrintDialog_cw5n1h2txyewy!Microsoft.Windows.PrintDialog",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
     },
     {
       "name": "Print Management",
@@ -2050,6 +2500,24 @@
       "publisher": "Python Software Foundation"
     },
     {
+      "name": "Quick Assist",
+      "exe_name": "MicrosoftCorporationII.QuickAssist_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\MicrosoftCorporationII.QuickAssist_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\MicrosoftCorporationII.QuickAssist_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Raw Image Extension",
+      "exe_name": "Microsoft.RawImageExtension_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.RawImageExtension_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.RawImageExtension_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
       "name": "ReadMe",
       "exe_name": "ReadMe.pdf",
       "full_path": "C:\\Program Files (x86)\\MSI Afterburner\\Doc\\ReadMe.pdf",
@@ -2187,6 +2655,24 @@
       "publisher": ""
     },
     {
+      "name": "Screen Sketch",
+      "exe_name": "Microsoft.ScreenSketch_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.ScreenSketch_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.ScreenSketch_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Sec Health U I",
+      "exe_name": "Microsoft.SecHealthUI_8wekyb3d8bbwe!SecHealthUI",
+      "full_path": "shell:AppsFolder\\Microsoft.SecHealthUI_8wekyb3d8bbwe!SecHealthUI",
+      "resolved_path": "shell:AppsFolder\\Microsoft.SecHealthUI_8wekyb3d8bbwe!SecHealthUI",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
       "name": "Security Configuration Management",
       "exe_name": "secpol.msc",
       "full_path": "C:\\WINDOWS\\system32\\secpol.msc",
@@ -2207,6 +2693,15 @@
       "publisher": ""
     },
     {
+      "name": "SettingsModelService",
+      "exe_name": "MicrosoftWindows.Client.Core_cw5n1h2txyewy!SettingsModelService",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.Core_cw5n1h2txyewy!SettingsModelService",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.Core_cw5n1h2txyewy!SettingsModelService",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
       "name": "SIV",
       "exe_name": "ARPPRODUCTICON.exe",
       "full_path": "C:\\Windows\\Installer\\{AAA057C3-10DC-4EB9-A3D6-8208C1BB7411}\\ARPPRODUCTICON.exe",
@@ -2225,6 +2720,78 @@
       "publisher": ""
     },
     {
+      "name": "SoftLanding",
+      "exe_name": "MicrosoftWindows.Client.CBS_cw5n1h2txyewy!SoftLanding",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!SoftLanding",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy!SoftLanding",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Solitaire &amp; Casual Games",
+      "exe_name": "Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Speech Pack - English (India)",
+      "exe_name": "MicrosoftWindows.Speech.en-IN.1_cw5n1h2txyewy!SpeechPack",
+      "full_path": "shell:AppsFolder\\MicrosoftWindows.Speech.en-IN.1_cw5n1h2txyewy!SpeechPack",
+      "resolved_path": "shell:AppsFolder\\MicrosoftWindows.Speech.en-IN.1_cw5n1h2txyewy!SpeechPack",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Spotify",
+      "exe_name": "SpotifyAB.SpotifyMusic_zpdnekdrzrea0!Spotify",
+      "full_path": "shell:AppsFolder\\SpotifyAB.SpotifyMusic_zpdnekdrzrea0!Spotify",
+      "resolved_path": "shell:AppsFolder\\SpotifyAB.SpotifyMusic_zpdnekdrzrea0!Spotify",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Spotify Launcher",
+      "exe_name": "SpotifyAB.SpotifyMusic_zpdnekdrzrea0!SpotifyLauncher",
+      "full_path": "shell:AppsFolder\\SpotifyAB.SpotifyMusic_zpdnekdrzrea0!SpotifyLauncher",
+      "resolved_path": "shell:AppsFolder\\SpotifyAB.SpotifyMusic_zpdnekdrzrea0!SpotifyLauncher",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Spotify Widget",
+      "exe_name": "SpotifyAB.SpotifyMusic_zpdnekdrzrea0!Widget",
+      "full_path": "shell:AppsFolder\\SpotifyAB.SpotifyMusic_zpdnekdrzrea0!Widget",
+      "resolved_path": "shell:AppsFolder\\SpotifyAB.SpotifyMusic_zpdnekdrzrea0!Widget",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Spotify Widget Provider",
+      "exe_name": "SpotifyAB.SpotifyMusic_zpdnekdrzrea0!SpotifyWidgetProvider",
+      "full_path": "shell:AppsFolder\\SpotifyAB.SpotifyMusic_zpdnekdrzrea0!SpotifyWidgetProvider",
+      "resolved_path": "shell:AppsFolder\\SpotifyAB.SpotifyMusic_zpdnekdrzrea0!SpotifyWidgetProvider",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Start Experiences App",
+      "exe_name": "Microsoft.StartExperiencesApp_8wekyb3d8bbwe!MicrosoftStart",
+      "full_path": "shell:AppsFolder\\Microsoft.StartExperiencesApp_8wekyb3d8bbwe!MicrosoftStart",
+      "resolved_path": "shell:AppsFolder\\Microsoft.StartExperiencesApp_8wekyb3d8bbwe!MicrosoftStart",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
       "name": "Steam",
       "exe_name": "steam.exe",
       "full_path": "C:\\Program Files (x86)\\Steam\\steam.exe",
@@ -2241,6 +2808,15 @@
       "args": [],
       "app_type": "lnk",
       "publisher": ""
+    },
+    {
+      "name": "Store Purchase App",
+      "exe_name": "Microsoft.StorePurchaseApp_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.StorePurchaseApp_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.StorePurchaseApp_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
     },
     {
       "name": "System Configuration",
@@ -2310,6 +2886,15 @@
       "publisher": ""
     },
     {
+      "name": "Todos",
+      "exe_name": "Microsoft.Todos_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.Todos_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.Todos_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
       "name": "Tools for Desktop Apps",
       "exe_name": "DesktopAppsToolsDocumentation.url",
       "full_path": "C:\\Program Files (x86)\\Windows Kits\\10\\Shortcuts\\DesktopAppsToolsDocumentation.url",
@@ -2326,6 +2911,24 @@
       "args": [],
       "app_type": "lnk",
       "publisher": ""
+    },
+    {
+      "name": "TranslucentTB",
+      "exe_name": "28017CharlesMilette.TranslucentTB_v826wp6bftszj!TranslucentTB",
+      "full_path": "shell:AppsFolder\\28017CharlesMilette.TranslucentTB_v826wp6bftszj!TranslucentTB",
+      "resolved_path": "shell:AppsFolder\\28017CharlesMilette.TranslucentTB_v826wp6bftszj!TranslucentTB",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Ubuntu",
+      "exe_name": "CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc!ubuntu",
+      "full_path": "shell:AppsFolder\\CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc!ubuntu",
+      "resolved_path": "shell:AppsFolder\\CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc!ubuntu",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
     },
     {
       "name": "Unified Remote",
@@ -2439,6 +3042,15 @@
       "publisher": ""
     },
     {
+      "name": "V P9 Video Extensions",
+      "exe_name": "Microsoft.VP9VideoExtensions_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.VP9VideoExtensions_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.VP9VideoExtensions_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
       "name": "VALORANT",
       "exe_name": "VALORANT.exe",
       "full_path": "D:/Riot Games/VALORANT/live\\VALORANT.exe",
@@ -2464,6 +3076,15 @@
       "args": [],
       "app_type": "lnk",
       "publisher": ""
+    },
+    {
+      "name": "Visual Studio Code",
+      "exe_name": "Microsoft.VisualStudioCode_8wekyb3d8bbwe!VSCode",
+      "full_path": "shell:AppsFolder\\Microsoft.VisualStudioCode_8wekyb3d8bbwe!VSCode",
+      "resolved_path": "shell:AppsFolder\\Microsoft.VisualStudioCode_8wekyb3d8bbwe!VSCode",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
     },
     {
       "name": "Visual Studio Community 2026",
@@ -2511,6 +3132,24 @@
       "publisher": ""
     },
     {
+      "name": "Web Media Extensions",
+      "exe_name": "Microsoft.WebMediaExtensions_8wekyb3d8bbwe!Microsoft.WebMediaExtensions",
+      "full_path": "shell:AppsFolder\\Microsoft.WebMediaExtensions_8wekyb3d8bbwe!Microsoft.WebMediaExtensions",
+      "resolved_path": "shell:AppsFolder\\Microsoft.WebMediaExtensions_8wekyb3d8bbwe!Microsoft.WebMediaExtensions",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Webp Image Extension",
+      "exe_name": "Microsoft.WebpImageExtension_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.WebpImageExtension_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.WebpImageExtension_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
       "name": "WebStorm 2025.3",
       "exe_name": "webstorm64.exe",
       "full_path": "D:\\WebStorm 2025.3\\bin\\webstorm64.exe",
@@ -2529,6 +3168,42 @@
       "publisher": ""
     },
     {
+      "name": "WhatsApp",
+      "exe_name": "5319275A.WhatsAppDesktop_cv1g1gvanyjgm!App",
+      "full_path": "shell:AppsFolder\\5319275A.WhatsAppDesktop_cv1g1gvanyjgm!App",
+      "resolved_path": "shell:AppsFolder\\5319275A.WhatsAppDesktop_cv1g1gvanyjgm!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "WidgetsPlatformRuntime",
+      "exe_name": "Microsoft.WidgetsPlatformRuntime_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.WidgetsPlatformRuntime_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.WidgetsPlatformRuntime_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Win32 Web View Host",
+      "exe_name": "Microsoft.Win32WebViewHost_cw5n1h2txyewy!DPI.PerMonitorAware",
+      "full_path": "shell:AppsFolder\\Microsoft.Win32WebViewHost_cw5n1h2txyewy!DPI.PerMonitorAware",
+      "resolved_path": "shell:AppsFolder\\Microsoft.Win32WebViewHost_cw5n1h2txyewy!DPI.PerMonitorAware",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Windows Alarms",
+      "exe_name": "Microsoft.WindowsAlarms_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.WindowsAlarms_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.WindowsAlarms_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
       "name": "Windows App Cert Kit",
       "exe_name": "appcertui.exe",
       "full_path": "C:\\Program Files (x86)\\Windows Kits\\10\\App Certification Kit\\appcertui.exe",
@@ -2536,6 +3211,42 @@
       "args": [],
       "app_type": "lnk",
       "publisher": ""
+    },
+    {
+      "name": "Windows App Runtime Main",
+      "exe_name": "MicrosoftCorporationII.WinAppRuntime.Main.1.8_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\MicrosoftCorporationII.WinAppRuntime.Main.1.8_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\MicrosoftCorporationII.WinAppRuntime.Main.1.8_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Windows Barcode Preview",
+      "exe_name": "Windows.CBSPreview_cw5n1h2txyewy!Microsoft.Windows.CBSPreview",
+      "full_path": "shell:AppsFolder\\Windows.CBSPreview_cw5n1h2txyewy!Microsoft.Windows.CBSPreview",
+      "resolved_path": "shell:AppsFolder\\Windows.CBSPreview_cw5n1h2txyewy!Microsoft.Windows.CBSPreview",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Windows Calculator",
+      "exe_name": "Microsoft.WindowsCalculator_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.WindowsCalculator_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.WindowsCalculator_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Windows Camera",
+      "exe_name": "Microsoft.WindowsCamera_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.WindowsCamera_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.WindowsCamera_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
     },
     {
       "name": "Windows Defender Firewall with Advanced Security",
@@ -2547,6 +3258,24 @@
       "publisher": ""
     },
     {
+      "name": "Windows Feedback Hub",
+      "exe_name": "Microsoft.WindowsFeedbackHub_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.WindowsFeedbackHub_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.WindowsFeedbackHub_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Windows Maps",
+      "exe_name": "Microsoft.WindowsMaps_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.WindowsMaps_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.WindowsMaps_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
       "name": "Windows Media Player Legacy",
       "exe_name": "wmplayer.exe",
       "full_path": "C:\\Program Files (x86)\\Windows Media Player\\wmplayer.exe",
@@ -2556,6 +3285,24 @@
       ],
       "app_type": "lnk",
       "publisher": ""
+    },
+    {
+      "name": "Windows Notepad",
+      "exe_name": "Microsoft.WindowsNotepad_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.WindowsNotepad_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.WindowsNotepad_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Windows Package Manager Source (winget) V2",
+      "exe_name": "Microsoft.Winget.Source_8wekyb3d8bbwe!SourceData",
+      "full_path": "shell:AppsFolder\\Microsoft.Winget.Source_8wekyb3d8bbwe!SourceData",
+      "resolved_path": "shell:AppsFolder\\Microsoft.Winget.Source_8wekyb3d8bbwe!SourceData",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
     },
     {
       "name": "Windows Performance Analyzer",
@@ -2605,6 +3352,213 @@
       "publisher": ""
     },
     {
+      "name": "Windows Sound Recorder",
+      "exe_name": "Microsoft.WindowsSoundRecorder_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.WindowsSoundRecorder_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.WindowsSoundRecorder_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Windows Subsystem For Linux",
+      "exe_name": "MicrosoftCorporationII.WindowsSubsystemForLinux_8wekyb3d8bbwe!wsl",
+      "full_path": "shell:AppsFolder\\MicrosoftCorporationII.WindowsSubsystemForLinux_8wekyb3d8bbwe!wsl",
+      "resolved_path": "shell:AppsFolder\\MicrosoftCorporationII.WindowsSubsystemForLinux_8wekyb3d8bbwe!wsl",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Windows Terminal",
+      "exe_name": "Microsoft.WindowsTerminal_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.WindowsTerminal_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.WindowsTerminal_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Windows. Apprep. Chx App",
+      "exe_name": "Microsoft.Windows.Apprep.ChxApp_cw5n1h2txyewy!App",
+      "full_path": "shell:AppsFolder\\Microsoft.Windows.Apprep.ChxApp_cw5n1h2txyewy!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.Windows.Apprep.ChxApp_cw5n1h2txyewy!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Windows. Assigned Access Lock App",
+      "exe_name": "Microsoft.Windows.AssignedAccessLockApp_cw5n1h2txyewy!App",
+      "full_path": "shell:AppsFolder\\Microsoft.Windows.AssignedAccessLockApp_cw5n1h2txyewy!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.Windows.AssignedAccessLockApp_cw5n1h2txyewy!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Windows. Cloud Experience Host",
+      "exe_name": "Microsoft.Windows.CloudExperienceHost_cw5n1h2txyewy!App",
+      "full_path": "shell:AppsFolder\\Microsoft.Windows.CloudExperienceHost_cw5n1h2txyewy!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.Windows.CloudExperienceHost_cw5n1h2txyewy!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Windows. Content Delivery Manager",
+      "exe_name": "Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy!App",
+      "full_path": "shell:AppsFolder\\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Windows. Dev Home",
+      "exe_name": "Microsoft.Windows.DevHome_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.Windows.DevHome_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.Windows.DevHome_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Windows. Narrator Quick Start",
+      "exe_name": "Microsoft.Windows.NarratorQuickStart_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.Windows.NarratorQuickStart_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.Windows.NarratorQuickStart_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Windows. O O B E Network Captive Portal",
+      "exe_name": "Microsoft.Windows.OOBENetworkCaptivePortal_cw5n1h2txyewy!App",
+      "full_path": "shell:AppsFolder\\Microsoft.Windows.OOBENetworkCaptivePortal_cw5n1h2txyewy!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.Windows.OOBENetworkCaptivePortal_cw5n1h2txyewy!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Windows. O O B E Network Connection Flow",
+      "exe_name": "Microsoft.Windows.OOBENetworkConnectionFlow_cw5n1h2txyewy!App",
+      "full_path": "shell:AppsFolder\\Microsoft.Windows.OOBENetworkConnectionFlow_cw5n1h2txyewy!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.Windows.OOBENetworkConnectionFlow_cw5n1h2txyewy!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Windows. Parental Controls",
+      "exe_name": "Microsoft.Windows.ParentalControls_cw5n1h2txyewy!App",
+      "full_path": "shell:AppsFolder\\Microsoft.Windows.ParentalControls_cw5n1h2txyewy!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.Windows.ParentalControls_cw5n1h2txyewy!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Windows. People Experience Host",
+      "exe_name": "Microsoft.Windows.PeopleExperienceHost_cw5n1h2txyewy!App",
+      "full_path": "shell:AppsFolder\\Microsoft.Windows.PeopleExperienceHost_cw5n1h2txyewy!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.Windows.PeopleExperienceHost_cw5n1h2txyewy!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Windows. Photos",
+      "exe_name": "Microsoft.Windows.Photos_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.Windows.Photos_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.Windows.Photos_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Windows. Print Queue Action Center",
+      "exe_name": "Microsoft.Windows.PrintQueueActionCenter_cw5n1h2txyewy!App",
+      "full_path": "shell:AppsFolder\\Microsoft.Windows.PrintQueueActionCenter_cw5n1h2txyewy!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.Windows.PrintQueueActionCenter_cw5n1h2txyewy!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Windows. Secure Assessment Browser",
+      "exe_name": "Microsoft.Windows.SecureAssessmentBrowser_cw5n1h2txyewy!App",
+      "full_path": "shell:AppsFolder\\Microsoft.Windows.SecureAssessmentBrowser_cw5n1h2txyewy!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.Windows.SecureAssessmentBrowser_cw5n1h2txyewy!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Windows. Shell Experience Host",
+      "exe_name": "Microsoft.Windows.ShellExperienceHost_cw5n1h2txyewy!App",
+      "full_path": "shell:AppsFolder\\Microsoft.Windows.ShellExperienceHost_cw5n1h2txyewy!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.Windows.ShellExperienceHost_cw5n1h2txyewy!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Windows. Start Menu Experience Host",
+      "exe_name": "Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy!App",
+      "full_path": "shell:AppsFolder\\Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Windows. X Gpu Eject Dialog",
+      "exe_name": "Microsoft.Windows.XGpuEjectDialog_cw5n1h2txyewy!Microsoft.Windows.XGpuEjectDialog",
+      "full_path": "shell:AppsFolder\\Microsoft.Windows.XGpuEjectDialog_cw5n1h2txyewy!Microsoft.Windows.XGpuEjectDialog",
+      "resolved_path": "shell:AppsFolder\\Microsoft.Windows.XGpuEjectDialog_cw5n1h2txyewy!Microsoft.Windows.XGpuEjectDialog",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "windowscommunicationsapps",
+      "exe_name": "microsoft.windowscommunicationsapps_8wekyb3d8bbwe!microsoft.windowslive.mail",
+      "full_path": "shell:AppsFolder\\microsoft.windowscommunicationsapps_8wekyb3d8bbwe!microsoft.windowslive.mail",
+      "resolved_path": "shell:AppsFolder\\microsoft.windowscommunicationsapps_8wekyb3d8bbwe!microsoft.windowslive.mail",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "WinGet COM Server",
+      "exe_name": "Microsoft.DesktopAppInstaller_8wekyb3d8bbwe!WinGetComServer",
+      "full_path": "shell:AppsFolder\\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe!WinGetComServer",
+      "resolved_path": "shell:AppsFolder\\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe!WinGetComServer",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "WinGet MCP Server",
+      "exe_name": "Microsoft.DesktopAppInstaller_8wekyb3d8bbwe!WinGetMCPServer",
+      "full_path": "shell:AppsFolder\\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe!WinGetMCPServer",
+      "resolved_path": "shell:AppsFolder\\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe!WinGetMCPServer",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "WinRAR",
+      "exe_name": "WinRAR.ShellExtension_d9ma7nkbkv4rp!WinRAR.ShellExtension",
+      "full_path": "shell:AppsFolder\\WinRAR.ShellExtension_d9ma7nkbkv4rp!WinRAR.ShellExtension",
+      "resolved_path": "shell:AppsFolder\\WinRAR.ShellExtension_d9ma7nkbkv4rp!WinRAR.ShellExtension",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
       "name": "WinRAR 7.12 (64-bit)",
       "exe_name": "WinRAR.exe",
       "full_path": "C:\\Program Files\\WinRAR\\WinRAR.exe",
@@ -2623,6 +3577,15 @@
       "publisher": ""
     },
     {
+      "name": "Wireshark 4.6.4 x64",
+      "exe_name": "Wireshark.exe",
+      "full_path": "C:\\Program Files\\Wireshark\\Wireshark.exe",
+      "resolved_path": "C:\\Program Files\\Wireshark\\Wireshark.exe",
+      "args": [],
+      "app_type": "exe",
+      "publisher": "The Wireshark developer community, https://www.wireshark.org"
+    },
+    {
       "name": "Word",
       "exe_name": "WINWORD.EXE",
       "full_path": "C:\\Program Files\\Microsoft Office\\root\\Office16\\WINWORD.EXE",
@@ -2639,6 +3602,105 @@
       "args": [],
       "app_type": "lnk",
       "publisher": ""
+    },
+    {
+      "name": "Xbox",
+      "exe_name": "Microsoft.GamingApp_8wekyb3d8bbwe!Microsoft.Xbox.AppL",
+      "full_path": "shell:AppsFolder\\Microsoft.GamingApp_8wekyb3d8bbwe!Microsoft.Xbox.AppL",
+      "resolved_path": "shell:AppsFolder\\Microsoft.GamingApp_8wekyb3d8bbwe!Microsoft.Xbox.AppL",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Xbox Game bar",
+      "exe_name": "Microsoft.XboxGameOverlay_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.XboxGameOverlay_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.XboxGameOverlay_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Xbox Game Bar Widgets",
+      "exe_name": "Microsoft.GamingApp_8wekyb3d8bbwe!Microsoft.Xbox.WidgetsApp",
+      "full_path": "shell:AppsFolder\\Microsoft.GamingApp_8wekyb3d8bbwe!Microsoft.Xbox.WidgetsApp",
+      "resolved_path": "shell:AppsFolder\\Microsoft.GamingApp_8wekyb3d8bbwe!Microsoft.Xbox.WidgetsApp",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Xbox Game Callable U I",
+      "exe_name": "Microsoft.XboxGameCallableUI_cw5n1h2txyewy!Microsoft.XboxGameCallableUI",
+      "full_path": "shell:AppsFolder\\Microsoft.XboxGameCallableUI_cw5n1h2txyewy!Microsoft.XboxGameCallableUI",
+      "resolved_path": "shell:AppsFolder\\Microsoft.XboxGameCallableUI_cw5n1h2txyewy!Microsoft.XboxGameCallableUI",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Xbox Identity Provider",
+      "exe_name": "Microsoft.XboxIdentityProvider_8wekyb3d8bbwe!Microsoft.XboxIdentityProvider",
+      "full_path": "shell:AppsFolder\\Microsoft.XboxIdentityProvider_8wekyb3d8bbwe!Microsoft.XboxIdentityProvider",
+      "resolved_path": "shell:AppsFolder\\Microsoft.XboxIdentityProvider_8wekyb3d8bbwe!Microsoft.XboxIdentityProvider",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Xbox Speech To Text Overlay",
+      "exe_name": "Microsoft.XboxSpeechToTextOverlay_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.XboxSpeechToTextOverlay_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.XboxSpeechToTextOverlay_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Xbox. T C U I",
+      "exe_name": "Microsoft.Xbox.TCUI_8wekyb3d8bbwe!Microsoft.Xbox.TCUI",
+      "full_path": "shell:AppsFolder\\Microsoft.Xbox.TCUI_8wekyb3d8bbwe!Microsoft.Xbox.TCUI",
+      "resolved_path": "shell:AppsFolder\\Microsoft.Xbox.TCUI_8wekyb3d8bbwe!Microsoft.Xbox.TCUI",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Xtreme Download Manager - XDM",
+      "exe_name": "56617subhra74.XtremeDownloadManager-XDM_k8tk4t3m207x0!App",
+      "full_path": "shell:AppsFolder\\56617subhra74.XtremeDownloadManager-XDM_k8tk4t3m207x0!App",
+      "resolved_path": "shell:AppsFolder\\56617subhra74.XtremeDownloadManager-XDM_k8tk4t3m207x0!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Your Phone",
+      "exe_name": "Microsoft.YourPhone_8wekyb3d8bbwe!App",
+      "full_path": "shell:AppsFolder\\Microsoft.YourPhone_8wekyb3d8bbwe!App",
+      "resolved_path": "shell:AppsFolder\\Microsoft.YourPhone_8wekyb3d8bbwe!App",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Zune Music",
+      "exe_name": "Microsoft.ZuneMusic_8wekyb3d8bbwe!Microsoft.ZuneMusic",
+      "full_path": "shell:AppsFolder\\Microsoft.ZuneMusic_8wekyb3d8bbwe!Microsoft.ZuneMusic",
+      "resolved_path": "shell:AppsFolder\\Microsoft.ZuneMusic_8wekyb3d8bbwe!Microsoft.ZuneMusic",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
+    },
+    {
+      "name": "Zune Video",
+      "exe_name": "Microsoft.ZuneVideo_8wekyb3d8bbwe!Microsoft.ZuneVideo",
+      "full_path": "shell:AppsFolder\\Microsoft.ZuneVideo_8wekyb3d8bbwe!Microsoft.ZuneVideo",
+      "resolved_path": "shell:AppsFolder\\Microsoft.ZuneVideo_8wekyb3d8bbwe!Microsoft.ZuneVideo",
+      "args": [],
+      "app_type": "uwp",
+      "publisher": "unknown"
     }
   ]
 }

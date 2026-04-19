@@ -1,8 +1,7 @@
 # core/orchestrator.py
 
-import asyncio
 from pipeline.extractor import extract_entities
-from core.log import logger   # ← ADDED
+from core.log import logger   
 
 class Orchestrator:
     """
@@ -16,7 +15,7 @@ class Orchestrator:
     def __init__(self):
         self.handlers = {}
         self._register_handlers()
-        logger.info("orchestrator_initialized")   # ← ADDED
+        logger.info("orchestrator_initialized")  
 
     def _register_handlers(self):
         """
@@ -41,7 +40,7 @@ class Orchestrator:
             "system_status": self._system_status,
         }
 
-        logger.info("handlers_registered", count=len(self.handlers))   # ← ADDED
+        logger.info("handlers_registered", count=len(self.handlers))  
 
     async def route(self, intent_result: dict):
         """
@@ -52,12 +51,11 @@ class Orchestrator:
         confidence = intent_result["confidence"]
         text       = intent_result["text"]
 
-        logger.info("intent_received", intent=intent, confidence=confidence, text=text)   # ← ADDED
-
+        logger.info("intent_received", intent=intent, confidence=confidence, text=text)   
         entities = extract_entities(intent, text)
         entities["intent"] = intent
 
-        logger.debug("entities_extracted", intent=intent, entities=entities)   # ← ADDED
+        logger.debug("entities_extracted", intent=intent, entities=entities)   
 
         print(f"\n  routing: {intent} ({confidence}%)")
 
@@ -66,27 +64,27 @@ class Orchestrator:
 
         if not handler:
             print(f"  no handler for intent: {intent}")
-            logger.warning("no_handler", intent=intent)   # ← ADDED
+            logger.warning("no_handler", intent=intent)   
             return {
                 "success": False,
                 "reason":  "no_handler",
                 "intent":  intent,
             }
 
-        logger.info("handler_selected", intent=intent, handler=str(handler))   # ← ADDED
+        logger.info("handler_selected", intent=intent, handler=str(handler))   
 
         # call handler
         try:
             result = await handler(entities)
 
-            logger.info("handler_result", intent=intent, success=result.get("success", False))   # ← ADDED
+            logger.info("handler_result", intent=intent, success=result.get("success", False))  
 
             print(f"  {intent} → {'✓' if result['success'] else '✗'}")
             return result
 
         except Exception as e:
             print(f"  handler error: {e}")
-            logger.error("handler_error", intent=intent, error=str(e))   # ← ADDED
+            logger.error("handler_error", intent=intent, error=str(e))   
             return {
                 "success": False,
                 "reason":  str(e),
@@ -106,7 +104,7 @@ class Orchestrator:
         ram  = psutil.virtual_memory().percent
         disk = psutil.disk_usage("/").percent
 
-        logger.info("system_status", cpu=cpu, ram=ram, disk=disk)   # ← ADDED
+        logger.info("system_status", cpu=cpu, ram=ram, disk=disk)  
 
         print(f"  CPU:  {cpu}%")
         print(f"  RAM:  {ram}%")

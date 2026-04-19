@@ -22,42 +22,46 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
-        _viewModel = new MainWindowViewModel();
-        DataContext = _viewModel;
-
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            desktop.MainWindow = new MainWindow
-            {
-                DataContext = _viewModel,
-            };
+            // 🔹 Single ViewModel for entire app
+            _viewModel = new MainWindowViewModel();
 
-            desktop.MainWindow.Hide();
+            // 🔹 Always start with StartupWindow
+            desktop.MainWindow = new StartupWindow(_viewModel);
 
-            desktop.MainWindow.Loaded += (_, _) =>
-            {
-                desktop.MainWindow.Hide();
-                desktop.MainWindow.ShowInTaskbar = false;
-            };
-
-            // build tray icon in code
-            _trayIcon = new TrayIcon
-            {
-                ToolTipText = "HELL",
-                Icon = new WindowIcon(
-                    AssetLoader.Open(
-                        new Uri("avares://gui/Assets/avalonia-logo.ico")
-                    )
-                ),
-                Menu = BuildTrayMenu(),
-            };
-
-            _trayIcon.Clicked += (_, _) => _viewModel.OpenDashboardCommand.Execute(null);
-
-            desktop.Exit += (_, _) => _trayIcon.Dispose();
+            // 🔹 Initialize tray
+            InitializeTray(desktop);
         }
 
         base.OnFrameworkInitializationCompleted();
+    }
+
+    private void InitializeTray(IClassicDesktopStyleApplicationLifetime desktop)
+    {
+        _trayIcon = new TrayIcon
+        {
+            ToolTipText = "HELL",
+            Icon = new WindowIcon(
+                AssetLoader.Open(
+                    new Uri("avares://gui/Assets/avalonia-logo.ico")
+                )
+            ),
+            Menu = BuildTrayMenu(),
+        };
+
+        _trayIcon.Clicked += (_, _) =>
+        {
+            if (desktop.MainWindow is Window window)
+            {
+                window.Show();
+                window.ShowInTaskbar = true;
+                window.WindowState = WindowState.Normal;
+                window.Activate();
+            }
+        };
+
+        desktop.Exit += (_, _) => _trayIcon?.Dispose();
     }
 
     private NativeMenu BuildTrayMenu()

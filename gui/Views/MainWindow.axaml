@@ -38,26 +38,8 @@
                                Foreground="#6B6080"
                                FontSize="12"
                                VerticalAlignment="Center" />
-                    <!-- <TextBlock Text="{Binding ApiStatus}" -->
-                    <!--            Foreground="{Binding ApiStatusColor}" -->
-                    <!--            FontSize="11" -->
-                    <!--            VerticalAlignment="Center" -->
-                    <!--            Margin="12,0,0,0"/> -->
+                    
                 </StackPanel>
-
-                <!-- mic status indicator in title bar -->
-                <!-- <StackPanel Grid.Column="1" -->
-                <!--             Orientation="Horizontal" -->
-                <!--             Spacing="8" -->
-                <!--             VerticalAlignment="Center"> -->
-                <!--     <Ellipse Width="8" Height="8" -->
-                <!--              Fill="{Binding MicColor}" -->
-                <!--              Name="MicDot" /> -->
-                <!--     <TextBlock Text="{Binding MicStatus}" -->
-                <!--                Foreground="#6B6080" -->
-                <!--                FontSize="11" -->
-                <!--                VerticalAlignment="Center" /> -->
-                <!-- </StackPanel> -->
 
                 <StackPanel Grid.Column="1"
                             Orientation="Horizontal"
@@ -244,107 +226,7 @@
 
                 <!-- APPS PANEL -->
                 <Grid IsVisible="{Binding IsAppsTab}">
-                    <StackPanel Spacing="16">
-                        <TextBlock Text="STARTUP APPS"
-                                   Foreground="#7C3AED"
-                                   FontSize="11"
-                                   FontWeight="Bold"
-                                   LetterSpacing="3" />
-                        <Grid ColumnDefinitions="*,Auto">
-                            <StackPanel>
-                                <TextBlock Text="APP FINDER"
-                                           Foreground="#7C3AED"
-                                           FontSize="11"
-                                           FontWeight="Bold"
-                                           LetterSpacing="3" />
-                                <TextBlock Text="{Binding ScanStatus}"
-                                           Foreground="#6B6080"
-                                           FontSize="11"
-                                           Margin="0,4,0,0" />
-                            </StackPanel>
-
-                            <Button Grid.Column="1"
-                                    Content="SCAN"
-                                    Command="{Binding ScanAppsCommand}"
-                                    IsEnabled="{Binding !IsScanning}"
-                                    Background="#7C3AED"
-                                    Foreground="White"
-                                    Padding="16,8"
-                                    CornerRadius="6"
-                                    FontSize="11"
-                                    FontWeight="Bold"
-                                    VerticalAlignment="Top" />
-                        </Grid>
-
-                        <!-- scanning indicator -->
-                        <ProgressBar IsVisible="{Binding IsScanning}"
-                                     IsIndeterminate="True"
-                                     Foreground="#7C3AED"
-                                     Background="#12101A"
-                                     Height="2" />
-
-                        <!-- app list -->
-                        <ScrollViewer MaxHeight="420">
-                            <ItemsControl ItemsSource="{Binding FoundApps}">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate x:DataType="models:AppEntry">
-                                        <Border Background="#12101A"
-                                                BorderBrush="#2A1F3D"
-                                                BorderThickness="1"
-                                                CornerRadius="6"
-                                                Padding="14,10"
-                                                Margin="0,0,0,4">
-                                            <Grid ColumnDefinitions="Auto,*,Auto">
-
-                                                <!-- type badge -->
-                                                <Border Grid.Column="0"
-                                                        Background="#1E1030"
-                                                        CornerRadius="4"
-                                                        Padding="6,3"
-                                                        Margin="0,0,10,0"
-                                                        VerticalAlignment="Center">
-                                                    <TextBlock Text="{Binding Type}"
-                                                               Foreground="#7C3AED"
-                                                               FontSize="9"
-                                                               FontWeight="Bold"
-                                                               LetterSpacing="1" />
-                                                </Border>
-
-                                                <!-- app info -->
-                                                <StackPanel Grid.Column="1"
-                                                            VerticalAlignment="Center">
-                                                    <TextBlock Text="{Binding Name}"
-                                                               Foreground="#E8E0FF"
-                                                               FontSize="13"
-                                                               FontWeight="SemiBold" />
-                                                    <TextBlock Text="{Binding ExeName}"
-                                                               Foreground="#6B6080"
-                                                               FontSize="10"
-                                                               Margin="0,2,0,0" />
-                                                </StackPanel>
-
-                                                <!-- add button -->
-                                                <Button Grid.Column="2"
-                                                        Content="+ MODE"
-                                                        Command="{Binding $parent[ItemsControl].((vm:MainWindowViewModel)DataContext).AssignModeCommand}"
-                                                        CommandParameter="{Binding}"
-                                                        Background="Transparent"
-                                                        BorderBrush="#7C3AED"
-                                                        BorderThickness="1"
-                                                        Foreground="#A855F7"
-                                                        Padding="10,6"
-                                                        CornerRadius="4"
-                                                        FontSize="10"
-                                                        FontWeight="Bold"
-                                                        VerticalAlignment="Center"/>
-
-                                            </Grid>
-                                        </Border>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                        </ScrollViewer>
-                    </StackPanel>
+                    
                 </Grid>
 
                 <!-- JOBS PANEL -->
@@ -368,8 +250,6 @@
                                    FontSize="11"
                                    FontWeight="Bold"
                                    LetterSpacing="3" />
-                        <TextBlock Text="Config editor coming soon..."
-                                   Foreground="#6B6080" />
                     </StackPanel>
 
                     <StackPanel IsVisible="{Binding IsConfigTab}" Spacing="20">
@@ -384,18 +264,17 @@
                         <Border Background="#12101A"
                                 BorderBrush="#2A1F3D"
                                 BorderThickness="1"
-                                CornerRadius="8"
                                 Padding="20">
                             <StackPanel Spacing="12">
-
+                        
                                 <TextBlock Text="MICROPHONE"
                                            Foreground="#6B6080"
                                            FontSize="10"
                                            FontWeight="Bold"
                                            LetterSpacing="2" />
-
+                        
                                 <Grid ColumnDefinitions="*,Auto,Auto">
-
+                        
                                     <!-- dropdown -->
                                     <ComboBox Grid.Column="0"
                                               ItemsSource="{Binding MicDevices}"
@@ -406,7 +285,7 @@
                                               Padding="12,8"
                                               HorizontalAlignment="Stretch"
                                               PlaceholderText="Select microphone..." />
-
+                        
                                     <!-- refresh button -->
                                     <Button Grid.Column="1"
                                             Content="↺"
@@ -417,7 +296,7 @@
                                             Margin="8,0,0,0"
                                             FontSize="16"
                                             ToolTip.Tip="Refresh devices" />
-
+                        
                                     <!-- save button -->
                                     <Button Grid.Column="2"
                                             Content="SAVE"
@@ -429,18 +308,18 @@
                                             CornerRadius="6"
                                             FontSize="11"
                                             FontWeight="Bold" />
-
+                        
                                 </Grid>
-
+                        
                                 <!-- save status -->
                                 <TextBlock Text="{Binding MicSaveStatus}"
                                            Foreground="#6B6080"
                                            FontSize="11"
                                            IsVisible="{Binding MicSaveStatus,
                            Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
-
+                        
                             </StackPanel>
-
+                        
                         </Border>
 
                     </StackPanel>
@@ -456,7 +335,7 @@
                 Background="#12101A"
                 BorderBrush="#2A1F3D"
                 BorderThickness="0,1,0,0">
-            <Grid ColumnDefinitions="*,*,*,*,Auto">
+            <Grid ColumnDefinitions="*,*,*,*">
 
                 <!-- STATUS tab -->
                 <Button Grid.Column="0"
@@ -464,8 +343,35 @@
                         CommandParameter="status"
                         Background="Transparent"
                         Padding="0,14"
+                        BorderThickness="90, 0"
                         HorizontalContentAlignment="Center">
-                    <StackPanel Spacing="4" HorizontalAlignment="Center">
+                    <Button.Resources>
+
+                        <!-- Kill pressed effect -->
+                        <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#08080d"/>
+                        <SolidColorBrush x:Key="ButtonBorderBrushPressed" Color="Transparent"/>
+
+                    </Button.Resources>
+                    
+                    <Button.Styles>
+                        <!-- Hover -->
+                        <Style Selector="Button:pointerover">
+                            <Setter Property="Background" Value="#1E1A2B"/>
+                        </Style>
+
+                        <!-- Kill pressed visual completely -->
+                        <Style Selector="Button:pressed">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                        </Style>
+
+                        <!-- THIS is the important one -->
+                        <Style Selector="Button:pressed /template/ ContentPresenter">
+                            <Setter Property="Opacity" Value="1"/>
+                        </Style>
+                    </Button.Styles>
+                    <StackPanel Spacing="2" HorizontalAlignment="Center"
+                    >
                         <TextBlock Text="⬡"
                                    FontSize="16"
                                    Foreground="{Binding StatusTabColor}"
@@ -485,8 +391,34 @@
                         CommandParameter="apps"
                         Background="Transparent"
                         Padding="0,14"
+                        BorderThickness="90, 0"
                         HorizontalContentAlignment="Center">
-                    <StackPanel Spacing="4" HorizontalAlignment="Center">
+                    <Button.Resources>
+
+                        <!-- Kill pressed effect -->
+                        <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#08080d"/>
+                        <SolidColorBrush x:Key="ButtonBorderBrushPressed" Color="Transparent"/>
+
+                    </Button.Resources>
+                    
+                    <Button.Styles>
+                        <!-- Hover -->
+                        <Style Selector="Button:pointerover">
+                            <Setter Property="Background" Value="#1E1A2B"/>
+                        </Style>
+
+                        <!-- Kill pressed visual completely -->
+                        <Style Selector="Button:pressed">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                        </Style>
+
+                        <!-- THIS is the important one -->
+                        <Style Selector="Button:pressed /template/ ContentPresenter">
+                            <Setter Property="Opacity" Value="1"/>
+                        </Style>
+                    </Button.Styles>
+                    <StackPanel Spacing="2" HorizontalAlignment="Center">
                         <TextBlock Text="⬡"
                                    FontSize="16"
                                    Foreground="{Binding AppsTabColor}"
@@ -506,7 +438,37 @@
                         CommandParameter="jobs"
                         Background="Transparent"
                         Padding="0,14"
-                        HorizontalContentAlignment="Center">
+                        Margin="8, 0"
+                        BorderThickness="90, 0"
+                        HorizontalContentAlignment="Center"
+                        >
+                    
+                    <Button.Resources>
+
+                        <!-- Kill pressed effect -->
+                        <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#08080d"/>
+                        <SolidColorBrush x:Key="ButtonBorderBrushPressed" Color="Transparent"/>
+
+                    </Button.Resources>
+                    
+                    <Button.Styles>
+                        <!-- Hover -->
+                        <Style Selector="Button:pointerover">
+                            <Setter Property="Background" Value="#1E1A2B"/>
+                        </Style>
+
+                        <!-- Kill pressed visual completely -->
+                        <Style Selector="Button:pressed">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                        </Style>
+
+                        <!-- THIS is the important one -->
+                        <Style Selector="Button:pressed /template/ ContentPresenter">
+                            <Setter Property="Opacity" Value="1"/>
+                        </Style>
+                    </Button.Styles>
+                    
                     <StackPanel Spacing="4" HorizontalAlignment="Center">
                         <TextBlock Text="⬡"
                                    FontSize="16"
@@ -527,8 +489,34 @@
                         CommandParameter="config"
                         Background="Transparent"
                         Padding="0,14"
+                        BorderThickness="90, 0"
                         HorizontalContentAlignment="Center">
-                    <StackPanel Spacing="4" HorizontalAlignment="Center">
+                    <Button.Resources>
+
+                        <!-- Kill pressed effect -->
+                        <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#08080d"/>
+                        <SolidColorBrush x:Key="ButtonBorderBrushPressed" Color="Transparent"/>
+
+                    </Button.Resources>
+                    
+                    <Button.Styles>
+                        <!-- Hover -->
+                        <Style Selector="Button:pointerover">
+                            <Setter Property="Background" Value="#1E1A2B"/>
+                        </Style>
+
+                        <!-- Kill pressed visual completely -->
+                        <Style Selector="Button:pressed">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                        </Style>
+
+                        <!-- THIS is the important one -->
+                        <Style Selector="Button:pressed /template/ ContentPresenter">
+                            <Setter Property="Opacity" Value="1"/>
+                        </Style>
+                    </Button.Styles>
+                    <StackPanel Spacing="8" HorizontalAlignment="Center">
                         <TextBlock Text="⬡"
                                    FontSize="16"
                                    Foreground="{Binding ConfigTabColor}"
@@ -543,29 +531,7 @@
                 </Button>
 
                 <!-- MIC VISUALIZER -->
-                <Border Grid.Column="4"
-                        Padding="20,0"
-                        VerticalAlignment="Center">
-                    <StackPanel Orientation="Horizontal"
-                                Spacing="3"
-                                VerticalAlignment="Center">
-                        <Ellipse Width="{Binding Bar1Size}"
-                                 Height="{Binding Bar1Size}"
-                                 Fill="{Binding MicColor}" />
-                        <Ellipse Width="{Binding Bar2Size}"
-                                 Height="{Binding Bar2Size}"
-                                 Fill="{Binding MicColor}" />
-                        <Ellipse Width="{Binding Bar3Size}"
-                                 Height="{Binding Bar3Size}"
-                                 Fill="{Binding MicColor}" />
-                        <Ellipse Width="{Binding Bar4Size}"
-                                 Height="{Binding Bar4Size}"
-                                 Fill="{Binding MicColor}" />
-                        <Ellipse Width="{Binding Bar5Size}"
-                                 Height="{Binding Bar5Size}"
-                                 Fill="{Binding MicColor}" />
-                    </StackPanel>
-                </Border>
+                
 
             </Grid>
         </Border>

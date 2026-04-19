@@ -3,12 +3,12 @@
 import asyncio
 from config import config
 from control.apps import launch_and_intent
-from core.logger import Logger
+from core.log import logger
 
 
 
 
-async def run(logger, entities: dict = None):
+async def run(entities: dict = None):
     """
     Startup mode — runs on boot.
     Launches all configured apps and minimizes them to tray.
@@ -26,7 +26,7 @@ async def run(logger, entities: dict = None):
 
         try:
             result = await asyncio.to_thread(
-                lambda: asyncio.run(launch_and_intent(app, logger))
+                lambda: asyncio.run(launch_and_intent(app))
             )
 
             if result is True:
@@ -64,4 +64,4 @@ async def run(logger, entities: dict = None):
 
 
 if __name__ == "__main__":
-    asyncio.run(run(logger=Logger()))
+    asyncio.run(run())

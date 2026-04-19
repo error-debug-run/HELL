@@ -47,7 +47,7 @@ async def run(entities: dict) -> dict:
         }
 
     elif intent == "close_app":
-        result = close(app)
+        result = await close(app)
         return {
             "success": result,
             "response": f"Closing {name}" if result else f"Could not close {name}",

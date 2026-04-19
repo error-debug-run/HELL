@@ -1,52 +1,195 @@
-# HELL
-> The operating layer that should have existed 
-> between humans and their computers from the beginning.
+# HELL System 
 
-## What is HELL?
+> **The operating layer that should have existed between humans and their computers from the beginning.**
 
-Your computer runs everything the same way — whether you're
-gaming, designing, developing, or just listening to music.
+**Status:** `v0.1 — Active Development (GUI Refactor)`  
+**Platform:** Windows 10/11  
+**Stack:** **_Python_** (Core) • **_Rust_** (app discovery, via PyO3/maturin)) • **_C#_** (GUI)
 
-HELL fixes that by making your system ready for use case whether it be gaming to game developing.
+---
 
-It learns what you're doing and configures your entire machine
-to match you — instead of you constantly adapting to your machine.
+## 1. What is HELL?
 
-## What it does right now (v0.1)
+Your computer runs everything the same way — whether you're gaming, developing, designing, or just listening to music.
 
-- **Startup Mode** — all your startup apps launch silently to tray.
-  Clean desktop. Everything running. Nothing in the way.
+HELL fixes that. It's a voice-driven automation system that understands what you're doing and configures your entire machine to match — so you stop adapting to your computer and it starts adapting to you.
 
-- **Dev Mode** — open your IDE and your browser opens automatically
-  with the exact tabs for that project. Every time. Developers' playground.
+**Core Value:**
+- **Voice-Driven:** Natural language control via local wake word detection.
+- **Context-Aware:** Modes for Startup, Dev, and Gaming that reconfigure system state.
+- **Offline-First:** No cloud, no API calls, no data leaving your machine.
 
-- **Game Mode** — before you load in, HELL pings your game servers
-  and tells you latency and packet loss. No more finding out
-  mid-game that the server is bad.
+---
 
-## What it becomes
+## 2. Architecture Overview
 
-- Hardware-aware profiles (gaming, music, CAD, sound design, dev)
-- Fan curve and CPU performance management
-- Audio routing and MIDI health checking  
-- Network traffic control per context
-- Developer environment management
-- Natural language control — just tell it what you're doing
+### Core Flow (End-to-End)
+```text
+User Speech
+   ↓
+Wake Word Detector (stt/detector.py)
+   ↓
+Command Extraction (removes wake word)
+   ↓
+Intent Pipeline (pipeline/pipeline.py → classifier.py)
+   ↓
+Orchestrator (core/orchestrator.py)
+   ↓
+Intent Handlers (intents/library/*.py)
+   ↓
+System Action / API Response
+```
 
-## Built with
+### Component Responsibilities
+| Component | Path | Responsibility |
+| :--- | :--- | :--- |
+| **API Server** | `api/server.py` | FastAPI bridge for GUI & monitoring |
+| **Orchestrator** | `core/orchestrator.py` | Routes intents to handlers asynchronously |
+| **NLP Engine** | `pipeline/classifier.py` | MiniLM (Semantic) + TF-IDF (Fallback) |
+| **App Finder** | `finderr/finder.py` | Rust-backed app discovery & normalization |
+| **Speech System** | `stt/detector.py` | Wake word detection & audio state management |
+| **GUI** | `gui/` | Avalonia (C#) frontend for control & monitoring |
 
-- Python 3.10+
-- asyncio — concurrent job execution
-- psutil — process management
-- Custom NLP intent engine — no pretrained models(for intent)
-- pywin32 — Windows system APIs
+---
 
-## Status
+## 3. GUI Integration Specification
 
-> v0.1 in active development.
+> **⚠️ Critical for Frontend Refactor**  
+> The following specs define how the Avalonia GUI communicates with the Python backend.
 
-## Philosophy
+### 3.1 Communication Protocol
 
-Offline first. Private by design. 
-You own everything — your data, your config, your machine.
-HELL never calls home.
+| Data Type | Method | Endpoint / Channel | Frequency |
+| :--- | :--- | :--- | :--- |
+| **Commands** | HTTP POST | `/intent` | On user action |
+| **System Status** | HTTP GET | `/status` | On load / 5s poll |
+| **Audio Levels** | **WebSocket** | `/ws/audio` | **Real-time (30fps)** |
+| **Job Logs** | WebSocket | `/ws/logs` | Push on event |
+
+> **Note:** Do not poll `/audio/level` via HTTP. Use the WebSocket stream for the GUI visualizer to prevent UI lag.
+
+### 3.2 Shared State Schema (C# Models)
+
+Ensure your C# ViewModels match these Python dictionaries exactly.
+
+**AudioState (`audio_state`)**
+```json
+{
+  "db_level": -45.2,      // float
+  "recording": false,     // bool
+  "mode": "idle"          // enum: ["idle", "active", "command"]
+}
+```
+
+**SystemStatus (`state`)**
+```json
+{
+  "current_mode": "DEV",  // string
+  "cpu_usage": 12.5,      // float
+  "ram_usage": 45.0,      // float
+  "jobs": []              // list
+}
+```
+
+### 3.3 Process Lifecycle
+
+1.  **GUI Starts First:** The Avalonia app launches the Python backend (`main.py`) as a subprocess.
+2.  **Handshake:** GUI waits for `GET /health` on `localhost:8000` before enabling UI controls.
+3.  **Shutdown:** GUI sends `POST /shutdown` (if implemented) or gracefully kills subprocess.
+4.  **Dev Mode:** Backend runs on `localhost:8000`.
+5.  **Production:** Backend runs hidden; GUI connects via localhost or named pipe.
+
+### 3.4 Configuration & Paths
+
+| Environment | Config Path | Log Path |
+| :--- | :--- | :--- |
+| **Dev (Source)** | `./config.json` | `./logs/` |
+| **Production (Installer)** | `%APPDATA%\HELL\config.json` | `%APPDATA%\HELL\logs\` |
+
+> **GUI Logic:** Use `Environment.SpecialFolder.ApplicationData` for production builds. Do not attempt to write to `Program Files`.
+
+### 3.5 Developer Overlay (Dev Builds Only)
+
+- **Toggle:** `Ctrl + Shift + D`
+- **Features:**
+  - Shows raw JSON payloads from backend.
+  - Displays WebSocket connection status.
+  - Allows manual intent triggering (bypasses STT) for testing UI states.
+
+---
+
+## 4. Current Capabilities (v0.1)
+
+- **Startup Mode** — All startup apps launch silently to tray. Clean desktop.
+- **Dev Mode** — Opens IDE + browser with project-specific tabs automatically.
+- **Game Mode** — Pings game servers pre-load; reports latency/packet loss.
+- **Voice Control** — Wake word detection + local intent recognition.
+- **App Management** — Scan, assign, and launch installed applications via voice.
+
+---
+
+## 5. Technology Stack
+
+| Layer | Technology | Notes |
+| :---- | :--------- | :---- |
+| **Core Runtime** | Python 3.10+ | asyncio for concurrent jobs |
+| **Intent Detection** | MiniLM + TF-IDF | Local, offline, ~50ms latency |
+| **App Discovery** | Rust (`app_finder`) | Via PyO3/maturin for speed |
+| **System APIs** | pywin32, psutil | Windows process & hardware control |
+| **API Server** | FastAPI | REST + WebSocket support |
+| **GUI** | Avalonia (C#) | .NET 10, cross-platform UI framework |
+
+---
+
+## 6. Roadmap & In-Progress
+
+| Feature | Status | Notes |
+| :--- | :--- | :--- |
+| **GUI Refactor** | 🟡 In Progress | Binding to new FastAPI state dicts |
+| **WebSocket Audio** | 🟡 In Progress | Real-time dB visualization |
+| **GPU Monitoring** | 🔴 Planned | Replace placeholder in `/status` |
+| **Context Memory** | 🔴 Planned | Multi-turn command support |
+| **Installer Signing** | 🟢 Done | `hell-cert.cer` ready for deployment |
+
+---
+
+## 7. Philosophy
+
+**Offline first. Private by design.**
+
+- **You own everything:** Your data, your config, your machine.
+- **No Telemetry:** HELL never calls home.
+- **No Cloud:** Voice processing happens locally on your CPU.
+- **No Accounts:** No login, no signup, no tracking.
+
+---
+
+## 8. Troubleshooting (Dev)
+
+| Issue | Solution |
+| :--- | :--- |
+| **GUI won't connect** | Ensure `main.py` is running and `GET /health` returns 200 OK. |
+| **Audio visualizer static** | Check WebSocket connection (`/ws/audio`); HTTP polling is too slow. |
+| **Config not saving** | Verify write permissions in `%APPDATA%\HELL\` (Prod) or root (Dev). |
+| **App not found** | Run `POST /apps/write` to refresh the Rust-backed app scanner. |
+
+---
+
+## 9. Directory Structure (Source)
+
+```text
+D:\HELL/
+├── api/                  # FastAPI backend
+├── core/                 # Orchestrator & Logging
+├── finderr/              # Rust app finder bindings
+├── gui/                  # Avalonia C# Frontend
+├── intents/              # Action handlers
+├── pipeline/             # NLP & Intent Classification
+├── stt/                  # Speech-to-Text & Wake Word
+├── config.json           # User configuration
+├── main.py               # Entry point
+└── requirements.txt      # Python dependencies
+```
+
+---
+

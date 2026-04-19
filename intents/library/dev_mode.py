@@ -3,6 +3,7 @@
 import asyncio
 from config import config
 from control.apps import launch
+from core.log import logger
 
 
 def _resolve_trigger_apps() -> list:
@@ -21,9 +22,9 @@ def _resolve_trigger_apps() -> list:
     return resolved
 
 
-async def run(logger, entities: dict = None) -> dict:
+async def run(entities: dict = None):
     apps = _resolve_trigger_apps()
-
+    
     if not apps:
         logger.warning("dev_mode_no_apps")
         print("  dev mode — no trigger apps found in installed_apps")
@@ -75,6 +76,5 @@ async def run(logger, entities: dict = None) -> dict:
 
 
 if __name__ == "__main__":
-    from core.logger import Logger
-    logger = Logger(debug=True)
-    asyncio.run(run(logger))
+    logger.set_debug(True)
+    asyncio.run(run())

@@ -1,6 +1,7 @@
 # core/logger.py
 
 import os
+import sys
 import json
 import time
 import threading
@@ -9,7 +10,16 @@ from datetime import datetime
 from queue import Queue, Empty
 
 # -------- PATHS (temporary, can be upgraded later) --------
-BASE_DIR = os.path.dirname(os.path.dirname((__file__)))
+
+def get_base_dir():
+    # When frozen (PyInstaller / Nuitka)
+    if getattr(sys, "frozen", False):
+        return os.path.dirname(sys.executable)
+
+    # Normal Python execution
+    return os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+BASE_DIR = get_base_dir()
 LOG_DIR = os.path.join(BASE_DIR, "runtime", "logs")
 
 os.makedirs(LOG_DIR, exist_ok=True)
@@ -18,12 +28,13 @@ LOG_FILE = os.path.join(LOG_DIR, "app.log")
 
 MAX_FILE_SIZE = 5 * 1024 * 1024  # 5MB
 MAX_BACKUPS = 3
+PROCESS_SESSION_ID = hex(int(time.time() * 1000))[2:]
 
 
 class Logger:
     def __init__(self, debug=False):
         self.debug_mode = debug
-        self.session_id = self._new_session()
+        self.session_id = PROCESS_SESSION_ID
 
         self.queue = Queue()
         self.running = True
@@ -121,5 +132,3 @@ class Logger:
             if os.path.exists(src):
                 os.replace(src, dst)
 
-    def _new_session(self):
-        return hex(int(time.time() * 1000))[2:]

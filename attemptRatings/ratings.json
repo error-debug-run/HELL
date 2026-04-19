@@ -1,0 +1,41 @@
+{
+  "Instagram": {
+    "path": 2
+  },
+  "Spotify": {
+    "exe": 2
+  },
+  "Steam": {
+    "path": 2
+  },
+  "Discord": {
+    "path": 2
+  },
+  "Microsoft Visual Studio Code (User)": {
+    "path": 7,
+    "exe": 3
+  },
+  "GitHub Desktop": {
+    "path": 3,
+    "exe": 4,
+    "shell": 1
+  },
+  "Task Manager": {
+    "path": 6,
+    "exe": 3
+  },
+  "Firefox Developer Edition (x64 en-US)": {
+    "path": 2,
+    "exe": 3
+  },
+  "Brave": {
+    "exe": 2,
+    "path": 3
+  },
+  "Mozilla Firefox (x64 en-US)": {
+    "exe": 1
+  },
+  "RustRover 2025.3": {
+    "exe": 1
+  }
+}

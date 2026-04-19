@@ -14,14 +14,13 @@ use windows::{
 };
 use windows::core::Interface;
 use winreg::{enums::*, RegKey};
+use std::process::Command;
 
 use crate::AppEntry;
 
 
 // ─────────────────────────────────────────
 // RAII COM GUARD
-// Ensures CoUninitialize is always called,
-// even if resolve_lnk returns early via `?`
 // ─────────────────────────────────────────
 
 struct ComGuard;
@@ -30,14 +29,7 @@ impl ComGuard {
     fn init() -> Option<Self> {
         unsafe {
             let result = CoInitializeEx(None, COINIT_APARTMENTTHREADED);
-            // S_OK (0x0) = freshly initialized
-            // S_FALSE (0x1) = already initialized on this thread
-            // both are valid success codes
-            if result.is_ok() {
-                Some(ComGuard)
-            } else {
-                None
-            }
+            if result.is_ok() { Some(ComGuard) } else { None }
         }
     }
 }
@@ -51,9 +43,6 @@ impl Drop for ComGuard {
 
 // ─────────────────────────────────────────
 // COMMAND LINE TOKENIZER
-// Handles quoted paths and quoted arguments.
-// e.g. `"C:\Program Files\app.exe" --flag "some path"`
-//   -> ["C:\Program Files\app.exe", "--flag", "some path"]
 // ─────────────────────────────────────────
 
 fn tokenize_command(cmd: &str) -> Vec<String> {
@@ -64,21 +53,16 @@ fn tokenize_command(cmd: &str) -> Vec<String> {
 
     while let Some(c) = chars.next() {
         match c {
-            // toggle quoted region — strip the quote char itself
             '"' => in_quotes = !in_quotes,
-
-            // unquoted whitespace → token boundary
             ' ' | '\t' if !in_quotes => {
                 if !current.is_empty() {
                     tokens.push(current.clone());
                     current.clear();
                 }
-                // consume runs of whitespace
                 while matches!(chars.peek(), Some(' ') | Some('\t')) {
                     chars.next();
                 }
             }
-
             _ => current.push(c),
         }
     }
@@ -90,7 +74,6 @@ fn tokenize_command(cmd: &str) -> Vec<String> {
     tokens
 }
 
-/// Split a full command string into (exe_path, args).
 fn parse_command(cmd: &str) -> (String, Vec<String>) {
     let mut tokens = tokenize_command(cmd);
     if tokens.is_empty() {
@@ -103,7 +86,7 @@ fn parse_command(cmd: &str) -> (String, Vec<String>) {
 
 
 // ─────────────────────────────────────────
-// .LNK RESOLVER  (pub — called from lib.rs)
+// .LNK RESOLVER
 // ─────────────────────────────────────────
 
 pub fn resolve_lnk(path: &str) -> Option<(String, Vec<String>)> {
@@ -118,7 +101,6 @@ pub fn resolve_lnk(path: &str) -> Option<(String, Vec<String>)> {
         let wide: Vec<u16> = path.encode_utf16().chain(Some(0)).collect();
         persist.Load(PCWSTR(wide.as_ptr()), STGM_READ).ok()?;
 
-        // ── target path ────────────────────────────────
         let mut path_buf = [0u16; 260];
         shell_link
             .GetPath(&mut path_buf, std::ptr::null_mut(), 0)
@@ -131,16 +113,12 @@ pub fn resolve_lnk(path: &str) -> Option<(String, Vec<String>)> {
             return None;
         }
 
-        // ── arguments ──────────────────────────────────
-        // 1024 instead of 260 — args can easily exceed MAX_PATH
         let mut args_buf = [0u16; 1024];
         shell_link.GetArguments(&mut args_buf).ok()?;
 
         let args_len = args_buf.iter().position(|&c| c == 0).unwrap_or(0);
         let args_str = String::from_utf16_lossy(&args_buf[..args_len]);
-
-        // tokenize respects quoted args like --path "C:\My Dir"
-        let args = tokenize_command(&args_str);
+        let args     = tokenize_command(&args_str);
 
         Some((target, args))
     }
@@ -148,7 +126,7 @@ pub fn resolve_lnk(path: &str) -> Option<(String, Vec<String>)> {
 
 
 // ─────────────────────────────────────────
-// TOP-LEVEL SCAN  (pub — called from lib.rs)
+// TOP-LEVEL SCAN
 // ─────────────────────────────────────────
 
 pub fn scan() -> Vec<AppEntry> {
@@ -167,7 +145,7 @@ pub fn scan() -> Vec<AppEntry> {
         r"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall",
     ));
     apps.extend(scan_start_menu());
-    apps.extend(scan_store_apps());
+    apps.extend(get_uwp_apps());
 
     apps
 }
@@ -232,8 +210,6 @@ fn scan_registry(hive: winreg::HKEY, path: &str) -> Vec<AppEntry> {
 // ─────────────────────────────────────────
 
 fn resolve_exe_and_args(subkey: &RegKey, display_name: &str) -> (String, Vec<String>) {
-
-    // ── 1. DisplayIcon ───────────────────────────────────────────────
     let display_icon: String = subkey.get_value("DisplayIcon").unwrap_or_default();
 
     if !display_icon.trim().is_empty() {
@@ -250,25 +226,22 @@ fn resolve_exe_and_args(subkey: &RegKey, display_name: &str) -> (String, Vec<Str
         }
     }
 
-    // ── 2. UninstallString — extract location only, never use its args ──
     let uninstall: String = subkey
         .get_value("UninstallString")
         .or_else(|_| subkey.get_value("QuietUninstallString"))
         .unwrap_or_default();
 
     if !uninstall.trim().is_empty() {
-        let (uninstall_exe, _) = parse_command(&uninstall); // ← drop args entirely
+        let (uninstall_exe, _) = parse_command(&uninstall);
 
-        // search the parent dir for a real launch exe
         if let Some(parent) = Path::new(&uninstall_exe).parent() {
             let found = find_exe_in_dir(&parent.to_string_lossy(), display_name);
             if !found.is_empty() {
-                return (found, vec![]); // ← no args, we found the real exe
+                return (found, vec![]);
             }
         }
     }
 
-    // ── 3. InstallLocation ───────────────────────────────────────────
     let install_location: String = subkey.get_value("InstallLocation").unwrap_or_default();
 
     if !install_location.trim().is_empty() {
@@ -381,32 +354,182 @@ fn scan_lnk_folder(folder: &str, apps: &mut Vec<AppEntry>) {
 
 
 // ─────────────────────────────────────────
-// STORE / UWP APPS
+// UWP / MSIX APP FINDER
+//
+// Enumerates all installed UWP packages via
+// PowerShell Get-AppxPackage, then reads each
+// AppxManifest.xml directly to extract the
+// real Application Id(s) and display name.
+//
+// app_type  = "uwp"
+// full_path = shell:AppsFolder\<FamilyName>!<AppId>
 // ─────────────────────────────────────────
 
-fn scan_store_apps() -> Vec<AppEntry> {
+pub fn get_uwp_apps() -> Vec<AppEntry> {
     let mut apps = Vec::new();
 
-    let hklm = RegKey::predef(HKEY_LOCAL_MACHINE);
-    let key = match hklm.open_subkey(
-        r"SOFTWARE\Microsoft\Windows\CurrentVersion\Appx\AppxAllUserStore\Applications",
-    ) {
-        Ok(k)  => k,
+    // One PowerShell call — pipe-delimited rows
+    // "PackageFamilyName|PublisherDisplayName|InstallLocation"
+    let output = match Command::new("powershell")
+        .args([
+            "-NoProfile",
+            "-NonInteractive",
+            "-Command",
+            r#"Get-AppxPackage | ForEach-Object { "$($_.PackageFamilyName)|$($_.PublisherDisplayName)|$($_.InstallLocation)" }"#,
+        ])
+        .output()
+    {
+        Ok(o)  => o,
         Err(_) => return apps,
     };
 
-    for pkg_name in key.enum_keys().flatten() {
-        apps.push(AppEntry {
-            name:      pkg_name.clone(),
-            exe_name:  pkg_name.clone(),
-            full_path: format!("shell:appsFolder\\{}", pkg_name),
-            args:      vec![],
-            app_type:  "pwa".to_string(),
-            publisher: String::new(),
-        });
+    for line in String::from_utf8_lossy(&output.stdout).lines() {
+        let line = line.trim();
+        if line.is_empty() {
+            continue;
+        }
+
+        let mut parts        = line.splitn(3, '|');
+        let family_name      = match parts.next() { Some(s) if !s.trim().is_empty() => s.trim(), _ => continue };
+        let publisher        = parts.next().unwrap_or("").trim().to_string();
+        let install_location = parts.next().unwrap_or("").trim().to_string();
+
+        // Read AppxManifest.xml → Vec<(app_id, display_name)>
+        let app_ids = parse_appx_manifest(&install_location);
+
+        if app_ids.is_empty() {
+            // Manifest unreadable (system/framework package) — skip entirely.
+            // These have no launchable Application entry anyway.
+            continue;
+        }
+
+        for (app_id, display_name) in app_ids {
+            let name = if !display_name.is_empty() {
+                display_name
+            } else {
+                friendly_name(family_name)
+            };
+
+            apps.push(AppEntry {
+                name,
+                // no single .exe — use "FamilyName!AppId" as the canonical identity
+                exe_name:  format!("{}!{}", family_name, app_id),
+                full_path: format!("shell:AppsFolder\\{}!{}", family_name, app_id),
+                args:      vec![],
+                app_type:  "uwp".to_string(),
+                publisher: "unknown".to_string(),
+            });
+        }
     }
 
     apps
+}
+
+// ── Manifest parser ───────────────────────────────────────────────────────────
+// Returns Vec<(AppId, DisplayName)> for every <Application> in the manifest.
+// Uses a minimal line-by-line scan — no XML crate needed.
+
+fn parse_appx_manifest(install_location: &str) -> Vec<(String, String)> {
+    if install_location.is_empty() {
+        return vec![];
+    }
+
+    let content = match std::fs::read_to_string(
+        Path::new(install_location).join("AppxManifest.xml")
+    ) {
+        Ok(c)  => c,
+        Err(_) => return vec![],
+    };
+
+    let mut results = Vec::new();
+    let mut rest    = content.as_str();
+
+    while let Some(rel) = rest.to_lowercase().find("<application") {
+        rest = &rest[rel..];
+
+        let tag_end = match rest.find('>') {
+            Some(i) => i,
+            None    => break,
+        };
+
+        let tag = &rest[..=tag_end];
+
+        if let Some(app_id) = attr_value(tag, "Id") {
+            // look for VisualElements up to the closing </Application>
+            let scope_end = rest
+                .to_lowercase()
+                .find("</application>")
+                .unwrap_or(rest.len());
+
+            let display_name = visual_display_name(&rest[..scope_end]);
+
+            results.push((app_id, display_name));
+        }
+
+        // advance past this tag so we don't re-match it
+        rest = &rest[tag_end + 1..];
+    }
+
+    results
+}
+
+// Extract `attr="value"` or `attr='value'` (case-insensitive attribute name).
+fn attr_value(tag: &str, attr: &str) -> Option<String> {
+    let lower   = tag.to_lowercase();
+    let pattern = format!("{}=\"", attr.to_lowercase());
+
+    let start = lower
+        .find(&pattern)
+        .map(|i| i + pattern.len())
+        .or_else(|| {
+            let p2 = format!("{}='", attr.to_lowercase());
+            lower.find(&p2).map(|i| i + p2.len())
+        })?;
+
+    let value_end = tag[start..].find(|c| c == '"' || c == '\'')?;
+    Some(tag[start..start + value_end].to_string())
+}
+
+// Pull DisplayName from the nearest <*:VisualElements DisplayName="..." />.
+// Returns empty string for ms-resource: references (not resolvable here).
+fn visual_display_name(fragment: &str) -> String {
+    let lower = fragment.to_lowercase();
+
+    let pos = match lower.find("visualelements") {
+        Some(p) => p,
+        None => return String::new(),
+    };
+
+    let tag_open = fragment[..pos].rfind('<').unwrap_or(pos);
+
+    let tag_end = match fragment[pos..].find('>') {
+        Some(i) => pos + i,
+        None => fragment.len() - 1,
+    };
+
+    let tag = &fragment[tag_open..=tag_end.min(fragment.len() - 1)];
+    let raw = attr_value(tag, "DisplayName").unwrap_or_default();
+
+    if raw.starts_with("ms-resource:") {
+        String::new()
+    } else {
+        raw
+    }
+}
+
+// "Microsoft.WindowsCalculator_8wekyb3d8bbwe" → "Windows Calculator"
+fn friendly_name(family: &str) -> String {
+    let base    = family.split('_').next().unwrap_or(family);
+    let trimmed = base.splitn(2, '.').nth(1).unwrap_or(base);
+
+    let mut out = String::new();
+    for (i, ch) in trimmed.chars().enumerate() {
+        if ch.is_uppercase() && i > 0 {
+            out.push(' ');
+        }
+        out.push(ch);
+    }
+    out
 }
 
 
@@ -442,15 +565,11 @@ fn find_exe_in_dir(dir: &str, app_name: &str) -> String {
 
         let mut score: i32 = 0;
 
-        if stem == app_lower {
-            score += 100;
-        } else if stem.contains(&app_lower) || app_lower.contains(&stem) {
-            score += 50;
-        }
+        if stem == app_lower                                { score += 100; }
+        else if stem.contains(&app_lower)
+            || app_lower.contains(&stem)                  { score += 50;  }
 
-        if bad.iter().any(|b| stem.contains(b)) {
-            score -= 100;
-        }
+        if bad.iter().any(|b| stem.contains(b))            { score -= 100; }
 
         score -= stem.len() as i32;
 
@@ -460,11 +579,7 @@ fn find_exe_in_dir(dir: &str, app_name: &str) -> String {
         }
     }
 
-    if best_score >= 0 {
-        best_match
-    } else {
-        String::new()
-    }
+    if best_score >= 0 { best_match } else { String::new() }
 }
 
 fn collect_exes(dir: &Path, exes: &mut Vec<String>, depth: u32) {

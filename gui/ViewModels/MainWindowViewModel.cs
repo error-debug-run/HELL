@@ -1,82 +1,158 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Net.Http;
-using System.Runtime.InteropServices;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using gui.Views;
-using Microsoft.Win32;
-using System.Diagnostics;
-using System.Collections.ObjectModel;
-using System.Linq;
 using gui.Models;
-
+using gui.Services;
+using gui.Views;
+using System.Collections.ObjectModel;
 
 namespace gui.ViewModels;
 
+// ─────────────────────────────────────────────────────────────
+// MainWindowViewModel
+//
+// This is now just a coordinator. It:
+//   1. Holds all the observable UI state (what the view binds to)
+//   2. Creates the services
+//   3. Calls the services and maps their results onto UI state
+//
+// It does NOT contain any logic for how to read hardware,
+// how to start processes, or how to call audio endpoints —
+// that all lives in the Services folder.
+//
+// Python analogy: a top-level App class that holds references
+// to subsystems and wires them together
+// ─────────────────────────────────────────────────────────────
+
 public partial class MainWindowViewModel : ViewModelBase
 {
-    private readonly HttpClient _http = new();
+    // ── Theme constants ──────────────────────────────────────
+    // Defined once here — no more hunting for "#A855F7" across the file
+    private const string ColorPurple = "#A855F7";
+    private const string ColorRed    = "#EF4444";
+    private const string ColorGreen  = "#22C55E";
+    private const string ColorMuted  = "#6B6080";
+    private const string ColorDark   = "#3B2F5A";
+    private const string ColorJobs   = "#A1770E";
+    private const string ColorApps   = "#33A115";
+    private const string ColorConfig   = "#A31580";
+
+    // ── Services ─────────────────────────────────────────────
+    // These do the actual work. ViewModel just calls them.
+    private readonly HttpClient        _http    = new();
+    private readonly HardwareService   _hardware;
+    private readonly HellProcessService _hell;
+    private readonly AudioService      _audio;
+    private readonly CancellationTokenSource _cts = new();
+
     private const string ApiBase = "http://127.0.0.1:8000";
 
-    private PerformanceCounter? _cpuCounter;
-    private PerformanceCounter? _ramCounter;
-
-    // ── tab state ─────────────────────────────────────────
+    // ─────────────────────────────────────────────────────────
+    // TAB STATE
+    // ─────────────────────────────────────────────────────────
     [ObservableProperty] private string _activeTab = "status";
-    [ObservableProperty] private string _currentMode = "IDLE";
-    [ObservableProperty] private string _cpuUsage = "--";
-    [ObservableProperty] private string _ramUsage = "--";
-    [ObservableProperty] private string _gpuUsage = "--";
-    [ObservableProperty] private string _cpuName = "Detecting...";
-    [ObservableProperty] private string _ramTotal = "";
 
-    // ── mic visualizer ────────────────────────────────────
+    public bool IsStatusTab => ActiveTab == "status";
+    public bool IsAppsTab   => ActiveTab == "apps";
+    public bool IsJobsTab   => ActiveTab == "jobs";
+    public bool IsConfigTab => ActiveTab == "config";
+
+    public string StatusTabColor => ActiveTab == "status" ? ColorPurple : ColorMuted;
+    public string AppsTabColor   => ActiveTab == "apps"   ? ColorApps : ColorMuted;
+    public string JobsTabColor   => ActiveTab == "jobs"   ? ColorJobs : ColorMuted;
+    public string ConfigTabColor => ActiveTab == "config" ? ColorConfig : ColorMuted;
+
+    // ─────────────────────────────────────────────────────────
+    // SYSTEM STATUS
+    // ─────────────────────────────────────────────────────────
+    [ObservableProperty] private string _currentMode = "IDLE";
+    [ObservableProperty] private string _cpuUsage    = "Detecting...";
+    [ObservableProperty] private string _ramUsage    = "Detecting...";
+    [ObservableProperty] private string _gpuUsage    = "Detecting...";
+    [ObservableProperty] private string _cpuName     = "Detecting...";
+    [ObservableProperty] private string _ramTotal    = "";
+
+    // ─────────────────────────────────────────────────────────
+    // MIC VISUALIZER
+    // ─────────────────────────────────────────────────────────
     [ObservableProperty] private string _micStatus = "idle";
-    [ObservableProperty] private string _micColor = "#3B2F5A";
-    [ObservableProperty] private double _bar1Size = 4;
-    [ObservableProperty] private double _bar2Size = 6;
-    [ObservableProperty] private double _bar3Size = 8;
-    [ObservableProperty] private double _bar4Size = 6;
-    [ObservableProperty] private double _bar5Size = 4;
-    [ObservableProperty] private string _apiStatus = "● OFFLINE";
-    [ObservableProperty] private string _apiStatusColor = "#EF4444";
+    [ObservableProperty] private string _micColor  = ColorDark;
+    [ObservableProperty] private double _bar1Size  = 4;
+    [ObservableProperty] private double _bar2Size  = 6;
+    [ObservableProperty] private double _bar3Size  = 8;
+    [ObservableProperty] private double _bar4Size  = 6;
+    [ObservableProperty] private double _bar5Size  = 4;
+
+    // ─────────────────────────────────────────────────────────
+    // API STATUS
+    // ─────────────────────────────────────────────────────────
+    [ObservableProperty] private string _apiStatus      = "● OFFLINE";
+    [ObservableProperty] private string _apiStatusColor = ColorRed;
+
+    // ─────────────────────────────────────────────────────────
+    // HELL STATE
+    // ─────────────────────────────────────────────────────────
+    [ObservableProperty] private bool   _isRunning      = false;
+    [ObservableProperty] private string _startStopLabel = "START HELL";
+    [ObservableProperty] private string _startStopColor = "#7C3AED";
+
+    // ─────────────────────────────────────────────────────────
+    // AUDIO STATE
+    // ─────────────────────────────────────────────────────────
+    [ObservableProperty] private double _dbLevel         = 0;
+    [ObservableProperty] private double _dbSliderValue   = 0;
+    [ObservableProperty] private string _recordingStatus = "OFFLINE";
+    [ObservableProperty] private string _recordingColor  = ColorMuted;
+
+    // ─────────────────────────────────────────────────────────
+    // MIC DEVICES
+    // ─────────────────────────────────────────────────────────
     [ObservableProperty] private ObservableCollection<MicDevice> _micDevices = new();
     [ObservableProperty] private MicDevice? _selectedMicDevice;
     [ObservableProperty] private string _micSaveStatus = "";
-    
-    // ──── app visualizer ─────────────────────────────────`
-    [ObservableProperty] private ObservableCollection<AppEntry> _foundApps = new();
-    [ObservableProperty] private bool _isScanning = false;
-    [ObservableProperty] private string _scanStatus = "Click SCAN to find installed apps";
 
-    // ── tab visibility ────────────────────────────────────
-    public bool IsStatusTab => ActiveTab == "status";
-    public bool IsAppsTab => ActiveTab == "apps";
-    public bool IsJobsTab => ActiveTab == "jobs";
-    public bool IsConfigTab => ActiveTab == "config";
-
-    // ── tab colors ────────────────────────────────────────
-    public string StatusTabColor => ActiveTab == "status" ? "#A855F7" : "#6B6080";
-    public string AppsTabColor => ActiveTab == "apps" ? "#A855F7" : "#6B6080";
-    public string JobsTabColor => ActiveTab == "jobs" ? "#A855F7" : "#6B6080";
-    public string ConfigTabColor => ActiveTab == "config" ? "#A855F7" : "#6B6080";
-
+    // ─────────────────────────────────────────────────────────
+    // CONSTRUCTOR
+    // Create services, pass them the shared HttpClient,
+    // then kick off background loops.
+    // ─────────────────────────────────────────────────────────
     public MainWindowViewModel()
     {
+        _hardware = new HardwareService();
+        _hell     = new HellProcessService(_http);
+        _audio    = new AudioService(_http);
+
+        // Run hardware init on a background thread (it touches
+        // Registry + PerformanceCounters which can be slow)
+        Task.Run(() =>
+        {
+            _hardware.Initialize();
+
+            // Copy static info from service onto observable properties
+            CpuName  = _hardware.CpuName;
+            RamTotal = _hardware.RamTotal;
+            GpuUsage = _hardware.GpuName;
+        });
+
         _ = StartMicAnimation();
-        InitHardware();
+        _ = StartStatsPoll();
     }
 
-    // ── tab switching ─────────────────────────────────────
+    // ─────────────────────────────────────────────────────────
+    // TAB SWITCHING
+    // ─────────────────────────────────────────────────────────
     [RelayCommand]
     private async Task SelectTab(string tab)
     {
         ActiveTab = tab;
+
+        // Notify the view that all tab-derived properties changed
         OnPropertyChanged(nameof(IsStatusTab));
         OnPropertyChanged(nameof(IsAppsTab));
         OnPropertyChanged(nameof(IsJobsTab));
@@ -86,21 +162,22 @@ public partial class MainWindowViewModel : ViewModelBase
         OnPropertyChanged(nameof(JobsTabColor));
         OnPropertyChanged(nameof(ConfigTabColor));
 
-
         if (tab == "config" && IsRunning)
             await LoadMicDevices();
     }
 
-    // ── mic animation ─────────────────────────────────────
+    // ─────────────────────────────────────────────────────────
+    // MIC VISUALIZER ANIMATION
+    // ─────────────────────────────────────────────────────────
     private async Task StartMicAnimation()
     {
         var rng = new Random();
         using var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(100));
 
-        while (await timer.WaitForNextTickAsync(_cts.Token)
-                   .ConfigureAwait(false))
+        while (await timer.WaitForNextTickAsync(_cts.Token).ConfigureAwait(false))
         {
             var active = MicStatus == "listening";
+
             Bar1Size = active ? rng.Next(4, 16) : 4;
             Bar2Size = active ? rng.Next(6, 20) : 6;
             Bar3Size = active ? rng.Next(8, 24) : 8;
@@ -109,204 +186,195 @@ public partial class MainWindowViewModel : ViewModelBase
         }
     }
 
-    // ── hardware init ─────────────────────────────────────
-    private void InitHardware()
+    public void SetMicActive(bool active)
     {
-        Task.Run(() =>
-        {
-            try
-            {
-                // CPU counter — most accurate way on Windows
-                _cpuCounter = new PerformanceCounter(
-                    "Processor Information", "% Processor Utility",
-                    "_Total", true
-                );
-                // first read is always 0 — discard it
-                _cpuCounter.NextValue();
-
-                // available RAM in MB
-                _ramCounter = new PerformanceCounter(
-                    "Memory", "Available MBytes", true
-                );
-
-                // get CPU name from registry — instant, no WMI
-                var key = Registry.LocalMachine
-                    .OpenSubKey(
-                        @"HARDWARE\DESCRIPTION\System\CentralProcessor\0"
-                    );
-                CpuName = key?.GetValue("ProcessorNameString")
-                              ?.ToString()
-                              ?.Trim()
-                          ?? "Unknown CPU";
-
-                // get total RAM
-                GetRamTotal();
-
-                // get GPU name from registry
-                GetGpuName();
-
-                // start polling loop
-                _ = StartStatsPoll();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Hardware init error: {ex.Message}");
-                CpuName = "Could not detect";
-                CpuUsage = "--";
-                RamUsage = "--";
-                GpuUsage = "--";
-            }
-        });
+        MicStatus = active ? "listening" : "idle";
+        MicColor  = active ? ColorPurple : ColorDark;
     }
 
-    private void GetRamTotal()
-    {
-        try
-        {
-            // GlobalMemoryStatusEx via P/Invoke
-            var status = new MEMORYSTATUSEX();
-            status.dwLength = (uint)Marshal.SizeOf(status);
-            GlobalMemoryStatusEx(ref status);
-            var totalGb = status.ullTotalPhys / 1024 / 1024 / 1024;
-            RamTotal = $"{totalGb}GB";
-        }
-        catch
-        {
-            RamTotal = "";
-        }
-    }
-
-    private void GetGpuName()
-    {
-        try
-        {
-            var key = Registry.LocalMachine
-                .OpenSubKey(
-                    @"SYSTEM\CurrentControlSet\Control\Class\" +
-                    @"{4d36e968-e325-11ce-bfc1-08002be10318}\0000"
-                );
-            GpuUsage = key?.GetValue("DriverDesc")
-                           ?.ToString()
-                       ?? "GPU";
-        }
-        catch
-        {
-            GpuUsage = "GPU";
-        }
-    }
-
-    private readonly CancellationTokenSource _cts = new();
-
+    // ─────────────────────────────────────────────────────────
+    // STATS POLLING LOOP
+    // Runs every 2s. Asks HardwareService for CPU/RAM,
+    // then checks the API for current mode.
+    // ─────────────────────────────────────────────────────────
     private async Task StartStatsPoll()
     {
         using var timer = new PeriodicTimer(TimeSpan.FromSeconds(2));
 
-        while (await timer.WaitForNextTickAsync(_cts.Token)
-                   .ConfigureAwait(false))
+        while (await timer.WaitForNextTickAsync(_cts.Token).ConfigureAwait(false))
         {
-            // local hardware stats
+            // Hardware usage — service does the math, we just display
             await Task.Run(() =>
             {
-                try
-                {
-                    var cpu = _cpuCounter?.NextValue() ?? 0;
-                    CpuUsage = $"{(int)Math.Min(cpu, 100)}%";
-
-                    var availMb = _ramCounter?.NextValue() ?? 0;
-                    var status = new MEMORYSTATUSEX();
-                    status.dwLength = (uint)Marshal.SizeOf(status);
-                    GlobalMemoryStatusEx(ref status);
-                    var totalMb = status.ullTotalPhys / 1024 / 1024;
-                    var usedPct = totalMb > 0
-                        ? (1.0 - availMb / totalMb) * 100
-                        : 0;
-                    RamUsage = $"{(int)usedPct}%";
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Hardware error: {ex.Message}");
-                }
+                var (cpu, ram) = _hardware.GetUsage();
+                CpuUsage = cpu;
+                RamUsage = ram;
             }, _cts.Token);
 
-            // API status — mode + connection indicator
+            // API status check
             try
             {
-                var json = await _http.GetStringAsync(
-                    $"{ApiBase}/status", _cts.Token
-                );
-
+                var json = await _http.GetStringAsync($"{ApiBase}/status", _cts.Token);
                 using var doc = System.Text.Json.JsonDocument.Parse(json);
-                var root = doc.RootElement;
 
-                CurrentMode = root
-                    .GetProperty("mode")
-                    .GetString()
-                    ?.ToUpper() ?? "IDLE";
-
-                ApiStatus = "● CONNECTED TO API";
-                ApiStatusColor = "#22C55E";
+                CurrentMode    = doc.RootElement.GetProperty("mode").GetString()?.ToUpper() ?? "IDLE";
+                ApiStatus      = "● CONNECTED TO API";
+                ApiStatusColor = ColorGreen;
             }
             catch
             {
-                ApiStatus = "● OFFLINE";
-                ApiStatusColor = "#EF4444";
-                CurrentMode = "IDLE";
+                ApiStatus      = "● OFFLINE";
+                ApiStatusColor = ColorRed;
+                CurrentMode    = "IDLE";
             }
         }
     }
 
+    // ─────────────────────────────────────────────────────────
+    // TRAY MODE COMMANDS
+    // ─────────────────────────────────────────────────────────
     [RelayCommand]
-    private async Task Exit()
+    private async Task StartupMode() => await SendIntent("startup mode");
+
+    [RelayCommand]
+    private async Task DevMode() => await SendIntent("dev mode");
+
+    [RelayCommand]
+    private async Task GameMode() => await SendIntent("game_mode");
+
+    private async Task SendIntent(string intent)
     {
-        _cts.Cancel();
-        await StopHell();
-        if (Application.Current?.ApplicationLifetime
-            is IClassicDesktopStyleApplicationLifetime desktop)
+        try
         {
-            desktop.Shutdown();
+            await _http.PostAsync(
+                $"{ApiBase}/intent",
+                new StringContent(
+                    $"{{\"input\": \"{intent}\"}}",
+                    Encoding.UTF8,
+                    "application/json"
+                )
+            );
+        }
+        catch { }
+    }
+
+    // ─────────────────────────────────────────────────────────
+    // HELL PROCESS CONTROL
+    // ─────────────────────────────────────────────────────────
+    [RelayCommand]
+    private async Task ToggleHell()
+    {
+        if (IsRunning) StopHell();
+        else await StartHell();
+    }
+
+    private async Task StartHell()
+    {
+        var success = await _hell.StartAsync();
+
+        if (success)
+            SetRunningState(running: true);
+        else
+            ApiStatus = "● Failed to start";
+    }
+
+    private void StopHell()
+    {
+        _hell.Stop();
+        SetRunningState(running: false);
+
+        // Reset audio display
+        DbLevel       = 0;
+        DbSliderValue = 0;
+        ApiStatus      = "● OFFLINE";
+        ApiStatusColor = ColorRed;
+    }
+
+    // Centralises all the "is HELL running?" UI state in one place.
+    // Previously this was duplicated across StartHell and StopHell.
+    private void SetRunningState(bool running)
+    {
+        IsRunning       = running;
+        StartStopLabel  = running ? "STOP HELL"  : "START HELL";
+        StartStopColor  = running ? ColorRed     : "#7C3AED";
+        RecordingStatus = running ? "STANDBY"    : "OFFLINE";
+        RecordingColor  = ColorMuted;
+
+        if (running)
+            _ = PollAudioLevel();
+    }
+
+    // ─────────────────────────────────────────────────────────
+    // AUDIO POLLING LOOP
+    // Calls AudioService every 100ms while HELL is running.
+    // Maps the AudioSnapshot result onto observable properties.
+    // ─────────────────────────────────────────────────────────
+    private async Task PollAudioLevel()
+    {
+        using var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(100));
+
+        while (IsRunning && await timer.WaitForNextTickAsync(_cts.Token))
+        {
+            var snapshot = await _audio.GetAudioLevelAsync(_cts.Token);
+
+            if (snapshot == null)
+                continue;
+
+            DbLevel       = snapshot.Db;
+            DbSliderValue = Math.Max(0, Math.Min(100, (snapshot.Db + 60) * 100 / 60));
+
+            // Map mode string → display label + color
+            RecordingStatus = snapshot.Mode switch
+            {
+                "command" => "LISTENING",
+                "idle"    => "STANDBY",
+                _         => "RECORDING",
+            };
+
+            RecordingColor = snapshot.Mode switch
+            {
+                "command" => ColorGreen,
+                "idle"    => ColorMuted,
+                _         => ColorPurple,
+            };
         }
     }
 
-    // ── P/Invoke for memory info ───────────────────────────
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
-    private struct MEMORYSTATUSEX
-    {
-        public uint dwLength;
-        public uint dwMemoryLoad;
-        public ulong ullTotalPhys;
-        public ulong ullAvailPhys;
-        public ulong ullTotalPageFile;
-        public ulong ullAvailPageFile;
-        public ulong ullTotalVirtual;
-        public ulong ullAvailVirtual;
-        public ulong ullAvailExtendedVirtual;
-    }
-
-    [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-    private static extern bool GlobalMemoryStatusEx(ref MEMORYSTATUSEX lpBuffer);
-
-    // ── tray commands ─────────────────────────────────────
+    // ─────────────────────────────────────────────────────────
+    // MIC DEVICES
+    // ─────────────────────────────────────────────────────────
     [RelayCommand]
-    private async Task StartupMode()
+    private async Task LoadMicDevices()
     {
-        CurrentMode = "STARTUP";
-        await SendIntent("startup mode");
+        var devices = await _audio.GetDevicesAsync();
+
+        if (devices.Count == 0)
+        {
+            MicSaveStatus = "API offline — start HELL first";
+            return;
+        }
+
+        MicDevices.Clear();
+        foreach (var d in devices)
+            MicDevices.Add(d);
     }
 
     [RelayCommand]
-    private async Task DevMode()
+    private async Task SaveMicDevice()
     {
-        CurrentMode = "DEV";
-        await SendIntent("dev mode");
+        if (SelectedMicDevice == null)
+            return;
+
+        var ok = await _audio.SaveDeviceAsync(SelectedMicDevice.Index);
+
+        MicSaveStatus = ok
+            ? $"Saved: {SelectedMicDevice.Name}"
+            : "Save failed — API offline";
     }
 
-    [RelayCommand]
-    private async Task GameMode()
-    {
-        CurrentMode = "GAME";
-        await SendIntent("game_mode");
-    }
-
+    // ─────────────────────────────────────────────────────────
+    // WINDOW CONTROL
+    // ─────────────────────────────────────────────────────────
     [RelayCommand]
     private void OpenDashboard()
     {
@@ -326,391 +394,19 @@ public partial class MainWindowViewModel : ViewModelBase
         }
     }
 
-    private async Task SendIntent(string intent)
-    {
-        try
-        {
-            var json = $"{{\"input\": \"{intent}\"}}";
-            Console.WriteLine("Sending JSON: " + json);
-
-            await _http.PostAsync(
-                $"{ApiBase}/intent",
-                new StringContent(
-                    $"{{\"input\": \"{intent}\"}}",
-                    System.Text.Encoding.UTF8,
-                    "application/json"
-                )
-            );
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"API not running: {ex.Message}");
-        }
-    }
-
-    public void SetMicActive(bool active)
-    {
-        MicStatus = active ? "listening" : "idle";
-        MicColor = active ? "#A855F7" : "#3B2F5A";
-    }
-
-
-    // fields
-    private Process? _hellProcess;
-    [ObservableProperty] private bool _isRunning = false;
-    [ObservableProperty] private string _startStopLabel = "START HELL";
-    [ObservableProperty] private string _startStopColor = "#7C3AED";
-    [ObservableProperty] private double _dbLevel = 0;
-    [ObservableProperty] private double _dbSliderValue = 0;
-    [ObservableProperty] private string _recordingStatus = "OFFLINE";
-    [ObservableProperty] private string _recordingColor = "#6B6080";
-
+    // ─────────────────────────────────────────────────────────
+    // EXIT
+    // ─────────────────────────────────────────────────────────
     [RelayCommand]
-    private async Task ToggleHell()
+    private void Exit()
     {
-        if (IsRunning)
-            await StopHell();
-        else
-            await StartHell();
-    }
+        _cts.Cancel();
+        _hell.Stop();
 
-    private async Task StartHell()
-    {
-        var pythonPath = @"D:\HELL\.venv\Scripts\python.exe";
-        var hellRoot   = @"D:\HELL";
-
-        _hellProcess = new Process
-        {
-            StartInfo = new ProcessStartInfo
-            {
-                FileName               = pythonPath,
-                Arguments              = "main.py",
-                WorkingDirectory       = hellRoot,
-                UseShellExecute        = false,
-                CreateNoWindow         = true,
-                RedirectStandardOutput = true,
-                RedirectStandardError  = true,
-            }
-        };
-
-        _hellProcess.OutputDataReceived += (_, e) =>
-        {
-            if (e.Data != null)
-                Console.WriteLine($"[HELL] {e.Data}");
-        };
-        _hellProcess.ErrorDataReceived += (_, e) =>
-        {
-            if (e.Data != null)
-                Console.WriteLine($"[HELL ERR] {e.Data}");
-        };
-
-        _hellProcess.Start();
-        _hellProcess.BeginOutputReadLine();
-        _hellProcess.BeginErrorReadLine();
-
-        Console.WriteLine($"HELL core started: PID {_hellProcess.Id}");
-
-        await WaitForApi();
-
-        IsRunning       = true;
-        StartStopLabel  = "STOP HELL";
-        StartStopColor  = "#EF4444";
-        RecordingStatus = "STANDBY";
-        RecordingColor  = "#6B6080";
-
-        _ = PollAudioLevel();
-    }
-
-    private async Task StopHell()
-    {
-        try
-        {
-            _hellProcess?.Kill(entireProcessTree: true);
-            _hellProcess?.Dispose();
-            _hellProcess = null;
-        }
-        catch
-        {
-        }
-
-        IsRunning = false;
-        StartStopLabel = "START HELL";
-        StartStopColor = "#7C3AED";
-        RecordingStatus = "OFFLINE";
-        RecordingColor = "#6B6080";
-        DbLevel = 0;
-        DbSliderValue = 0;
-        ApiStatus = "● OFFLINE";
-        ApiStatusColor = "#EF4444";
-    }
-
-    private async Task WaitForApi(int maxWaitMs = 10000)
-    {
-        var start = DateTime.Now;
-        Console.WriteLine("Waiting for API...");
-
-        while ((DateTime.Now - start).TotalMilliseconds < maxWaitMs)
-        {
-            try
-            {
-                var response = await _http.GetAsync($"{ApiBase}/health");
-                Console.WriteLine($"API response: {response.StatusCode}");
-                if (response.IsSuccessStatusCode)
-                {
-                    Console.WriteLine("API is up!");
-                    return;
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"API not yet: {ex.Message}");
-            }
-            await Task.Delay(500);
-        }
-
-        Console.WriteLine("API wait timed out");
-    }
-    private async Task PollAudioLevel()
-    {
-        using var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(100));
-
-        while (IsRunning &&
-               await timer.WaitForNextTickAsync(_cts.Token))
-        {
-            try
-            {
-                var json = await _http.GetStringAsync(
-                    $"{ApiBase}/audio/level", _cts.Token
-                );
-                using var doc = System.Text.Json.JsonDocument.Parse(json);
-                var root = doc.RootElement;
-
-                var db = root.GetProperty("db").GetDouble();
-                var mode = root.GetProperty("mode").GetString() ?? "idle";
-
-                // convert db (-60 to 0) to slider (0 to 100)
-                DbLevel = db;
-                DbSliderValue = Math.Max(0, Math.Min(100, (db + 60) * 100 / 60));
-
-                RecordingStatus = mode == "command" ? "LISTENING" :
-                    mode == "idle" ? "STANDBY" : "RECORDING";
-                RecordingColor = mode == "command" ? "#22C55E" :
-                    mode == "idle" ? "#6B6080" : "#A855F7";
-            }
-            catch
-            {
-            }
-        }
-    }
-
-    private async Task<string?> FindPython()
-    {
-        // try common Python locations
-        var candidates = new[]
-        {
-            @"C:\Users\Admin\AppData\Local\Programs\Python\Python310\python.exe",
-            @"C:\Python310\python.exe",
-            "python",
-            "python3",
-        };
-
-        foreach (var candidate in candidates)
-        {
-            try
-            {
-                var p = Process.Start(new ProcessStartInfo
-                {
-                    FileName = candidate,
-                    Arguments = "--version",
-                    UseShellExecute = false,
-                    CreateNoWindow = true,
-                    RedirectStandardOutput = true,
-                });
-                await p!.WaitForExitAsync();
-                if (p.ExitCode == 0) return candidate;
-            }
-            catch
-            {
-            }
-        }
-
-        return null;
-    }
-    
-    
-    [RelayCommand]
-    private async Task LoadMicDevices()
-    {
-        try
-        {
-            var json = await _http.GetStringAsync($"{ApiBase}/audio/devices");
-            using var doc  = System.Text.Json.JsonDocument.Parse(json);
-            var devices    = doc.RootElement.GetProperty("devices");
-
-            MicDevices.Clear();
-            foreach (var device in devices.EnumerateArray())
-            {
-                MicDevices.Add(new MicDevice
-                {
-                    Index = device.GetProperty("index").GetInt32(),
-                    Name  = device.GetProperty("name").GetString() ?? "",
-                });
-            }
-
-            // select current device from config
-            var statusJson   = await _http.GetStringAsync($"{ApiBase}/status");
-            // current device selection handled by config
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Load mic devices error: {ex.Message}");
-            MicSaveStatus = "API offline — start HELL first";
-        }
-    }
-
-    [RelayCommand]
-    private async Task SaveMicDevice()
-    {
-        if (SelectedMicDevice == null)
-            return;
-
-        try
-        {
-            var body = System.Text.Json.JsonSerializer.Serialize(new
-            {
-                index = SelectedMicDevice.Index
-            });
-
-            await _http.PostAsync(
-                $"{ApiBase}/audio/device",
-                new StringContent(body,
-                    System.Text.Encoding.UTF8,
-                    "application/json")
-            );
-
-            MicSaveStatus = $"Saved: {SelectedMicDevice.Name}";
-            Console.WriteLine($"Mic device saved: {SelectedMicDevice.Name}");
-        }
-        catch (Exception ex)
-        {
-            MicSaveStatus = "Save failed — API offline";
-            Console.WriteLine($"Save mic error: {ex.Message}");
-        }
-    }
-    
-    
-    [RelayCommand]
-    private async Task ScanApps()
-    {
-        IsScanning = true;
-        ScanStatus = "Scanning...";
-        FoundApps.Clear();
-
-        // scan via Rust DLL
-        var apps = await Task.Run(() => AppFinderService.ScanAll());
-
-        foreach (var app in apps)
-            FoundApps.Add(app);
-
-        ScanStatus = $"Found {FoundApps.Count} apps — saving...";
-
-        // write to config via API if running
-        if (IsRunning)
-        {
-            try
-            {
-                var appList = apps.Select(a => new
-                {
-                    name      = a.Name,
-                    exe       = a.ExeName,
-                    full_path = a.FullPath,
-                    type_     = a.Type,
-                    publisher = a.Publisher,
-                });
-
-                var body = System.Text.Json.JsonSerializer.Serialize(
-                    new { apps = appList }
-                );
-
-                await _http.PostAsync(
-                    $"{ApiBase}/apps/write",
-                    new StringContent(body,
-                        System.Text.Encoding.UTF8,
-                        "application/json")
-                );
-
-                ScanStatus = $"{FoundApps.Count} apps saved to config";
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Write apps error: {ex.Message}");
-                ScanStatus = $"Found {FoundApps.Count} apps (save failed)";
-            }
-        }
-        else
-        {
-            ScanStatus = $"Found {FoundApps.Count} apps (start HELL to save)";
-        }
-
-        IsScanning = false;
-    }
-    
-    [RelayCommand]
-    private async Task AssignMode(AppEntry app)
-    {
-        // show mode picker dialog
-        var dialog = new ModePickerDialog(app);
-    
         if (Application.Current?.ApplicationLifetime
-                is IClassicDesktopStyleApplicationLifetime desktop
-            && desktop.MainWindow != null)
+            is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            var result = await dialog.ShowDialog<string?>(
-                desktop.MainWindow
-            );
-
-            if (result != null)
-            {
-                await SaveAppToMode(app, result);
-                Console.WriteLine($"  {app.Name} → {result}");
-            }
+            desktop.Shutdown();
         }
-    }
-
-    private async Task SaveAppToMode(AppEntry app, string mode)
-    {
-        try
-        {
-            var body = System.Text.Json.JsonSerializer.Serialize(new
-            {
-                app  = new
-                {
-                    name      = app.Name,
-                    exe       = app.ExeName,
-                    full_path = app.FullPath,
-                    type_     = app.Type,
-                },
-                mode = mode
-            });
-
-            await _http.PostAsync(
-                $"{ApiBase}/apps/assign_mode",
-                new StringContent(body,
-                    System.Text.Encoding.UTF8,
-                    "application/json")
-            );
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Assign mode error: {ex.Message}");
-        }
-    }
-    
-    
-    [RelayCommand]
-    private void AddAppToConfig(AppEntry app)
-    {
-        Console.WriteLine($"Adding {app.Name} ({app.ExeName}) to config");
-        // full implementation after we wire config writing
     }
 }

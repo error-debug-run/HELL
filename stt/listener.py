@@ -97,3 +97,28 @@ class AudioListener:
         print("Set 'mic_device' in config.json to your device index")
 
 
+if __name__ == "__main__":
+    import time
+
+    # list devices first
+    AudioListener.list_devices()
+
+    listener = AudioListener()
+    listener.start()
+
+    print("\nCalibrating — stay silent for 3 seconds...")
+    time.sleep(3)
+    silent_energy = listener.get_energy()
+    print(f"  silent energy: {silent_energy:.4f}")
+
+    print("\nNow speak normally...")
+    time.sleep(3)
+    speak_energy = listener.get_energy()
+    print(f"  speaking energy: {speak_energy:.4f}")
+
+    suggested = (silent_energy + speak_energy) / 2
+    print(f"\nSuggested threshold: {suggested:.4f}")
+    print(f"Set 'energy_threshold': {suggested:.4f} in config.json")
+
+    listener.stop()
+

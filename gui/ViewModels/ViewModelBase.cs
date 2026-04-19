@@ -4,6 +4,4 @@ namespace gui.ViewModels;
 
 public abstract class ViewModelBase : ObservableObject
 {
-    
 }
-

@@ -85,3 +85,27 @@ class Transcriber:
         return transcript.strip().lower()
 
 
+if __name__ == "__main__":
+    import time
+    import sounddevice as sd
+    from stt.listener import AudioListener
+
+    # load model
+    transcriber = Transcriber()
+    transcriber.load()
+
+    # start listener
+    listener = AudioListener()
+    listener.start()
+
+    print("\nWhisper is ready. Recording 5 seconds — speak now...")
+    print("─" * 40)
+
+    time.sleep(5)
+
+    audio      = listener.get_window(seconds=10)
+    transcript = transcriber.transcribe(audio)
+
+    print(f"Transcript: '{transcript}'")
+
+    listener.stop()
